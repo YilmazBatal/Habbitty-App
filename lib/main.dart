@@ -11,8 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    // final logoImg = 'assets/images/youtube-music.png';
+    double screenWidth = MediaQuery.of(context).size.width;    // Gives the width
+    double screenheight = MediaQuery.of(context).size.height;  // Gives the height
 
+    const orangeHeader = 280.0; // 280.0
 
     return MaterialApp(
       title: 'Habbity - Tracker',
@@ -21,9 +23,11 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Column(
           children: [
+            // Header
             Container(
-              height: 275,
-              width: double.infinity,
+              height: orangeHeader, // 275 Value
+              // width: double.infinity,
+              // Orange Gradient
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter, end: Alignment.bottomCenter,
@@ -34,11 +38,14 @@ class MyApp extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50), bottomRight: Radius.circular(50),)
               ),
+              // Header Rows parent
               child: Padding(
-                padding: EdgeInsets.only(left: 30, right: 30, top: 70,),
+                padding: const EdgeInsets.only(left: 30, right: 30, top: 70,),
                 child: Column(
+                  // Header Rows
                   children: [
-                    Row(
+                    // Hamburger Menu & Welcome Text
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(Icons.menu, size: 40, color: Colors.white,),
@@ -49,7 +56,8 @@ class MyApp extends StatelessWidget {
                         )
                       ],
                     ),
-                    Row(
+                    // Money & Date Label
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
@@ -69,12 +77,13 @@ class MyApp extends StatelessWidget {
                         )
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
+                    // Mini Calendar
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 20, bottom: 20),
                             child: Container(
                               height: 65,
                               decoration: BoxDecoration(
@@ -83,53 +92,57 @@ class MyApp extends StatelessWidget {
                                 boxShadow: [
                                   BoxShadow(
                                     color: const Color(0xFF122663).withOpacity(0.5),
-                                    spreadRadius: 5,
-                                    blurRadius: 10,
+                                    spreadRadius: 3,
+                                    blurRadius: 5,
                                   ),
                                 ],
                               ),
-                            )
-                          )
-                        ],
-                      ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          OverflowBox(
-                            maxHeight: 20,
-                            maxWidth: 20,
-                            alignment: Alignment.center,
+                    // Overflowing Progress Bar
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
                             child: Container(
-                              height: 20,
-                              width: 20,
+                              height: 50,
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(15),
                                 boxShadow: [
                                   BoxShadow(
                                     color: const Color(0xFF122663).withOpacity(0.5),
-                                    spreadRadius: 5,
-                                    blurRadius: 10,
+                                    spreadRadius: 3,
+                                    blurRadius: 5,
                                   ),
                                 ],
                               ),
                             ),
-                          )
-                        ],
-                      ),
+                          ),
+                        )
+                      ],
                     ),
                   ],
                 ),
               ),
             ),
+            // Content
             Expanded(
-              child: Row(
-
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: orangeHeader * 50 / 100, // Orange Header + %50
+                  ),
+                  Text("---------------------------------------------")
+                ],
               ),
             ),
+            // Nav Menu / Bottom Bar
             Container(
               height: 70,
               width: double.infinity,
@@ -191,75 +204,10 @@ class MyApp extends StatelessWidget {
       )
     );
   }
-
-  Padding QuickPicks(String url, String songName, String artist) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 7.5, horizontal: 5),
-      child: Row(
-        children: [
-          Image.network(
-            url,
-            width: 65,
-            height: 65,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  songName,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18
-                  ),
-                ),
-                Text(
-                  artist,
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 167, 167, 167),
-                    fontSize: 14
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 30),
-            child: Icon(
-              Icons.more_vert,
-              color: Colors.white,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container Category(String text) {
-    return Container(
-      child: Text(
-        text,
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        color: Color.fromARGB(20, 255, 255, 255),
-        border: Border.all(
-          color: Colors.white,
-          width: 0.1
-        )
-      ),
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 7),
-      margin: EdgeInsets.only(left: 5, right: 5),
-    );
-  }
 }
 
+
+// Google Font Library
 ThemeData _buildTheme(brightness) {
   var baseTheme = ThemeData(brightness: brightness);
 
