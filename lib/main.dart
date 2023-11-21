@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gradient_widgets/gradient_widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,10 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    Color lightOrange = const Color(0xffff9f1c); // Orange 1
+    Color darkOrange = const Color(0xFFff5417); // Orange 1
     double screenWidth = MediaQuery.of(context).size.width;    // Gives the width
     double screenheight = MediaQuery.of(context).size.height;  // Gives the height
 
-    const orangeHeader = 280.0; // 280.0
+    const orangeHeader = 320.0; // 280.0
 
     return MaterialApp(
       title: 'Habbity - Tracker',
@@ -28,20 +31,22 @@ class MyApp extends StatelessWidget {
               height: orangeHeader, // 275 Value
               // width: double.infinity,
               // Orange Gradient
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter, end: Alignment.bottomCenter,
                   colors: [
-                    Color(0xffff9f1c),
-                    Color(0xFFff5417),
+                    lightOrange,
+                    darkOrange,
                   ],
                 ),
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50), bottomRight: Radius.circular(50),)
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40),)
               ),
               // Header Rows parent
               child: Padding(
-                padding: const EdgeInsets.only(left: 30, right: 30, top: 70,),
+                padding: const EdgeInsets.only(left: 30, right: 30, top: 65,),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   // Header Rows
                   children: [
                     // Hamburger Menu & Welcome Text
@@ -80,51 +85,91 @@ class MyApp extends StatelessWidget {
                     // Mini Calendar
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 20, bottom: 20),
-                            child: Container(
-                              height: 65,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: const Color(0xFF122663).withOpacity(0.5),
-                                    spreadRadius: 3,
-                                    blurRadius: 5,
-                                  ),
-                                ],
-                              ),
-                            ),
+                            padding: const EdgeInsets.only(top: 20, bottom: 25),
+                            child: HabbittyBox(
+                              65.0,
+                              Colors.white,
+                              const Center(
+                                // children: [
+                                
+                                // ],
+                              )
+                            )
                           ),
-                        )
+                        ),
                       ],
                     ),
                     // Overflowing Progress Bar
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 15),
-                            child: Container(
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: const Color(0xFF122663).withOpacity(0.5),
-                                    spreadRadius: 3,
-                                    blurRadius: 5,
+                        HabbittyBox(
+                          50.0,
+                          Colors.white,
+                          Center(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            // mainAxisSize: MainAxisSize.
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  const Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Progress",
+                                          textAlign: TextAlign.center,
+                                          textDirection: TextDirection.ltr,
+                                          style: TextStyle(
+                                            color: Color(0Xff122663),
+                                            fontSize: 16
+                                          ),
+                                        ),
+                                        Text(
+                                          "10/10",
+                                          textAlign: TextAlign.center,
+                                          textDirection: TextDirection.ltr,
+                                          style: TextStyle(
+                                            color: Color(0Xff122663),
+                                            fontSize: 16
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          height: 8,
+                                          // ClipRRect gives border to child
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                                            child: GradientProgressIndicator(
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  darkOrange,
+                                                  lightOrange,
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],
@@ -133,13 +178,60 @@ class MyApp extends StatelessWidget {
             ),
             // Content
             Expanded(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: orangeHeader * 50 / 100, // Orange Header + %50
-                  ),
-                  Text("---------------------------------------------")
-                ],
+              child: Padding(
+                padding: const EdgeInsets.only(left: 30, right: 30, top: 5,),
+                child: Column(
+                  children: [
+                    // Radio Row
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 12.5, bottom: 12.5),
+                            child: HabbittyBox(
+                              32.5,
+                              Colors.white,
+                              const Center(
+                                // children: [
+                                
+                                // ],
+                              )
+                            )
+                          ),
+                        ),
+                      ],
+                    ),
+                    // Search Bar
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 35,
+                                height: 35,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.all(Radius.circular(500)),
+                                  child: ElevatedButton(
+                                    onPressed: () {},
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        const Icon(Icons.search, size: 10,)
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             // Nav Menu / Bottom Bar
@@ -204,6 +296,29 @@ class MyApp extends StatelessWidget {
       )
     );
   }
+
+  // Function to call Boxes - Takes 3 Param
+  Expanded HabbittyBox(double boxHeight, Color boxColor, Center myChild) {
+    return Expanded(
+      child: Container(
+        height: boxHeight,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: boxColor,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xFF122663).withOpacity(0.5),
+              spreadRadius: 3,
+              blurRadius: 5,
+            ),
+          ],
+        ),
+        child: myChild,
+      ),
+    );
+  }
+
 }
 
 
