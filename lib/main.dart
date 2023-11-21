@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
 
     Color lightOrange = const Color(0xffff9f1c); // Orange 1
     Color darkOrange = const Color(0xFFff5417); // Orange 1
-    double screenWidth = MediaQuery.of(context).size.width;    // Gives the width
-    double screenheight = MediaQuery.of(context).size.height;  // Gives the height
+    // double screenWidth = MediaQuery.of(context).size.width;    // Gives the width
+    // double screenheight = MediaQuery.of(context).size.height;  // Gives the height
 
     const orangeHeader = 320.0; // 280.0
 
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
                     darkOrange,
                   ],
                 ),
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40),)
+                borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40),)
               ),
               // Header Rows parent
               child: Padding(
@@ -147,11 +147,11 @@ class MyApp extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Expanded(
-                                        child: Container(
+                                        child: SizedBox(
                                           height: 8,
                                           // ClipRRect gives border to child
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                                            borderRadius: const BorderRadius.all(Radius.circular(10)),
                                             child: GradientProgressIndicator(
                                               gradient: LinearGradient(
                                                 colors: [
@@ -209,17 +209,17 @@ class MyApp extends StatelessWidget {
                         Expanded(
                           child: Row(
                             children: [
-                              Container(
+                              SizedBox(
                                 width: 35,
                                 height: 35,
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.all(Radius.circular(500)),
+                                  borderRadius: const BorderRadius.all(Radius.circular(500)),
                                   child: ElevatedButton(
                                     onPressed: () {},
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        const Icon(Icons.search, size: 10,)
+                                        Icon(Icons.search, size: 10,)
                                       ],
                                     ),
                                   ),
@@ -239,7 +239,7 @@ class MyApp extends StatelessWidget {
               height: 70,
               width: double.infinity,
               color: const Color.fromARGB(255, 33, 33, 33),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Column(
@@ -298,6 +298,7 @@ class MyApp extends StatelessWidget {
   }
 
   // Function to call Boxes - Takes 3 Param
+  // ignore: non_constant_identifier_names
   Expanded HabbittyBox(double boxHeight, Color boxColor, Center myChild) {
     return Expanded(
       child: Container(
