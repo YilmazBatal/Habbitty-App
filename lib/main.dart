@@ -1,4 +1,4 @@
-import 'dart:ffi';
+// import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,9 +8,14 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
 
@@ -18,12 +23,7 @@ class MyApp extends StatelessWidget {
     Color darkOrange = const Color(0xFFff5417); // Orange 2
     Color navyBlue = const Color(0xFF122663); // Navy 1
 
-    const List<Widget> activities = <Widget>[Text('Habbitties'), Text('Tasks')];
-    final List<bool> selectedActivities = <bool>[true, false];
-
-    final ThemeData theme = Theme.of(context);
-    bool vertical = false;
-
+    List<bool> selectedActivities = List.generate(2, (index) => true);
 
     // double screenWidth = MediaQuery.of(context).size.width;    // Gives the width
     // double screenheight = MediaQuery.of(context).size.height;  // Gives the height
@@ -286,16 +286,16 @@ class MyApp extends StatelessWidget {
                               Colors.white,
                                Center(
                                 child: ToggleButtons(
-                                  children: const [
-                                    Text("data"),
-                                    Text("data")
-                                  ],
                                   onPressed: (int index){
-                                    // setState((){
-                                    //   selectedActivities[index] = !selectedActivities[index];
-                                    // });
+                                    setState((){
+                                      selectedActivities[index] = !selectedActivities[index];
+                                    });
                                   },
                                   isSelected: selectedActivities,
+                                  children: [
+                                    Text("Habbitty"),
+                                    Text("Tasks")
+                                  ],
                                 ),
                               )
                             )
@@ -407,7 +407,6 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-
 }
 
 // Google Font Library
@@ -418,18 +417,4 @@ ThemeData _buildTheme(brightness) {
     textTheme: GoogleFonts.snigletTextTheme(baseTheme.textTheme),
   );
 
-}
-
-class Test extends StatefulWidget {
-  const Test({super.key});
-
-  @override
-  State<Test> createState() => _TestState();
-}
-
-class _TestState extends State<Test> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
 }
