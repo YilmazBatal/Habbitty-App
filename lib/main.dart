@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
@@ -15,6 +17,13 @@ class MyApp extends StatelessWidget {
     Color lightOrange = const Color(0xffff9f1c); // Orange 1
     Color darkOrange = const Color(0xFFff5417); // Orange 2
     Color navyBlue = const Color(0xFF122663); // Navy 1
+
+    const List<Widget> activities = <Widget>[Text('Habbitties'), Text('Tasks')];
+    final List<bool> selectedActivities = <bool>[true, false];
+
+    final ThemeData theme = Theme.of(context);
+    bool vertical = false;
+
 
     // double screenWidth = MediaQuery.of(context).size.width;    // Gives the width
     // double screenheight = MediaQuery.of(context).size.height;  // Gives the height
@@ -139,7 +148,7 @@ class MyApp extends StatelessWidget {
                                           textDirection: TextDirection.ltr,
                                           style: TextStyle(
                                             color: Color(0Xff122663),
-                                            fontSize: 16
+                                            fontSize: 20
                                           ),
                                         ),
                                         Text(
@@ -148,7 +157,7 @@ class MyApp extends StatelessWidget {
                                           textDirection: TextDirection.ltr,
                                           style: TextStyle(
                                             color: Color(0Xff122663),
-                                            fontSize: 16
+                                            fontSize: 20
                                           ),
                                         ),
                                       ],
@@ -186,12 +195,86 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
+            
             // Content
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(left: 30, right: 30, top: 5,),
                 child: Column(
                   children: [
+                    // Search Bar
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, bottom: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: navyBlue.withOpacity(0.5),
+                                    spreadRadius: 3,
+                                    blurRadius: 5,
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(15)
+                              ),
+                              child: Material(
+                                borderRadius: BorderRadius.circular(15),
+                                child: SizedBox(
+                                  height: 45,
+                                  child: TextField(
+                                    textAlign: TextAlign.start,
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+                                      isDense: true,
+                                      // Container for Search Icon
+                                      prefixIcon: Container(
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                            colors: [
+                                              lightOrange,
+                                              darkOrange
+                                            ],
+                                          ),
+                                          borderRadius: BorderRadius.circular(15),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: navyBlue.withOpacity(0.5),
+                                              spreadRadius: 3,
+                                              blurRadius: 5,
+                                            )
+                                          ],
+                                        ),
+                                        child: const Icon(Icons.search, color: Colors.white, size: 28,),
+                                      ),
+                                      // Hint Text
+                                      hintText: "  What are you looking for...",
+                                      hintStyle: TextStyle(
+                                        color: navyBlue.withOpacity(0.5)
+                                      ),
+                                      // Icon Radius
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                    ),
+                                    style: TextStyle(
+                                      color: navyBlue.withOpacity(1),
+                                      fontSize: 18
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ),
+                        ],
+                      ),
+                    ),
+                  
                     // Radio Row
                     Row(
                       children: [
@@ -199,63 +282,32 @@ class MyApp extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 12.5, bottom: 12.5),
                             child: HabbittyBox(
-                              32.5,
+                              35,
                               Colors.white,
-                              const Center(
-                                // children: [
-                                
-                                // ],
+                               Center(
+                                child: ToggleButtons(
+                                  children: const [
+                                    Text("data"),
+                                    Text("data")
+                                  ],
+                                  onPressed: (int index){
+                                    // setState((){
+                                    //   selectedActivities[index] = !selectedActivities[index];
+                                    // });
+                                  },
+                                  isSelected: selectedActivities,
+                                ),
                               )
                             )
                           ),
                         ),
                       ],
                     ),
-                    // Search Bar
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: navyBlue.withOpacity(0.5),
-                                  spreadRadius: 3,
-                                  blurRadius: 10,
-                                )
-                              ]
-                            ),
-                            child: Material(
-                              borderRadius: BorderRadius.circular(20),
-                              child: SizedBox(
-                                height: 35,
-                                child: TextField(
-                                  textAlign: TextAlign.start,
-                                  decoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.symmetric(),
-                                    prefixIcon: Icon(Icons.search, color: lightOrange),
-                                    hintText: "What are you looking for...",
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20.0),
-                                    ),
-                                  ),
-                                  style: TextStyle(
-                                    color: navyBlue.withOpacity(0.5),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        ),
-                      ],
-                    ),
-
                   ],
                 ),
               ),
             ),
+            
             // Nav Menu / Bottom Bar
             Container(
               height: 70,
@@ -366,4 +418,18 @@ ThemeData _buildTheme(brightness) {
     textTheme: GoogleFonts.snigletTextTheme(baseTheme.textTheme),
   );
 
+}
+
+class Test extends StatefulWidget {
+  const Test({super.key});
+
+  @override
+  State<Test> createState() => _TestState();
+}
+
+class _TestState extends State<Test> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
 }
