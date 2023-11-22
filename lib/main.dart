@@ -13,22 +13,32 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     Color lightOrange = const Color(0xffff9f1c); // Orange 1
-    Color darkOrange = const Color(0xFFff5417); // Orange 1
+    Color darkOrange = const Color(0xFFff5417); // Orange 2
+    Color navyBlue = const Color(0xFF122663); // Navy 1
+
     // double screenWidth = MediaQuery.of(context).size.width;    // Gives the width
     // double screenheight = MediaQuery.of(context).size.height;  // Gives the height
 
-    const orangeHeader = 320.0; // 280.0
+    const orangeHeader = 250.0; // 280.0
 
     return MaterialApp(
       title: 'Habbity - Tracker',
       debugShowCheckedModeBanner: false,
-      theme: _buildTheme(Brightness.light),
+      theme: _buildTheme(
+        Brightness.light,
+      ),
       home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: lightOrange,
+          elevation: 0,
+          bottomOpacity: 0,
+          toolbarHeight: 0,
+        ),
         body: Column(
           children: [
             // Header
             Container(
-              height: orangeHeader, // 275 Value
+              height: orangeHeader,
               // width: double.infinity,
               // Orange Gradient
               decoration: BoxDecoration(
@@ -43,7 +53,7 @@ class MyApp extends StatelessWidget {
               ),
               // Header Rows parent
               child: Padding(
-                padding: const EdgeInsets.only(left: 30, right: 30, top: 65,),
+                padding: const EdgeInsets.only(left: 30, right: 30, top: 0,),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -207,29 +217,41 @@ class MyApp extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Expanded(
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 35,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: navyBlue.withOpacity(0.5),
+                                  spreadRadius: 3,
+                                  blurRadius: 10,
+                                )
+                              ]
+                            ),
+                            child: Material(
+                              borderRadius: BorderRadius.circular(20),
+                              child: SizedBox(
                                 height: 35,
-                                child: ClipRRect(
-                                  borderRadius: const BorderRadius.all(Radius.circular(500)),
-                                  child: ElevatedButton(
-                                    onPressed: () {},
-                                    child: const Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.search, size: 10,)
-                                      ],
+                                child: TextField(
+                                  textAlign: TextAlign.start,
+                                  decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.symmetric(),
+                                    prefixIcon: Icon(Icons.search, color: lightOrange),
+                                    hintText: "What are you looking for...",
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20.0),
                                     ),
+                                  ),
+                                  style: TextStyle(
+                                    color: navyBlue.withOpacity(0.5),
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          )
                         ),
                       ],
                     ),
+
                   ],
                 ),
               ),
@@ -238,56 +260,70 @@ class MyApp extends StatelessWidget {
             Container(
               height: 70,
               width: double.infinity,
-              color: const Color.fromARGB(255, 33, 33, 33),
-              child: const Row(
+              decoration: BoxDecoration(
+              color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFF122663).withOpacity(0.5),
+                    spreadRadius: 3,
+                    blurRadius: 5,
+                  ),
+                ]
+              ),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.home,color: Colors.white, size: 35,),
-                      Text("Home", style: TextStyle(
-                        color: Colors.white,
-                      ),),
+                      Icon(Icons.home,color: lightOrange, size: 50,),
                     ],
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.play_circle_fill,color: Colors.white, size: 35,),
-                      Text("Samples", style: TextStyle(
-                        color: Colors.white,
-                      ),),
+                      Icon(Icons.bar_chart,color: navyBlue, size: 50,),
                     ],
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.explore,color: Colors.white, size: 35,),
-                      Text("Explore", style: TextStyle(
-                        color: Colors.white,
-                      ),),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          boxShadow: [
+                            BoxShadow(
+                              color: darkOrange.withOpacity(0.5),
+                              spreadRadius: 1,
+                              blurRadius: 10,
+                            )
+                          ]
+                        ),
+                        child: ShaderMask(
+                          shaderCallback: (rect) => LinearGradient(
+                            colors: [
+                              lightOrange,
+                              darkOrange,
+                            ],
+                            begin: Alignment.topCenter,
+                          ).createShader(rect),
+                          child: const Icon(Icons.add_circle, color: Colors.white, size: 60,),
+                        ),
+                      ),
                     ],
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.library_add,color: Colors.white, size: 35,),
-                      Text("Library", style: TextStyle(
-                        color: Colors.white,
-                      ),),
+                      Icon(Icons.person, color: navyBlue, size: 50,),
                     ],
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.home,color: Colors.white, size: 35,),
-                      Text("Upgrade", style: TextStyle(
-                        color: Colors.white,
-                      ),),
+                      Icon(Icons.store, color: navyBlue, size: 50,),
                     ],
                   ),
-                  
                 ],
               ),
             ),
@@ -303,7 +339,7 @@ class MyApp extends StatelessWidget {
     return Expanded(
       child: Container(
         height: boxHeight,
-        width: double.infinity,
+        width: 200,
         decoration: BoxDecoration(
           color: boxColor,
           borderRadius: BorderRadius.circular(15),
@@ -322,7 +358,6 @@ class MyApp extends StatelessWidget {
 
 }
 
-
 // Google Font Library
 ThemeData _buildTheme(brightness) {
   var baseTheme = ThemeData(brightness: brightness);
@@ -330,4 +365,5 @@ ThemeData _buildTheme(brightness) {
   return baseTheme.copyWith(
     textTheme: GoogleFonts.snigletTextTheme(baseTheme.textTheme),
   );
+
 }
