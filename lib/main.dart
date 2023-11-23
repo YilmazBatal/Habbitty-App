@@ -315,9 +315,9 @@ class _MyAppState extends State<MyApp> {
                       // Activities
                       Column(
                         children: [
-                          UncheckedActivity(navyBlue, "10 Push Ups", "10:00 AM - 10:15 AM"),
+                          UncheckedActivity(navyBlue, "10 Push Ups", "10:00 AM - 10:15 AM", Icon(Icons.fitness_center, size: 55, color: navyBlue)),
                           CheckedActivity(darkGreen, lightGreen, "10 Push Ups", "10:00 AM - 10:15 AM"),
-                          UncheckedActivity(navyBlue, "10 Push Ups", "10:00 AM - 10:15 AM"),
+                          UncheckedActivity(navyBlue, "10 Push Ups", "10:00 AM - 10:15 AM", Icon(Icons.sports_football, size: 55, color: navyBlue)),
                           CheckedActivity(darkGreen, lightGreen, "10 Push Ups", "10:00 AM - 10:15 AM"),
                         ],
                       ),
@@ -470,7 +470,7 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
-  Padding UncheckedActivity(Color navyBlue, String activityName, String activityTime) {
+  Padding UncheckedActivity(Color navyBlue, String activityName, String activityTime, Icon activityIcon) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
@@ -522,7 +522,7 @@ class _MyAppState extends State<MyApp> {
                               ),
                             ]
                           ),
-                          child: Icon(Icons.fitness_center, size: 55, color: navyBlue),
+                          child: activityIcon,
                         )
                       )
                     ],
