@@ -21,6 +21,8 @@ class _MyAppState extends State<MyApp> {
 
     Color lightOrange = const Color(0xffff9f1c); // Orange 1
     Color darkOrange = const Color(0xFFff5417); // Orange 2
+    Color lightGreen = const Color(0xFF2de052); // Green 2
+    Color darkGreen = const Color(0xFF14a523); // Green 2
     Color navyBlue = const Color(0xFF122663); // Navy 1
 
     List<bool> selectedActivities = List.generate(2, (index) => true);
@@ -28,7 +30,7 @@ class _MyAppState extends State<MyApp> {
     // double screenWidth = MediaQuery.of(context).size.width;    // Gives the width
     // double screenheight = MediaQuery.of(context).size.height;  // Gives the height
 
-    const orangeHeader = 250.0; // 280.0
+    const orangeHeader = 242.5; // 280.0
 
     return MaterialApp(
       title: 'Habbity - Tracker',
@@ -108,9 +110,11 @@ class _MyAppState extends State<MyApp> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 20, bottom: 25),
+                            padding: const EdgeInsets.only(top: 20, bottom: 20),
                             child: HabbittyBox(
                               65.0,
+                              navyBlue,
+                              Colors.white,
                               Colors.white,
                               const Center(
                                 // children: [
@@ -129,6 +133,8 @@ class _MyAppState extends State<MyApp> {
                       children: [
                         HabbittyBox(
                           50.0,
+                          navyBlue,
+                          Colors.white,
                           Colors.white,
                           Center(
                             // mainAxisAlignment: MainAxisAlignment.center,
@@ -198,116 +204,128 @@ class _MyAppState extends State<MyApp> {
             
             // Content
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 30, right: 30, top: 5,),
-                child: Column(
-                  children: [
-                    // Search Bar
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10, bottom: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: navyBlue.withOpacity(0.5),
-                                    spreadRadius: 3,
-                                    blurRadius: 5,
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(15)
-                              ),
-                              child: Material(
-                                borderRadius: BorderRadius.circular(15),
-                                child: SizedBox(
-                                  height: 45,
-                                  child: TextField(
-                                    textAlign: TextAlign.start,
-                                    decoration: InputDecoration(
-                                      contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                                      isDense: true,
-                                      // Container for Search Icon
-                                      prefixIcon: Container(
-                                        decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter,
-                                            colors: [
-                                              lightOrange,
-                                              darkOrange
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30, top: 5,),
+                  child: Column(
+                    children: [
+                      // Search Bar
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10, bottom: 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: navyBlue.withOpacity(0.5),
+                                      spreadRadius: 3,
+                                      blurRadius: 5,
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(15)
+                                ),
+                                child: Material(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: SizedBox(
+                                    height: 35,
+                                    child: TextField(
+                                      textAlign: TextAlign.start,
+                                      decoration: InputDecoration(
+                                        contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+                                        isDense: true,
+                                        // Container for Search Icon
+                                        prefixIcon: Container(
+                                          decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [
+                                                lightOrange,
+                                                darkOrange
+                                              ],
+                                            ),
+                                            borderRadius: BorderRadius.circular(15),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: navyBlue.withOpacity(0.5),
+                                                spreadRadius: 3,
+                                                blurRadius: 5,
+                                              )
                                             ],
                                           ),
-                                          borderRadius: BorderRadius.circular(15),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: navyBlue.withOpacity(0.5),
-                                              spreadRadius: 3,
-                                              blurRadius: 5,
-                                            )
-                                          ],
+                                          child: const Icon(Icons.search, color: Colors.white, size: 28,),
                                         ),
-                                        child: const Icon(Icons.search, color: Colors.white, size: 28,),
+                                        // Hint Text
+                                        hintText: "  What are you looking for...",
+                                        hintStyle: TextStyle(
+                                          color: navyBlue.withOpacity(0.5)
+                                        ),
+                                        // Icon Radius
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(15),
+                                        ),
                                       ),
-                                      // Hint Text
-                                      hintText: "  What are you looking for...",
-                                      hintStyle: TextStyle(
-                                        color: navyBlue.withOpacity(0.5)
+                                      style: TextStyle(
+                                        color: navyBlue.withOpacity(1),
+                                        fontSize: 18
                                       ),
-                                      // Icon Radius
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                    ),
-                                    style: TextStyle(
-                                      color: navyBlue.withOpacity(1),
-                                      fontSize: 18
                                     ),
                                   ),
                                 ),
-                              ),
-                            )
+                              )
+                            ),
+                          ],
+                        ),
+                      ),
+                      // Radio Row
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 12.5, bottom: 12.5),
+                              child: HabbittyBox(
+                                35,
+                                navyBlue,
+                                Colors.white,
+                                Colors.white,
+                                 Center(
+                                  child: ToggleButtons(
+                                    onPressed: (int index){
+                                      setState((){
+                                        selectedActivities[index] = !selectedActivities[index];
+                                      });
+                                    },
+                                    isSelected: selectedActivities,
+                                    children: const [
+                                      Text("Habbitty"),
+                                      Text("Tasks")
+                                    ],
+                                  ),
+                                )
+                              )
+                            ),
                           ),
                         ],
+                      ),        
+                      // Activities
+                      Column(
+                        children: [
+                          UncheckedActivity(navyBlue, "10 Push Ups", "10:00 AM - 10:15 AM"),
+                          CheckedActivity(darkGreen, lightGreen, "10 Push Ups", "10:00 AM - 10:15 AM"),
+                          UncheckedActivity(navyBlue, "10 Push Ups", "10:00 AM - 10:15 AM"),
+                          CheckedActivity(darkGreen, lightGreen, "10 Push Ups", "10:00 AM - 10:15 AM"),
+                        ],
                       ),
-                    ),
-                  
-                    // Radio Row
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 12.5, bottom: 12.5),
-                            child: HabbittyBox(
-                              35,
-                              Colors.white,
-                               Center(
-                                child: ToggleButtons(
-                                  onPressed: (int index){
-                                    setState((){
-                                      selectedActivities[index] = !selectedActivities[index];
-                                    });
-                                  },
-                                  isSelected: selectedActivities,
-                                  children: [
-                                    Text("Habbitty"),
-                                    Text("Tasks")
-                                  ],
-                                ),
-                              )
-                            )
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-            
             // Nav Menu / Bottom Bar
             Container(
               height: 70,
@@ -343,6 +361,7 @@ class _MyAppState extends State<MyApp> {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
+                          color: Colors.white.withOpacity(0.0),
                           boxShadow: [
                             BoxShadow(
                               color: darkOrange.withOpacity(0.5),
@@ -385,19 +404,153 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  Padding CheckedActivity(Color darkGreen, Color lightGreen, String activityName, String activityTime) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          HabbittyBox(
+            70,
+            darkGreen,
+            lightGreen,
+            darkGreen,
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 12, bottom: 12, left: 12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          "${activityName}",
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20
+                          ),
+                        ),
+                        Text(
+                          "${activityTime}",
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          width: 70,
+                          decoration: BoxDecoration(
+                            color: lightGreen,
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow: [
+                              BoxShadow(
+                                color: darkGreen.withOpacity(1),
+                                spreadRadius: 3,
+                                blurRadius: 5,
+                              ),
+                            ]
+                          ),
+                          child: const Icon(Icons.task_alt_rounded, size: 50, color: Colors.white),    
+                        )
+                      )
+                    ],
+                  )
+                ]
+              ),
+              
+            )
+          )
+        ],
+      ),
+    );
+  }
+  Padding UncheckedActivity(Color navyBlue, String activityName, String activityTime) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          HabbittyBox(
+            70,
+            navyBlue,
+            Colors.white,
+            Colors.white,
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 12, bottom: 12, left: 12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          "${activityName}",
+                          style: TextStyle(
+                            color: navyBlue,
+                            fontSize: 20
+                          ),
+                        ),
+                        Text(
+                          "${activityTime}",
+                          style: TextStyle(
+                            color: navyBlue.withOpacity(0.5),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          width: 70,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow: [
+                              BoxShadow(
+                                color: const Color(0xFF122663).withOpacity(0.5),
+                                spreadRadius: 3,
+                                blurRadius: 5,
+                              ),
+                            ]
+                          ),
+                          child: Icon(Icons.fitness_center, size: 55, color: navyBlue),
+                        )
+                      )
+                    ],
+                  )
+                ]
+              ),
+
+            )
+          )
+        ],
+      ),
+    );
+  }
+
   // Function to call Boxes - Takes 3 Param
   // ignore: non_constant_identifier_names
-  Expanded HabbittyBox(double boxHeight, Color boxColor, Center myChild) {
+  Expanded HabbittyBox(double boxHeight, Color boxShadowColor, Color boxColor, Color boxColor2, Center myChild) {
     return Expanded(
       child: Container(
         height: boxHeight,
         width: 200,
         decoration: BoxDecoration(
+          gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors:[boxColor, boxColor2]),
           color: boxColor,
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF122663).withOpacity(0.5),
+              color: boxShadowColor.withOpacity(0.5),
               spreadRadius: 3,
               blurRadius: 5,
             ),
@@ -408,7 +561,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
 // Google Font Library
 ThemeData _buildTheme(brightness) {
   var baseTheme = ThemeData(brightness: brightness);
