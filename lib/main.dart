@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:habbitty/myDrawerHeader.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'homepage.dart';
 
-Color lightOrange = const Color(0xffff9f1c); // Orange 1
+Color lightOrange = const Color(0xffff8c2e); // Orange 1
 Color darkOrange = const Color(0xFFff5417); // Orange 2
 Color lightGreen = const Color(0xFF2de052); // Green 2
 Color darkGreen = const Color(0xFF14a523); // Green 2
@@ -16,46 +17,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: _buildTheme(Brightness.light),
+      home: const HomePage(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+// Google Font Library
+ThemeData _buildTheme(brightness) {
+  var baseTheme = ThemeData(brightness: brightness);
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: lightOrange,
-        title: const Text("HABBITTY"),
-      ),
-      drawer: Drawer(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const MyHeaderDrawer(),
-              myDrawerList(),
-            ],
-          ),
-        ),
-      ),
-      body: const Center(
-        child: Text("Home Page"),
-      ),
-    );
-  }
-
-  Widget myDrawerList(){
-    return Container(
-
-    );
-  }
+  return baseTheme.copyWith(
+    textTheme: GoogleFonts.snigletTextTheme(baseTheme.textTheme),
+  );
 }
