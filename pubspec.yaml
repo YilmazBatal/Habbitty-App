@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0
   gradient_widgets: ^0.6.0
+  syncfusion_flutter_calendar: ^23.2.4
   
 dev_dependencies:
   flutter_test:

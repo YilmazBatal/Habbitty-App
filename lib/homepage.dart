@@ -11,7 +11,8 @@ import 'package:habbitty/Pages/profilepage.dart';
 import 'package:habbitty/Pages/storepage.dart';
 import 'package:habbitty/main.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-
+import 'package:syncfusion_flutter_calendar/calendar.dart';
+    
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -156,13 +157,16 @@ class HomePage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Container(
-                          height: 70,
+                          height: 70, //70,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(15.0),
                             boxShadow: [
                               MyBoxShadow()
                             ],
+                          ),
+                          child: SfCalendar(
+                            view: CalendarView.week,
                           ),
                         ),
                       ),
@@ -532,9 +536,7 @@ class _MyToggleButtonsState extends State<MyToggleButtons> {
       splashColor: navyBlue,
       borderRadius: BorderRadius.circular(15),
       children: [
-        Container(
-          width: screenWidth / 2 -31.5,
-          child: const Text("Habbitts", style: TextStyle(fontSize: 25), textAlign: TextAlign.center,)),
+        Container(width: screenWidth / 2 -31.5, child: const Text("Habbitts", style: TextStyle(fontSize: 25), textAlign: TextAlign.center,)),
         Container(width: screenWidth / 2 -31.5, child: const Text("Tasks", style: TextStyle(fontSize: 25), textAlign: TextAlign.center,)),
       ],
     );

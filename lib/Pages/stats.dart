@@ -7,6 +7,7 @@ import 'package:habbitty/Pages/profilepage.dart';
 import 'package:habbitty/Pages/storepage.dart';
 import 'package:habbitty/homepage.dart';
 import 'package:habbitty/main.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class StatsPage extends StatelessWidget {
   const StatsPage({super.key});
@@ -117,6 +118,28 @@ class StatsPage extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 25.0, right: 25, bottom: 20, top: 20),
+        child: Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 500, //70,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15.0),
+                  boxShadow: [
+                    MyBoxShadow()
+                  ],
+                ),
+                child: SfCalendar(
+                  view: CalendarView.day,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
