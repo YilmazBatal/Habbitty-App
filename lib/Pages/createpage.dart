@@ -10,7 +10,7 @@ class CreatePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: lightOrange,
-        title: const Text("Home"),
+        title: const Text("Create An Avtivity"),
       ),
     );
   }

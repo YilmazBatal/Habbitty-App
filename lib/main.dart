@@ -8,6 +8,23 @@ Color lightGreen = const Color(0xFF2de052); // Green 2
 Color darkGreen = const Color(0xFF14a523); // Green 2
 Color navyBlue = const Color(0xFF122663); // Navy 1
 
+int credits = 100;
+int completed = 2;
+int toBeCompleted = 10;
+String welcomeMessage = "Good Morning!";
+
+final List<String> myActivityNames = [
+  "10 Push Up",
+  "Study Math",
+  "Practice Programming",
+];
+
+final List<String> myActivityTimes = [
+  "10:00 - 10:15",
+  "13:00 - 14:30",
+  "16:00 - 19:00",
+];
+
 void main() {
   runApp(const MyApp());
 }
@@ -23,6 +40,15 @@ class MyApp extends StatelessWidget {
       home: const HomePage(),
     );
   }
+}
+
+
+BoxShadow MyBoxShadow() {
+  return BoxShadow(
+    color: navyBlue.withOpacity(0.5),
+    spreadRadius: 3,
+    blurRadius: 5,
+  );
 }
 
 // Google Font Library
