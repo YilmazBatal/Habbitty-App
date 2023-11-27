@@ -11,6 +11,40 @@ class PrivacyPolicyPage extends StatelessWidget {
         backgroundColor: lightOrange,
         title: const Text("Privacy Policy"),
       ),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Container(
+                child: ExpansionTile(
+                  backgroundColor: Colors.yellow[50],
+                  title: Text(
+                    'Coffee',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Coffee is a brewed drink prepared from roasted coffee beans, the seeds of berries from certain Coffee species.',
+                        style: TextStyle(fontSize: 15),
+                        maxLines: 3,
+                        softWrap: true,
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
