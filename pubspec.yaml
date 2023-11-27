@@ -39,6 +39,7 @@ dependencies:
   google_fonts: ^6.1.0
   gradient_widgets: ^0.6.0
   syncfusion_flutter_calendar: ^23.2.4
+  flutter_heatmap_calendar: ^1.0.5
   
 dev_dependencies:
   flutter_test:

@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:habbitty/homepage.dart';
 
 import 'package:habbitty/Pages/stats.dart';
-import 'package:habbitty/Pages/settingspage.dart';
 
 Color lightOrange = const Color(0xffff8c2e); // Orange 1
 Color darkOrange = const Color(0xFFff5417); // Orange 2
@@ -12,6 +11,7 @@ Color darkGreen = const Color(0xFF14a523); // Green 2
 Color navyBlue = const Color(0xFF122663); // Navy 1
 
 int credits = 100;
+int streak = 4;
 int completed = 5;
 int toBeCompleted = 10;
 String welcomeMessage = "Good Morning!";
@@ -40,8 +40,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: _buildTheme(Brightness.light),
-      // home: const HomePage(),
-      home: const StatsPage(),
+      home: const HomePage(),
+      // home: const StatsPage(),
       // home: const SettingsPage(),
     );
   }

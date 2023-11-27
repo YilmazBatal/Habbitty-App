@@ -131,6 +131,10 @@ class HomePage extends StatelessWidget {
           Container(
             height: 225,
             decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(15),
+                bottomRight: Radius.circular(15),
+              ),
               color: lightOrange
             ),
             child: Column(
@@ -233,7 +237,7 @@ class HomePage extends StatelessWidget {
               shrinkWrap: true,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
+                  padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
                   child: Row(
                     children: [
                       Expanded(
