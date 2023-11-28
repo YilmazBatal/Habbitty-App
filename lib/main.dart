@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habbitty/homepage.dart';
 
-import 'package:habbitty/Pages/stats.dart';
-
 Color lightOrange = const Color(0xffff8c2e); // Orange 1
 Color darkOrange = const Color(0xFFff5417); // Orange 2
 Color lightGreen = const Color(0xFF2de052); // Green 2
@@ -48,6 +46,7 @@ class MyApp extends StatelessWidget {
 }
 
 
+// ignore: non_constant_identifier_names
 BoxShadow MyBoxShadow() {
   return BoxShadow(
     color: navyBlue.withOpacity(0.5),

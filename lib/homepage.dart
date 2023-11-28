@@ -12,6 +12,7 @@ import 'package:habbitty/Pages/storepage.dart';
 import 'package:habbitty/main.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
     
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -309,11 +310,115 @@ class HomePage extends StatelessWidget {
                       Expanded(
                         child: Column(
                           children : [
-                            UncheckedActivity(navyBlue,myActivityNames[0],myActivityTimes[0], Icon(Icons.fitness_center, size: 45, color: navyBlue,)),
-                            UncheckedActivity(navyBlue,myActivityNames[1],myActivityTimes[1], Icon(Icons.book, size: 45, color: navyBlue,)),
-                            CheckedActivity(darkGreen, lightGreen, myActivityNames[2], myActivityTimes[2]),
-                            CheckedActivity(darkGreen, lightGreen, myActivityNames[2], myActivityTimes[2]),
-                            CheckedActivity(darkGreen, lightGreen, myActivityNames[2], myActivityTimes[2]),
+                            // Card
+                            Slidable(
+  // Specify a key if the Slidable is dismissible.
+  key: const ValueKey(0),
+
+  // The start action pane is the one at the left or the top side.
+  startActionPane: ActionPane(
+    // A motion is a widget used to control how the pane animates.
+    motion: const ScrollMotion(),
+
+    // A pane can dismiss the Slidable.
+    dismissible: DismissiblePane(onDismissed: () {}),
+
+    // All actions are defined in the children parameter.
+    children: [
+      // A SlidableAction can have an icon and/or a label.
+      SlidableAction(
+        onPressed: doNothing,
+        backgroundColor: Color(0xFFFE4A49),
+        foregroundColor: Colors.white,
+        icon: Icons.delete,
+        label: 'Delete',
+      ),
+      SlidableAction(
+        onPressed: doNothing,
+        backgroundColor: Color(0xFF21B7CA),
+        foregroundColor: Colors.white,
+        icon: Icons.share,
+        label: 'Share',
+      ),
+    ],
+  ),
+
+  // The end action pane is the one at the right or the bottom side.
+  endActionPane: ActionPane(
+    motion: ScrollMotion(),
+    children: [
+      SlidableAction(
+        // An action can be bigger than the others.
+        flex: 2,
+        onPressed: doNothing,
+        backgroundColor: Color(0xFF7BC043),
+        foregroundColor: Colors.white,
+        icon: Icons.archive,
+        label: 'Archive',
+      ),
+      SlidableAction(
+        onPressed: doNothing,
+        backgroundColor: Color(0xFF0392CF),
+        foregroundColor: Colors.white,
+        icon: Icons.save,
+        label: 'Save',
+      ),
+    ],
+  ),
+
+  // The child of the Slidable is what the user sees when the
+  // component is not dragged.
+  child: const ListTile(title: Text('Slide me')),
+),
+                            Container(
+                              height: 75,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15),
+                                boxShadow: [
+                                  MyBoxShadow()
+                                ]
+                              ),
+                              child : Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  // Left
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 12.0, bottom: 12, left: 20),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text("AAAAAAAAA", style: TextStyle(fontSize: 20, color: navyBlue)),
+                                        Text("AAAAAAAAA", style: TextStyle(fontSize: 16, color: navyBlue)),
+                                      ],
+                                    ),
+                                  ),
+                                  // Right
+                                  Column(
+                                    children: [
+                                      Container(
+                                        height: 75,
+                                        width: 75,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(15),
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            MyBoxShadow()
+                                          ]
+                                        ),
+                                        child: Icon(
+                                          Icons.fitness_center,
+                                          color: navyBlue,
+                                          size: 48,
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              )
+                            ),
+
                           ]
                         ),
                       ),
@@ -331,7 +436,6 @@ class HomePage extends StatelessWidget {
         },
         backgroundColor: lightOrange,
         child: Container(
-          
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
           ),
@@ -341,173 +445,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Padding CheckedActivity(Color darkGreen, Color lightGreen, String activityName, String activityTime) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        children: [
-          HabbittyBox(
-            70,
-            darkGreen,
-            lightGreen,
-            darkGreen,
-            Center(
-              child: InkWell(
-                onTap: () { print("Checked Activity"); },
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 12, bottom: 12, left: 12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              activityName,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 16
-                              ),
-                            ),
-                            Text(
-                              activityTime,
-                              style: TextStyle(
-                                color: Colors.white.withOpacity(0.5),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              width: 70,
-                              decoration: BoxDecoration(
-                                color: lightGreen,
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: darkGreen.withOpacity(1),
-                                    spreadRadius: 3,
-                                    blurRadius: 5,
-                                  ),
-                                ]
-                              ),
-                              child: const Icon(Icons.task_alt_rounded, size: 50, color: Colors.white),    
-                            )
-                          )
-                        ],
-                      )
-                    ]
-                  ),
-                ),
-              ),
-              
-            )
-          )
-        ],
-      ),
-    );
+  void doNothing(BuildContext context) {
   }
-  Padding UncheckedActivity(Color navyBlue, String activityName, String activityTime, Icon activityIcon) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        children: [
-          HabbittyBox(
-            70,
-            navyBlue,
-            Colors.white,
-            Colors.white,
-            Center(
-              child: InkWell(
-                onTap: () { print("Unchecked Activity"); },
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 12, bottom: 12, left: 12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              activityName,
-                              style: TextStyle(
-                                color: navyBlue,
-                                fontSize: 20
-                              ),
-                            ),
-                            Text(
-                              activityTime,
-                              style: TextStyle(
-                                color: navyBlue.withOpacity(0.5),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              width: 70,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: const Color(0xFF122663).withOpacity(0.5),
-                                    spreadRadius: 3,
-                                    blurRadius: 5,
-                                  ),
-                                ]
-                              ),
-                              child: activityIcon,
-                            )
-                          )
-                        ],
-                      )
-                    ]
-                  ),
-                ),
-              ),
-
-            )
-          )
-        ],
-      ),
-    );
-  }
-
-  // Function to call Boxes - Takes 3 Param
-  // ignore: non_constant_identifier_names
-  Expanded HabbittyBox(double boxHeight, Color boxShadowColor, Color boxColor, Color boxColor2, Center myChild) {
-    return Expanded(
-      child: Container(
-        height: boxHeight,
-        width: 200,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors:[boxColor, boxColor2]),
-          color: boxColor,
-          borderRadius: BorderRadius.circular(15),
-          boxShadow: [
-            BoxShadow(
-              color: boxShadowColor.withOpacity(0.5),
-              spreadRadius: 3,
-              blurRadius: 5,
-            ),
-          ],
-        ),
-        child: myChild,
-      ),
-    );
-  }
-
 }
 
 class MyToggleButtons extends StatefulWidget {
@@ -540,8 +479,8 @@ class _MyToggleButtonsState extends State<MyToggleButtons> {
       splashColor: navyBlue,
       borderRadius: BorderRadius.circular(15),
       children: [
-        Container(width: screenWidth / 2 -31.5, child: const Text("Habbitts", style: TextStyle(fontSize: 25), textAlign: TextAlign.center,)),
-        Container(width: screenWidth / 2 -31.5, child: const Text("Tasks", style: TextStyle(fontSize: 25), textAlign: TextAlign.center,)),
+        SizedBox(width: screenWidth / 2 -31.5, child: const Text("Habbitts", style: TextStyle(fontSize: 25,), textAlign: TextAlign.center,)),
+        SizedBox(width: screenWidth / 2 -31.5, child: const Text("Tasks", style: TextStyle(fontSize: 25,), textAlign: TextAlign.center,)),
       ],
     );
   }
