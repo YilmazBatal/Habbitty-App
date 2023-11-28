@@ -18,55 +18,7 @@ class SettingsPage extends StatelessWidget {
         backgroundColor: lightOrange,
         title: const Text("Settings", style: TextStyle(color: Colors.white),),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  SettingsElements(
-                      Icons.notifications_outlined,
-                      "Notifications",
-                      Icons.info_outline,
-                      "\u{1F6C8} Bildirimleri açıp kapatma",
-                      useSwitch: true),
-                  const Divider(
-                    thickness: 3,
-                  ),
-                  SettingsElements(Icons.vibration, "Vibration",
-                      Icons.info_outline, "\u{1F6C8} Titreşim açıp kapatma",
-                      useSwitch: true),
-                  const Divider(
-                    thickness: 3,
-                  ),
-                  SettingsElements(Icons.brush_outlined, "Customize",
-                      Icons.info_outline, "\u{1F6C8} Tema Seçenekleri",
-                      useSwitch: false),
-                  const Divider(
-                    thickness: 3,
-                  ),
-                  SettingsElements(Icons.language, "Language",
-                      Icons.info_outline, "\u{1F6C8} Dil seçenekleri",
-                      useSwitch: false),
-                  const Divider(
-                    thickness: 3,
-                  ),
-                  SettingsElements(
-                      Icons.sd_storage_outlined,
-                      "Data Reset & Restart",
-                      Icons.info_outline,
-                      "\u{1F6C8} Verileriniz sıfırlanır",
-                      useSwitch: false),
-                  const Divider(
-                    thickness: 3,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+      
       drawer: Drawer(
         child: Container(
           color: Colors.white,
