@@ -16,7 +16,7 @@ class StorePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: lightOrange,
-        title: const Text("Store"),
+        title: const Text("Store", style: TextStyle(color: Colors.white),),
       ),
       drawer: Drawer(
         child: Container(

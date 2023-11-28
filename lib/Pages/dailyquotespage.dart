@@ -16,7 +16,7 @@ class DailyQuotePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: lightOrange,
-        title: const Text("Daily Quotes"),
+        title: const Text("Daily Quotes", style: TextStyle(color: Colors.white),),
       ),
       drawer: Drawer(
         child: Container(

@@ -11,7 +11,7 @@ class HelpPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: lightOrange,
-        title: const Text("Help"),
+        title: const Text("Help", style: TextStyle(color: Colors.white),),
       ),
       body: Column(
         children: [

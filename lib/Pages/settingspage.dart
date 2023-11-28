@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:habbitty/Pages/dailyquotespage.dart';
 import 'package:habbitty/Pages/help.dart';
@@ -18,7 +16,7 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: lightOrange,
-        title: const Text("Settings"),
+        title: const Text("Settings", style: TextStyle(color: Colors.white),),
       ),
       body: Column(
         children: [
@@ -33,25 +31,25 @@ class SettingsPage extends StatelessWidget {
                       Icons.info_outline,
                       "\u{1F6C8} Bildirimleri açıp kapatma",
                       useSwitch: true),
-                  Divider(
+                  const Divider(
                     thickness: 3,
                   ),
                   SettingsElements(Icons.vibration, "Vibration",
                       Icons.info_outline, "\u{1F6C8} Titreşim açıp kapatma",
                       useSwitch: true),
-                  Divider(
+                  const Divider(
                     thickness: 3,
                   ),
                   SettingsElements(Icons.brush_outlined, "Customize",
                       Icons.info_outline, "\u{1F6C8} Tema Seçenekleri",
                       useSwitch: false),
-                  Divider(
+                  const Divider(
                     thickness: 3,
                   ),
                   SettingsElements(Icons.language, "Language",
                       Icons.info_outline, "\u{1F6C8} Dil seçenekleri",
                       useSwitch: false),
-                  Divider(
+                  const Divider(
                     thickness: 3,
                   ),
                   SettingsElements(
@@ -60,7 +58,7 @@ class SettingsPage extends StatelessWidget {
                       Icons.info_outline,
                       "\u{1F6C8} Verileriniz sıfırlanır",
                       useSwitch: false),
-                  Divider(
+                  const Divider(
                     thickness: 3,
                   ),
                 ],
@@ -240,6 +238,7 @@ class SwitchExample extends StatefulWidget {
   State<SwitchExample> createState() => _SwitchExampleState();
 }
 
+// ignore: non_constant_identifier_names
 Container SettingsElements(ikon, name, info, icerik, {bool useSwitch = true}) {
   Color navyBlue = const Color(0xFF122663);
   return Container(
@@ -253,7 +252,7 @@ Container SettingsElements(ikon, name, info, icerik, {bool useSwitch = true}) {
               size: 30,
               color: navyBlue,
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Text(
@@ -265,7 +264,7 @@ Container SettingsElements(ikon, name, info, icerik, {bool useSwitch = true}) {
         Row(
           children: [
             useSwitch
-                ? SwitchExample()
+                ? const SwitchExample()
                 : Container(), // Burada SwitchExample'ı kullanıp kullanmamayı kontrol ediyoruz
             TooltipSample(
               icerik: icerik,
@@ -284,19 +283,13 @@ class _SwitchExampleState extends State<SwitchExample> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: navyBlue.withOpacity(0.2),
-            spreadRadius: 0.1,
-            blurRadius: 1,
-          ),
-        ],
+        border: Border.all(color: navyBlue.withOpacity(0.5), width: 2),
         borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
       child: Switch(
         // This bool value toggles the switch.
         value: light,
-        activeColor: Color.fromARGB(255, 255, 87, 23),
+        activeColor: lightOrange,
         activeTrackColor: Colors.white,
         inactiveTrackColor: Colors.white,
         onChanged: (bool value) {

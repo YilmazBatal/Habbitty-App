@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: lightOrange,
-        title: const Text("Home"),
+        title: const Text("Home", style: TextStyle(color: Colors.white),),
         elevation: 0,
       ),
       drawer: Drawer(
@@ -368,7 +368,7 @@ class HomePage extends StatelessWidget {
                               activityName,
                               style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 20
+                                fontSize: 16
                               ),
                             ),
                             Text(
