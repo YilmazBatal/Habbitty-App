@@ -4,14 +4,14 @@ import 'package:habbitty/homepage.dart';
 
 Color lightOrange = const Color(0xffff8c2e); // Orange 1
 Color darkOrange = const Color(0xFFff5417); // Orange 2
-Color lightGreen = const Color(0xFF2de052); // Green 2
-Color darkGreen = const Color(0xFF14a523); // Green 2
+Color lightGreen = Color.fromARGB(255, 32, 198, 65); // Green 1
+Color darkGreen = Color.fromARGB(255, 12, 126, 23); // Green 2
 Color navyBlue = const Color(0xFF122663); // Navy 1
 
 int credits = 100;
 int streak = 4;
-int completed = 5;
-int toBeCompleted = 10;
+int completed = 3;
+int toBeCompleted = 20;
 String welcomeMessage = "Good Morning!";
 
 List<String> myActivityNames = [
@@ -47,9 +47,9 @@ class MyApp extends StatelessWidget {
 
 
 // ignore: non_constant_identifier_names
-BoxShadow MyBoxShadow() {
+BoxShadow MyBoxShadow(Color shadowColor) {
   return BoxShadow(
-    color: navyBlue.withOpacity(0.5),
+    color: shadowColor.withOpacity(0.5),
     spreadRadius: 3,
     blurRadius: 5,
   );

@@ -168,7 +168,7 @@ class StatsPage extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15.0),
                       boxShadow: [
-                        MyBoxShadow()
+                        MyBoxShadow(navyBlue)
                       ],
                     ),
                     child: HeatMapCalendar(

@@ -167,7 +167,7 @@ class HomePage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(15.0),
                             boxShadow: [
-                              MyBoxShadow()
+                              MyBoxShadow(navyBlue)
                             ],
                           ),
                           child: SfCalendar(
@@ -189,7 +189,7 @@ class HomePage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(15.0),
                             boxShadow: [
-                              MyBoxShadow(),
+                              MyBoxShadow(navyBlue),
                             ],
                           ),
                           child: Column(
@@ -234,198 +234,82 @@ class HomePage extends StatelessWidget {
           ),
           // Bottom
           Expanded(
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: navyBlue.withOpacity(0.5),
-                                spreadRadius: 3,
-                                blurRadius: 5,
-                              )
-                            ],
-                            borderRadius: BorderRadius.circular(15)
-                          ),
-                          child: Material(
-                            borderRadius: BorderRadius.circular(15),
-                            child: SizedBox(
-                              height: 35,
-                              child: TextField(
-                                textAlign: TextAlign.start,
-                                decoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                                  isDense: true,
-                                  // Container for Search Icon
-                                  prefixIcon: Container(
-                                    decoration: BoxDecoration(
-                                      color: lightOrange,
-                                      borderRadius: BorderRadius.circular(15), // icon raidus
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: navyBlue.withOpacity(0.5),
-                                          spreadRadius: 3,
-                                          blurRadius: 5,
-                                        )
-                                      ],
+            child: Padding(
+              padding: const EdgeInsets.only(left : 30.0, right: 30),
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: navyBlue.withOpacity(0.5),
+                                  spreadRadius: 3,
+                                  blurRadius: 5,
+                                )
+                              ],
+                              borderRadius: BorderRadius.circular(15)
+                            ),
+                            child: Material(
+                              borderRadius: BorderRadius.circular(15),
+                              child: SizedBox(
+                                height: 35,
+                                child: TextField(
+                                  textAlign: TextAlign.start,
+                                  decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+                                    isDense: true,
+                                    // Container for Search Icon
+                                    prefixIcon: Container(
+                                      decoration: BoxDecoration(
+                                        color: lightOrange,
+                                        borderRadius: BorderRadius.circular(15), // icon raidus
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: navyBlue.withOpacity(0.5),
+                                            spreadRadius: 3,
+                                            blurRadius: 5,
+                                          )
+                                        ],
+                                      ),
+                                      child: const Icon(Icons.search, color: Colors.white, size: 28,),
                                     ),
-                                    child: const Icon(Icons.search, color: Colors.white, size: 28,),
+                                    // Hint Text
+                                    hintText: "  What are you looking for...",
+                                    hintStyle: TextStyle(
+                                      color: navyBlue.withOpacity(0.5)
+                                    ),
+                                    // Icon Radius
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
                                   ),
-                                  // Hint Text
-                                  hintText: "  What are you looking for...",
-                                  hintStyle: TextStyle(
-                                    color: navyBlue.withOpacity(0.5)
+                                  style: TextStyle(
+                                    color: navyBlue.withOpacity(1),
+                                    fontSize: 18
                                   ),
-                                  // Icon Radius
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                ),
-                                style: TextStyle(
-                                  color: navyBlue.withOpacity(1),
-                                  fontSize: 18
                                 ),
                               ),
                             ),
-                          ),
-                        )
-                      ),
-                    ],
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 20, left: 30, right: 30),
-                  child: MyToggleButtons(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children : [
-                            // Card
-                            Slidable(
-  // Specify a key if the Slidable is dismissible.
-  key: const ValueKey(0),
-
-  // The start action pane is the one at the left or the top side.
-  startActionPane: ActionPane(
-    // A motion is a widget used to control how the pane animates.
-    motion: const ScrollMotion(),
-
-    // A pane can dismiss the Slidable.
-    dismissible: DismissiblePane(onDismissed: () {}),
-
-    // All actions are defined in the children parameter.
-    children: [
-      // A SlidableAction can have an icon and/or a label.
-      SlidableAction(
-        onPressed: doNothing,
-        backgroundColor: Color(0xFFFE4A49),
-        foregroundColor: Colors.white,
-        icon: Icons.delete,
-        label: 'Delete',
-      ),
-      SlidableAction(
-        onPressed: doNothing,
-        backgroundColor: Color(0xFF21B7CA),
-        foregroundColor: Colors.white,
-        icon: Icons.share,
-        label: 'Share',
-      ),
-    ],
-  ),
-
-  // The end action pane is the one at the right or the bottom side.
-  endActionPane: ActionPane(
-    motion: ScrollMotion(),
-    children: [
-      SlidableAction(
-        // An action can be bigger than the others.
-        flex: 2,
-        onPressed: doNothing,
-        backgroundColor: Color(0xFF7BC043),
-        foregroundColor: Colors.white,
-        icon: Icons.archive,
-        label: 'Archive',
-      ),
-      SlidableAction(
-        onPressed: doNothing,
-        backgroundColor: Color(0xFF0392CF),
-        foregroundColor: Colors.white,
-        icon: Icons.save,
-        label: 'Save',
-      ),
-    ],
-  ),
-
-  // The child of the Slidable is what the user sees when the
-  // component is not dragged.
-  child: const ListTile(title: Text('Slide me')),
-),
-                            Container(
-                              height: 75,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  MyBoxShadow()
-                                ]
-                              ),
-                              child : Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  // Left
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 12.0, bottom: 12, left: 20),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text("AAAAAAAAA", style: TextStyle(fontSize: 20, color: navyBlue)),
-                                        Text("AAAAAAAAA", style: TextStyle(fontSize: 16, color: navyBlue)),
-                                      ],
-                                    ),
-                                  ),
-                                  // Right
-                                  Column(
-                                    children: [
-                                      Container(
-                                        height: 75,
-                                        width: 75,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(15),
-                                          color: Colors.white,
-                                          boxShadow: [
-                                            MyBoxShadow()
-                                          ]
-                                        ),
-                                        child: Icon(
-                                          Icons.fitness_center,
-                                          color: navyBlue,
-                                          size: 48,
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              )
-                            ),
-
-                          ]
+                          )
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                )
-              ],
+                  const Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: MyToggleButtons(),
+                  ),
+                  newItem("asdsssssssssssssssssssssssssssssssssssssssssssssf","asf", Icons.fitness_center ,true),
+                  newItem("asdf","asf", Icons.fitness_center ,false),
+
+                ],
+              ),
             ),
           )
         ]
@@ -445,7 +329,131 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void doNothing(BuildContext context) {
+  Padding newItem(String itemTitle, String itemTime, IconData itemIcon, bool isDone) {
+
+    Color itemColor = Colors.white;
+    Color itemBgColor = Colors.white;
+    Color shadowColor = Colors.white;
+
+    if (isDone) {
+      itemColor = Colors.white;
+      itemBgColor = lightGreen;
+      shadowColor = darkGreen;
+    } else if (!isDone) {
+      itemColor = navyBlue;
+      itemBgColor = Colors.white;
+      shadowColor = navyBlue;
+    }
+    
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              clipBehavior: Clip.hardEdge,
+              height: 75,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  MyBoxShadow(shadowColor)
+                ]
+              ),
+              child: Slidable(
+                startActionPane: ActionPane(
+                  motion: const StretchMotion(),
+                  children: [
+                    SlidableAction(
+                      onPressed:(context) {
+                        
+                        completed++;
+                        showTimePicker(context: context, initialTime: const TimeOfDay(hour: 20, minute: 20));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
+                      },
+                      icon: (Icons.check_circle_outline),
+                      backgroundColor: lightGreen,
+                      foregroundColor: Colors.white,
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(15),
+                        topLeft: Radius.circular(15),
+                      ),
+                    ),
+                    SlidableAction(
+                      onPressed:(context) {
+                        showTimePicker(context: context, initialTime: const TimeOfDay(hour: 20, minute: 20));
+                      },
+                      icon: (Icons.edit),
+                      backgroundColor: const Color.fromARGB(255, 247, 195, 24),
+                      foregroundColor: Colors.white,
+                    ),
+                    SlidableAction(
+                      onPressed:(context) {
+                        showTimePicker(context: context, initialTime: const TimeOfDay(hour: 20, minute: 20));
+                      }, icon: (Icons.delete_forever),
+                      backgroundColor: Colors.red,
+                    ),
+                  ]
+                ),
+                child: Flexible(
+                  child: Container(
+                    height: 75,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: itemBgColor,
+                    ),
+                    child: Row(
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              width: 75,
+                              height: 75,
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.only(
+                                  bottomRight: Radius.circular(15), 
+                                  topRight: Radius.circular(15), 
+                                ),
+                                boxShadow: [MyBoxShadow(shadowColor)],
+                                color: itemBgColor,
+                              ),
+                              child: Icon(
+                                itemIcon,
+                                size: 50,
+                                color: itemColor
+                              )
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 250, child: Text(itemTitle, overflow: TextOverflow.ellipsis, style: TextStyle(color: itemColor, fontSize: 20),)),
+                              Text(itemTime, style: TextStyle(color: itemColor.withOpacity(0.5))),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+
+                    // child: ListTile(
+                    //   title: Text(itemTitle, overflow: TextOverflow.ellipsis, style: TextStyle(color: itemColor, fontSize: 20),),
+                    //   subtitle: Text(itemTime, style: TextStyle(color: itemColor.withOpacity(0.5))),
+                    //   leading: Container(
+                    //     margin: const EdgeInsets.only(top: 5),
+                    //     child: Icon(Icons.fitness_center, size: 50, color: itemColor)),
+                    // ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -457,7 +465,6 @@ class MyToggleButtons extends StatefulWidget {
 }
 class _MyToggleButtonsState extends State<MyToggleButtons> {
   
-
   final List<bool> _selections = [true,false];
   
   @override
@@ -467,16 +474,22 @@ class _MyToggleButtonsState extends State<MyToggleButtons> {
     
     return ToggleButtons(
       isSelected: _selections,
-      onPressed:(int index) {
+      onPressed: (int index) {
         setState(() {
-          _selections[index] = !_selections[index];
+          for (int buttonIndex = 0; buttonIndex < _selections.length; buttonIndex++) {
+            if (buttonIndex == index) {
+              _selections[buttonIndex] = true;
+            } else {
+              _selections[buttonIndex] = false;
+            }
+          }
         });
       },
       color: navyBlue,
       selectedColor: Colors.white,
       selectedBorderColor: navyBlue,
       fillColor: lightOrange,
-      splashColor: navyBlue,
+      splashColor: lightOrange,
       borderRadius: BorderRadius.circular(15),
       children: [
         SizedBox(width: screenWidth / 2 -31.5, child: const Text("Habbitts", style: TextStyle(fontSize: 25,), textAlign: TextAlign.center,)),
