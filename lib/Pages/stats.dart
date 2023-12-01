@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habbitty/Components/boxshadow.dart';
 import 'package:habbitty/Pages/dailyquotespage.dart';
 import 'package:habbitty/Pages/help.dart';
 import 'package:habbitty/Pages/privacypolicypage.dart';

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:habbitty/homepage.dart';
+
+import 'package:habbitty/Components/boxshadow.dart';
+import 'package:habbitty/Components/dynamictextfield.dart';
+import 'package:habbitty/Components/title.dart';
+import 'package:habbitty/Components/togglebutton.dart';
 
 import 'package:habbitty/main.dart';
 
@@ -141,20 +145,6 @@ class CreatePage extends StatelessWidget {
           height: 55,
           child: Icon(myIconData, size: 30,),
         )
-      ),
-    );
-  }
-
-  // ignore: non_constant_identifier_names
-  Padding MyTitle(String myTitle) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 15, left: 30, right: 30),
-      child: Text(
-        myTitle,
-        style: TextStyle(
-          fontSize: 28,
-          color: navyBlue,
-        ),
       ),
     );
   }
