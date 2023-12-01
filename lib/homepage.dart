@@ -10,10 +10,13 @@ import 'package:habbitty/Pages/stats.dart';
 import 'package:habbitty/Pages/profilepage.dart';
 import 'package:habbitty/Pages/storepage.dart';
 import 'package:habbitty/main.dart';
+
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-    
+import 'package:textfield_tags/textfield_tags.dart';
+import 'package:toggle_switch/toggle_switch.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -234,84 +237,82 @@ class HomePage extends StatelessWidget {
           ),
           // Bottom
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left : 30.0, right: 30),
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: navyBlue.withOpacity(0.5),
-                                  spreadRadius: 3,
-                                  blurRadius: 5,
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(15)
-                            ),
-                            child: Material(
-                              borderRadius: BorderRadius.circular(15),
-                              child: SizedBox(
-                                height: 35,
-                                child: TextField(
-                                  textAlign: TextAlign.start,
-                                  decoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                                    isDense: true,
-                                    // Container for Search Icon
-                                    prefixIcon: Container(
-                                      decoration: BoxDecoration(
-                                        color: lightOrange,
-                                        borderRadius: BorderRadius.circular(15), // icon raidus
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: navyBlue.withOpacity(0.5),
-                                            spreadRadius: 3,
-                                            blurRadius: 5,
-                                          )
-                                        ],
-                                      ),
-                                      child: const Icon(Icons.search, color: Colors.white, size: 28,),
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: navyBlue.withOpacity(0.5),
+                                spreadRadius: 3,
+                                blurRadius: 5,
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(15)
+                          ),
+                          child: Material(
+                            borderRadius: BorderRadius.circular(15),
+                            child: SizedBox(
+                              height: 35,
+                              child: TextField(
+                                textAlign: TextAlign.start,
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+                                  isDense: true,
+                                  // Container for Search Icon
+                                  prefixIcon: Container(
+                                    decoration: BoxDecoration(
+                                      color: lightOrange,
+                                      borderRadius: BorderRadius.circular(15), // icon raidus
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: navyBlue.withOpacity(0.5),
+                                          spreadRadius: 3,
+                                          blurRadius: 5,
+                                        )
+                                      ],
                                     ),
-                                    // Hint Text
-                                    hintText: "  What are you looking for...",
-                                    hintStyle: TextStyle(
-                                      color: navyBlue.withOpacity(0.5)
-                                    ),
-                                    // Icon Radius
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
+                                    child: const Icon(Icons.search, color: Colors.white, size: 28,),
                                   ),
-                                  style: TextStyle(
-                                    color: navyBlue.withOpacity(1),
-                                    fontSize: 18
+                                  // Hint Text
+                                  hintText: "  What are you looking for...",
+                                  hintStyle: TextStyle(
+                                    color: navyBlue.withOpacity(0.5)
                                   ),
+                                  // Icon Radius
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                ),
+                                style: TextStyle(
+                                  color: navyBlue.withOpacity(1),
+                                  fontSize: 18
                                 ),
                               ),
                             ),
-                          )
-                        ),
-                      ],
-                    ),
+                          ),
+                        )
+                      ),
+                    ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    child: MyToggleButtons(),
-                  ),
-                  newItem("asdsssssssssssssssssssssssssssssssssssssssssssssf","asf", Icons.fitness_center ,true),
-                  newItem("asdf","asf", Icons.fitness_center ,false),
-
-                ],
-              ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: MyToggleButtons(),
+                ),
+                newItem("10x Push Ups","10:00 - 10:15 AM", Icons.fitness_center ,true),
+                newItem("Study Math","12:00 - 14:15 AM", Icons.fitness_center ,false),
+                // TagField(),
+              ],
             ),
           )
+        
         ]
       ),
       floatingActionButton: FloatingActionButton(
@@ -346,7 +347,7 @@ class HomePage extends StatelessWidget {
     }
     
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 20,left: 30, right: 30),
       child: Row(
         children: [
           Expanded(
@@ -395,59 +396,49 @@ class HomePage extends StatelessWidget {
                     ),
                   ]
                 ),
-                child: Flexible(
-                  child: Container(
-                    height: 75,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: itemBgColor,
-                    ),
-                    child: Row(
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              width: 75,
-                              height: 75,
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                  bottomRight: Radius.circular(15), 
-                                  topRight: Radius.circular(15), 
-                                ),
-                                boxShadow: [MyBoxShadow(shadowColor)],
-                                color: itemBgColor,
+                child: Container(
+                  height: 75,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: itemBgColor,
+                  ),
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 75,
+                            height: 75,
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                bottomRight: Radius.circular(15), 
+                                topRight: Radius.circular(15), 
                               ),
-                              child: Icon(
-                                itemIcon,
-                                size: 50,
-                                color: itemColor
-                              )
+                              boxShadow: [MyBoxShadow(shadowColor)],
+                              color: itemBgColor,
+                            ),
+                            child: Icon(
+                              itemIcon,
+                              size: 50,
+                              color: itemColor
                             )
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(width: 250, child: Text(itemTitle, overflow: TextOverflow.ellipsis, style: TextStyle(color: itemColor, fontSize: 20),)),
+                            Text(itemTime, style: TextStyle(color: itemColor.withOpacity(0.5))),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(width: 250, child: Text(itemTitle, overflow: TextOverflow.ellipsis, style: TextStyle(color: itemColor, fontSize: 20),)),
-                              Text(itemTime, style: TextStyle(color: itemColor.withOpacity(0.5))),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-
-                    // child: ListTile(
-                    //   title: Text(itemTitle, overflow: TextOverflow.ellipsis, style: TextStyle(color: itemColor, fontSize: 20),),
-                    //   subtitle: Text(itemTime, style: TextStyle(color: itemColor.withOpacity(0.5))),
-                    //   leading: Container(
-                    //     margin: const EdgeInsets.only(top: 5),
-                    //     child: Icon(Icons.fitness_center, size: 50, color: itemColor)),
-                    // ),
+                      )
+                    ],
                   ),
-                ),
+                )
               ),
             ),
           ),
@@ -465,36 +456,190 @@ class MyToggleButtons extends StatefulWidget {
 }
 class _MyToggleButtonsState extends State<MyToggleButtons> {
   
-  final List<bool> _selections = [true,false];
-  
   @override
   Widget build(BuildContext context) {
 
-  double screenWidth = MediaQuery.of(context).size.width;    // Gives the width
-    
-    return ToggleButtons(
-      isSelected: _selections,
-      onPressed: (int index) {
-        setState(() {
-          for (int buttonIndex = 0; buttonIndex < _selections.length; buttonIndex++) {
-            if (buttonIndex == index) {
-              _selections[buttonIndex] = true;
-            } else {
-              _selections[buttonIndex] = false;
-            }
-          }
-        });
-      },
-      color: navyBlue,
-      selectedColor: Colors.white,
-      selectedBorderColor: navyBlue,
-      fillColor: lightOrange,
-      splashColor: lightOrange,
-      borderRadius: BorderRadius.circular(15),
-      children: [
-        SizedBox(width: screenWidth / 2 -31.5, child: const Text("Habbitts", style: TextStyle(fontSize: 25,), textAlign: TextAlign.center,)),
-        SizedBox(width: screenWidth / 2 -31.5, child: const Text("Tasks", style: TextStyle(fontSize: 25,), textAlign: TextAlign.center,)),
-      ],
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    return Center(
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [MyBoxShadow(navyBlue.withOpacity(0.5))],
+          borderRadius: BorderRadius.circular(50)
+        ),
+        child: ToggleSwitch(
+          minWidth: screenWidth,
+          minHeight: 50,
+          cornerRadius: 50.0,
+          activeBgColors: [[lightOrange], [lightOrange]],
+          activeFgColor: Colors.white,
+          inactiveBgColor: Colors.white,
+          inactiveFgColor: navyBlue,
+          borderColor: [lightOrange],
+          initialLabelIndex: 1,
+          totalSwitches: 2,
+          labels: const ['Habbitts', 'Tasks'],
+          customTextStyles: const [
+            TextStyle(
+              fontSize: 24.0,
+            )
+          ],
+          radiusStyle: true,
+          onToggle: (index) {
+            print('switched to: $index');
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class TagField extends StatefulWidget {
+  const TagField({Key? key}) : super(key: key);
+
+  @override
+  State<TagField> createState() => _TagFieldState();
+}
+class _TagFieldState extends State<TagField> {
+  late double _distanceToField;
+  late TextfieldTagsController _controller;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _distanceToField = MediaQuery.of(context).size.width;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextfieldTagsController();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
+      child: Column(
+            children: [
+              TextFieldTags(
+                textfieldTagsController: _controller,
+                initialTags: const [
+                  'study',
+                  'programming'
+                ],
+                textSeparators: const [' ', ','],
+                letterCase: LetterCase.normal,
+                validator: (String tag) {
+                  if (_controller.getTags!.contains(tag)) {
+                    return 'you already entered that';
+                  }
+                  return null;
+                },
+                inputfieldBuilder:
+                    (context, tec, fn, error, onChanged, onSubmitted) {
+                  return ((context, sc, tags, onTagDelete) {
+                    return TextField(
+                      controller: tec,
+                      focusNode: fn,
+                      decoration: InputDecoration(
+                        isDense: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(
+                            width: 2, color: lightOrange), //<-- SEE HERE
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(
+                            color: lightOrange,
+                            width: 3.0,
+                          ),
+                        ),
+                        helperStyle: TextStyle(
+                          color: lightOrange,
+                        ),
+                        hintText: _controller.hasTags ? '' : "Enter tag...",
+                        errorText: error,
+                        suffixIcon: Icon(Icons.tag, color: lightOrange,),
+                        prefixIconConstraints:
+                            BoxConstraints(maxWidth: _distanceToField * 0.74),
+                        prefixIcon: tags.isNotEmpty
+                            ? SingleChildScrollView(
+                                controller: sc,
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                    children: tags.map((String tag) {
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(20.0),
+                                      ),
+                                      color: lightOrange,
+                                    ),
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 5.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0, vertical: 5.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        InkWell(
+                                          child: Text(
+                                            '#$tag',
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                          onTap: () {
+                                            print("$tag selected");
+                                          },
+                                        ),
+                                        const SizedBox(width: 4.0),
+                                        InkWell(
+                                          child: const Icon(
+                                            Icons.cancel,
+                                            size: 14.0,
+                                            color: Color.fromARGB(
+                                                255, 233, 233, 233),
+                                          ),
+                                          onTap: () {
+                                            onTagDelete(tag);
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                }).toList()),
+                              )
+                            : null,
+                      ),
+                      onChanged: onChanged,
+                      onSubmitted: onSubmitted,
+                    );
+                  });
+                },
+              ),
+              // ElevatedButton(
+              //   style: ButtonStyle(
+              //     backgroundColor: MaterialStateProperty.all<Color>(
+              //       lightOrange,
+              //     ),
+              //   ),
+              //   onPressed: () {
+              //     _controller.clearTags();
+              //   },
+              //   child: const Text('CLEAR TAGS'),
+              // ),
+            
+            ],
+          ),
     );
   }
 }

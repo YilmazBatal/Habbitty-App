@@ -41,6 +41,8 @@ dependencies:
   syncfusion_flutter_calendar: ^23.2.4
   flutter_heatmap_calendar: ^1.0.5
   flutter_slidable: ^3.0.1
+  toggle_switch: ^2.1.0
+  textfield_tags: ^2.0.2
   
 dev_dependencies:
   flutter_test:
