@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habbitty/Components/tooltip.dart';
 import 'package:habbitty/Pages/dailyquotespage.dart';
 import 'package:habbitty/Pages/help.dart';
 import 'package:habbitty/Pages/privacypolicypage.dart';
@@ -16,9 +17,22 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: lightOrange,
-        title: const Text("Settings", style: TextStyle(color: Colors.white),),
+        title: const Text(
+          "Settings",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
-      
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Column(
+            children: [
+              SettingClick(),
+            ],
+          )
+        ],
+      ),
       drawer: Drawer(
         child: Container(
           color: Colors.white,
@@ -183,6 +197,7 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
+// Settings elements
 class SwitchExample extends StatefulWidget {
   const SwitchExample({super.key});
 
@@ -190,40 +205,227 @@ class SwitchExample extends StatefulWidget {
   State<SwitchExample> createState() => _SwitchExampleState();
 }
 
-// ignore: non_constant_identifier_names
-Container SettingsElements(ikon, name, info, icerik, {bool useSwitch = true}) {
+class SettingClick extends StatelessWidget {
+  void element_1(BuildContext context) {
+    print('Customize tıklandı!');
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        content: const Text(
+          'Tema seçiniz.',
+          textAlign: TextAlign.center,
+        ),
+        actions: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+                border: Border.all(color: navyBlue),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: navyBlue.withOpacity(0.5),
+                    spreadRadius: 3,
+                    blurRadius: 5,
+                  )
+                ],
+                color: Colors.white),
+            child: Column(
+              children: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'TÜRKÇE'),
+                  child: Center(
+                    child: const Text('Dark Theme'),
+                  ),
+                ),
+                Divider(
+                  height: 0,
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'ENGLİSH'),
+                  child: Center(
+                    child: const Text('Light Theme'),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void element_2(BuildContext context) {
+    print('Language tıklandı!');
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text(
+          'Dil seçiniz',
+          textAlign: TextAlign.center,
+        ),
+        actions: [
+          Container(
+            decoration: BoxDecoration(
+                border: Border.all(color: navyBlue),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: navyBlue.withOpacity(0.5),
+                    spreadRadius: 3,
+                    blurRadius: 5,
+                  )
+                ],
+                color: Colors.white),
+            child: Column(
+              children: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'TÜRKÇE'),
+                  child: Center(
+                    child: const Text('TÜRKÇE'),
+                  ),
+                ),
+                Divider(
+                  height: 0,
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'ENGLİSH'),
+                  child: Center(
+                    child: const Text('ENGLİSH'),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void element_3(BuildContext context) {
+    print('Data Reset tıklandı!');
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        content: const Text(
+          'Verilerinizi sıfırlamak istediğinize emin misiniz?',
+          textAlign: TextAlign.center,
+        ),
+        actions: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () => Navigator.pop(context, 'NO'),
+                  child: const Text(
+                    'NO',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: lightOrange,
+                  ),
+                ).withContainerShadow(),
+                SizedBox(
+                  width: 10,
+                ),
+                ElevatedButton(
+                  onPressed: () => Navigator.pop(context, 'YES'),
+                  child: const Text('YES'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                  ),
+                ).withContainerShadow(),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      SettingsElements(
+        Icons.notification_add_outlined,
+        'Notification',
+        'Bildirimleri aç/kapat.',
+        useSwitch: true,
+      ),
+      SettingsElements(
+        Icons.vibration_outlined,
+        'Vibration',
+        'Titreşimi aç/kapat.',
+        useSwitch: true,
+      ),
+      SettingsElements(
+        Icons.brush_outlined,
+        'Customize',
+        'Temayı değiştir.',
+        useSwitch: false,
+        onTap: () => element_1(context),
+      ),
+      SettingsElements(
+        Icons.language_outlined,
+        'Language',
+        'Dil seçenekleri.',
+        useSwitch: false,
+        onTap: () => element_2(context),
+      ),
+      SettingsElements(
+        Icons.data_array_outlined,
+        'Data Reset & Restart',
+        'Verileri sıfırlar.',
+        useSwitch: false,
+        onTap: () => element_3(context),
+      ),
+    ]);
+  }
+}
+
+Container SettingsElements(ikon, name, icerik,
+    {bool useSwitch = true, VoidCallback? onTap}) {
   Color navyBlue = const Color(0xFF122663);
   return Container(
     child: Padding(
       padding: const EdgeInsets.all(10.0),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Row(
+      child: GestureDetector(
+        onTap:
+            onTap, // Burada tıklama durumunda çağrılacak fonksiyonu belirliyoruz,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(
-              ikon,
-              size: 30,
-              color: navyBlue,
+            Row(
+              children: [
+                Icon(
+                  ikon,
+                  size: 30,
+                  color: navyBlue,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  name,
+                  style: TextStyle(fontSize: 25, color: navyBlue),
+                ),
+              ],
             ),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(
-              name,
-              style: TextStyle(fontSize: 25, color: navyBlue),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            useSwitch
-                ? const SwitchExample()
-                : Container(), // Burada SwitchExample'ı kullanıp kullanmamayı kontrol ediyoruz
-            TooltipSample(
-              icerik: icerik,
+            Row(
+              children: [
+                useSwitch
+                    ? const SwitchExample()
+                    : Container(), // Burada SwitchExample'ı kullanıp kullanmamayı kontrol ediyoruz
+                TooltipSample(
+                  icerik: icerik,
+                )
+              ],
             )
           ],
-        )
-      ]),
+        ),
+      ),
     ),
   );
 }
@@ -255,44 +457,49 @@ class _SwitchExampleState extends State<SwitchExample> {
   }
 }
 
-class TooltipSample extends StatelessWidget {
-  final String icerik;
-
-  const TooltipSample({Key? key, required this.icerik, required})
-      : super(key: key);
+class DialogExample extends StatelessWidget {
+  const DialogExample({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Color navyBlue = const Color(0xFF122663);
-    return Tooltip(
-      message: icerik,
+    return TextButton(
+      onPressed: () => showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('AlertDialog Title'),
+          content: const Text('AlertDialog description'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'Cancel'),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      ),
+      child: const Text('Show Dialog'),
+    );
+  }
+}
+
+extension ElevatedButtonWithShadow on ElevatedButton {
+  Widget withContainerShadow() {
+    return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(50),
         boxShadow: [
           BoxShadow(
             color: navyBlue.withOpacity(0.5),
-            spreadRadius: 3,
+            spreadRadius: 2,
             blurRadius: 5,
+            //offset: Offset(),
           ),
         ],
-        gradient: const LinearGradient(colors: <Color>[
-          Color.fromARGB(255, 255, 255, 255),
-          Color.fromARGB(255, 255, 255, 255)
-        ]),
       ),
-      height: 50,
-      padding: const EdgeInsets.all(8.0),
-      preferBelow: false,
-      textStyle: const TextStyle(
-        fontSize: 20,
-        color: Color(0xFF122663),
-      ),
-      showDuration: const Duration(milliseconds: 70),
-      waitDuration: const Duration(seconds: 1),
-      child: const Icon(
-        Icons.info_outline,
-        size: 30,
-      ),
+      child: this,
     );
   }
 }
