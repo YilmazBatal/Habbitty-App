@@ -7,6 +7,7 @@ class DynamicTextField extends StatefulWidget {
   final TextEditingController controller;
   final TextInputType keyboardType;
   final Function(String) onChanged;
+  final Icon suffixIcon;
 
   // ignore: use_key_in_widget_constructors
   const DynamicTextField({
@@ -14,6 +15,7 @@ class DynamicTextField extends StatefulWidget {
     required this.controller,
     this.keyboardType = TextInputType.text,
     required this.onChanged,
+    required this.suffixIcon,
   });
 
   @override
@@ -36,6 +38,7 @@ class _DynamicTextFieldState extends State<DynamicTextField> {
           keyboardType: widget.keyboardType,
           onChanged: widget.onChanged,
           decoration: InputDecoration(
+            suffixIcon: widget.suffixIcon,
             hintText: widget.hintText,
             filled: true,
             fillColor: Colors.white,

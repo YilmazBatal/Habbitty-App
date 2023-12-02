@@ -33,7 +33,9 @@ class CreatePage extends StatelessWidget {
                   DynamicTextField(
                       hintText: "Water Plants",
                       controller: TextEditingController(),
+                      suffixIcon: Icon(Icons.edit_note_rounded, color: navyBlue,),
                       onChanged: (value) {
+                        
                       // Handle username changes
                     },
                   ),
@@ -43,6 +45,7 @@ class CreatePage extends StatelessWidget {
                   DynamicTextField(
                       hintText: "Neighbor's plants, Only her cactus",
                       controller: TextEditingController(),
+                      suffixIcon: Icon(Icons.notes_rounded, color: navyBlue,),
                       onChanged: (value) {
                       // Handle username changes
                     },
@@ -91,6 +94,12 @@ class CreatePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ButtonStyle(
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            )
+                          ),
+                          splashFactory: NoSplash.splashFactory,
                           elevation: MaterialStateProperty.all(0),
                           backgroundColor: MaterialStateProperty.all(lightOrange),
                           foregroundColor: MaterialStateProperty.all(Colors.white)
@@ -112,6 +121,12 @@ class CreatePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ButtonStyle(
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            )
+                          ),
+                          splashFactory: NoSplash.splashFactory,
                           elevation: MaterialStateProperty.all(0),
                           backgroundColor: MaterialStateProperty.all(navyBlue),
                           foregroundColor: MaterialStateProperty.all(Colors.white)

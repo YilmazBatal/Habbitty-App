@@ -17,32 +17,35 @@ class _MyToggleButtonsState extends State<MyToggleButtons> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Center(
-      child: Container(
-        decoration: BoxDecoration(
-          boxShadow: [MyBoxShadow(navyBlue.withOpacity(0.5))],
-          borderRadius: BorderRadius.circular(50)
-        ),
-        child: ToggleSwitch(
-          minWidth: screenWidth,
-          minHeight: 50,
-          cornerRadius: 50.0,
-          activeBgColors: [[lightOrange], [lightOrange]],
-          activeFgColor: Colors.white,
-          inactiveBgColor: Colors.white,
-          inactiveFgColor: navyBlue,
-          borderColor: [lightOrange],
-          initialLabelIndex: 1,
-          totalSwitches: 2,
-          labels: const ['Habbitts', 'Tasks'],
-          customTextStyles: const [
-            TextStyle(
-              fontSize: 24.0,
-            )
-          ],
-          radiusStyle: true,
-          onToggle: (index) {
-            print('switched to: $index');
-          },
+      child: Padding(
+        padding: const EdgeInsets.only(/*left: 30.0, right: 30,*/top: 20),
+        child: Container(
+          decoration: BoxDecoration(
+            boxShadow: [MyBoxShadow(navyBlue.withOpacity(0.5))],
+            borderRadius: BorderRadius.circular(15)
+          ),
+          child: ToggleSwitch(
+            minWidth: screenWidth,
+            minHeight: 50,
+            cornerRadius: 15.0,
+            activeBgColors: [[lightOrange], [lightOrange]],
+            activeFgColor: Colors.white,
+            inactiveBgColor: Colors.white,
+            inactiveFgColor: navyBlue,
+            borderColor: [lightOrange],
+            initialLabelIndex: 1,
+            totalSwitches: 2,
+            labels: const ['Habbits', 'Tasks'],
+            customTextStyles: const [
+              TextStyle(
+                fontSize: 22.0,
+              )
+            ],
+            radiusStyle: true,
+            onToggle: (index) {
+              print('switched to: $index');
+            },
+          ),
         ),
       ),
     );

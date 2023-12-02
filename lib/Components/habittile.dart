@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:habbitty/Components/boxshadow.dart';
-import 'package:habbitty/homepage.dart';
 import 'package:habbitty/main.dart';
 
+// ignore: must_be_immutable
 class HabitTile extends StatelessWidget {
   final String itemTitle;
   final String itemTime;
   final IconData itemIcon;
-  final bool isDone;
+  bool isDone;
 
-  const HabitTile({
+  HabitTile({
     super.key,
     required this.itemTitle,
     required this.itemTime,
@@ -56,10 +56,9 @@ class HabitTile extends StatelessWidget {
                   children: [
                     SlidableAction(
                       onPressed:(context) {
-                        
                         completed++;
-                        showTimePicker(context: context, initialTime: const TimeOfDay(hour: 20, minute: 20));
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
+                        isDone = true;
+                        // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
                       },
                       icon: (Icons.check_circle_outline),
                       backgroundColor: lightGreen,
@@ -79,7 +78,8 @@ class HabitTile extends StatelessWidget {
                     ),
                     SlidableAction(
                       onPressed:(context) {
-                        showTimePicker(context: context, initialTime: const TimeOfDay(hour: 20, minute: 20));
+                        todaysHabitList.removeAt(0);
+                        
                       }, icon: (Icons.delete_forever),
                       backgroundColor: Colors.red,
                     ),

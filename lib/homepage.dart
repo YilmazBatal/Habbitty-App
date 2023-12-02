@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habbitty/Components/dynamictextfield.dart';
 import 'package:habbitty/Components/habittile.dart';
 import 'package:habbitty/Pages/createpage.dart';
 import 'package:habbitty/Pages/dailyquotespage.dart';
@@ -21,13 +22,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    List todaysHabitList = [
-      // [name,time,icon,isDone]
-      ["10x Push Ups", "10:00 AM - 10:15 AM", Icons.fitness_center_rounded, true],
-      ["Study Math", "12:00 AM - 14:15 AM", Icons.school_rounded, false],
-    ];
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: lightOrange,
@@ -134,8 +128,7 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-      
+      ),  
       body: Column(
         children: [
           // Header
@@ -244,95 +237,52 @@ class HomePage extends StatelessWidget {
           ),
           // Bottom
           Expanded(
-            child: SizedBox(
-              height: 5000,
-              width: 5000,
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: navyBlue.withOpacity(0.5),
-                                  spreadRadius: 3,
-                                  blurRadius: 5,
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(15)
-                            ),
-                            child: Material(
-                              borderRadius: BorderRadius.circular(15),
-                              child: SizedBox(
-                                height: 35,
-                                child: TextField(
-                                  textAlign: TextAlign.start,
-                                  decoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                                    isDense: true,
-                                    // Container for Search Icon
-                                    prefixIcon: Container(
-                                      decoration: BoxDecoration(
-                                        color: lightOrange,
-                                        borderRadius: BorderRadius.circular(15), // icon raidus
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: navyBlue.withOpacity(0.5),
-                                            spreadRadius: 3,
-                                            blurRadius: 5,
-                                          )
-                                        ],
-                                      ),
-                                      child: const Icon(Icons.search, color: Colors.white, size: 28,),
-                                    ),
-                                    // Hint Text
-                                    hintText: "  What are you looking for...",
-                                    hintStyle: TextStyle(
-                                      color: navyBlue.withOpacity(0.5)
-                                    ),
-                                    // Icon Radius
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                  ),
-                                  style: TextStyle(
-                                    color: navyBlue.withOpacity(1),
-                                    fontSize: 18
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    child: MyToggleButtons(),
-                  ),
-                  ListView.builder(
+            child: ListView(
+              
+              shrinkWrap: true,
+              children: [
+                DynamicTextField(
+                    hintText: "Search...",
+                    controller: TextEditingController(),
+                    suffixIcon: Icon(Icons.search_rounded, color: lightOrange,),
+                    onChanged: (value) {
+                    // Handle username changes
+                  },
+                ),
+                const MyToggleButtons(),
+                SizedBox(
+                  height: 5000,
+                  child: ListView.builder(
                     itemCount: todaysHabitList.length,
                     itemBuilder: (BuildContext context, int index) {
+                      
                       return HabitTile(
                         itemTitle: todaysHabitList[index][0],
                         itemTime: todaysHabitList[index][1],
                         itemIcon: todaysHabitList[index][2],
                         isDone: todaysHabitList[index][3],
                       );
+
+                      
                     },
                   ),
-                  // TagField(),
-                ],
-              ),
+                ),
+                // HabitTile(
+                //   itemTitle: todaysHabitList[0][0],
+                //   itemTime: todaysHabitList[0][1],
+                //   itemIcon: todaysHabitList[0][2],
+                //   isDone: todaysHabitList[0][3],
+                // ),
+                // HabitTile(
+                //   itemTitle: todaysHabitList[1][0],
+                //   itemTime: todaysHabitList[1][1],
+                //   itemIcon: todaysHabitList[1][2],
+                //   isDone: todaysHabitList[1][3],
+                // ),
+                // TagField(),
+              ],
             ),
           )
-        
         ]
       ),
       floatingActionButton: FloatingActionButton(
