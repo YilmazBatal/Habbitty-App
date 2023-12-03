@@ -1,5 +1,7 @@
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:habbitty/Components/alert_dialog.dart';
 import 'package:habbitty/Components/boxshadow.dart';
 import 'package:habbitty/Components/tooltip.dart';
 import 'package:habbitty/Pages/dailyquotespage.dart';
@@ -200,101 +202,27 @@ class SettingsPage extends StatelessWidget {
 }
 
 // Settings elements
-class SwitchExample extends StatefulWidget {
-  const SwitchExample({super.key});
-
-  @override
-  State<SwitchExample> createState() => _SwitchExampleState();
-}
-  
 class SettingClick extends StatelessWidget {
   void element_1(BuildContext context) {
-    debugPrint('Customize tıklandı!');
-    showDialog<String>(
+    debugPrint('Theme Tıklandı!');
+    CustomAlertDialog(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
-        actions: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-                border: Border.all(color: navyBlue),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: navyBlue.withOpacity(0.5),
-                    spreadRadius: 3,
-                    blurRadius: 5,
-                  )
-                ],
-                color: Colors.white),
-            child: Column(
-              children: <Widget>[
-                TextButton(
-                  onPressed: () => Navigator.pop(context, 'TÜRKÇE'),
-                  child: Center(
-                    child: Text('Dark Theme', style: TextStyle(color: navyBlue),),
-                  ),
-                ),
-                Divider(
-                  height: 0,
-                ),
-                TextButton(
-                  onPressed: () => Navigator.pop(context, 'ENGLİSH'),
-                  child: Center(
-                    child: const Text('Light Theme'),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+      contextName: "Theme",
+      name_1: "Dark Theme",
+      contextName_2: "Theme",
+      name_2: "Light Theme",
+    ).showAlertDialog();
   }
 
   void element_2(BuildContext context) {
     debugPrint('Language tıklandı!');
-    showDialog<String>(
+    CustomAlertDialog(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
-        actionsPadding: const EdgeInsets.all(0),
-        clipBehavior: Clip.hardEdge,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15.0))
-        ),
-        shadowColor: navyBlue,
-        elevation: 20,
-        actions: [
-          Container(
-            height: 85,
-            decoration: BoxDecoration(
-                border: Border.all(color: navyBlue, width: 2),
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.white
-              ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                TextButton(
-                  onPressed: () => Navigator.pop(context, 'Turkish'),
-                  child: Center(
-                    child: Text('Turkish', style: TextStyle(color: navyBlue, fontSize: 20),),
-                  ),
-                ),
-                const Divider(
-                  height: 0,
-                ),
-                TextButton(
-                  onPressed: () => Navigator.pop(context, 'English'),
-                  child: Center(
-                    child: Text('English', style: TextStyle(color: navyBlue, fontSize: 20),),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+      contextName: "English",
+      name_1: "English",
+      contextName_2: "Turkish",
+      name_2: "Turkish",
+    ).showAlertDialog();
   }
 
   void element_3(BuildContext context) {
@@ -382,7 +310,7 @@ class SettingClick extends StatelessWidget {
   }
 }
 
-Container SettingsElements(ikon, name, icerik,
+Container SettingsElements(iconName, name, content,
     {bool useSwitch = true, VoidCallback? onTap}) {
   Color navyBlue = const Color(0xFF122663);
   return Container(
@@ -397,7 +325,7 @@ Container SettingsElements(ikon, name, icerik,
             Row(
               children: [
                 Icon(
-                  ikon,
+                  iconName,
                   size: 30,
                   color: navyBlue,
                 ),
@@ -416,7 +344,7 @@ Container SettingsElements(ikon, name, icerik,
                     ? const SwitchExample()
                     : Container(), // Burada SwitchExample'ı kullanıp kullanmamayı kontrol ediyoruz
                 TooltipSample(
-                  icerik: icerik,
+                  content: content,
                 )
               ],
             )
@@ -427,9 +355,15 @@ Container SettingsElements(ikon, name, icerik,
   );
 }
 
+class SwitchExample extends StatefulWidget {
+  const SwitchExample({super.key});
+
+  @override
+  State<SwitchExample> createState() => _SwitchExampleState();
+}
+
 class _SwitchExampleState extends State<SwitchExample> {
   bool light = true;
-  Color navyBlue = const Color(0xFF122663);
   @override
   Widget build(BuildContext context) {
     return Container(

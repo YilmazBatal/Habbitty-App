@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class TooltipSample extends StatelessWidget {
-  final String icerik;
+  final String content;
 
-  const TooltipSample({Key? key, required this.icerik, required})
+  const TooltipSample({Key? key, required this.content, required})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Color navyBlue = const Color(0xFF122663);
     return Tooltip(
-      message: icerik,
+      message: content,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
