@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:habbitty/Components/boxshadow.dart';
 import 'package:habbitty/Components/tooltip.dart';
 import 'package:habbitty/Pages/dailyquotespage.dart';
 import 'package:habbitty/Pages/help.dart';
@@ -21,17 +23,6 @@ class SettingsPage extends StatelessWidget {
           "Settings",
           style: TextStyle(color: Colors.white),
         ),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Column(
-            children: [
-              SettingClick(),
-            ],
-          )
-        ],
       ),
       drawer: Drawer(
         child: Container(
@@ -193,6 +184,17 @@ class SettingsPage extends StatelessWidget {
           ),
         ),
       ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Column(
+            children: [
+              SettingClick(),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
@@ -204,17 +206,13 @@ class SwitchExample extends StatefulWidget {
   @override
   State<SwitchExample> createState() => _SwitchExampleState();
 }
-
+  
 class SettingClick extends StatelessWidget {
   void element_1(BuildContext context) {
-    print('Customize tıklandı!');
+    debugPrint('Customize tıklandı!');
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        content: const Text(
-          'Tema seçiniz.',
-          textAlign: TextAlign.center,
-        ),
         actions: <Widget>[
           Container(
             decoration: BoxDecoration(
@@ -233,7 +231,7 @@ class SettingClick extends StatelessWidget {
                 TextButton(
                   onPressed: () => Navigator.pop(context, 'TÜRKÇE'),
                   child: Center(
-                    child: const Text('Dark Theme'),
+                    child: Text('Dark Theme', style: TextStyle(color: navyBlue),),
                   ),
                 ),
                 Divider(
@@ -254,42 +252,41 @@ class SettingClick extends StatelessWidget {
   }
 
   void element_2(BuildContext context) {
-    print('Language tıklandı!');
+    debugPrint('Language tıklandı!');
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text(
-          'Dil seçiniz',
-          textAlign: TextAlign.center,
+        actionsPadding: const EdgeInsets.all(0),
+        clipBehavior: Clip.hardEdge,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(15.0))
         ),
+        shadowColor: navyBlue,
+        elevation: 20,
         actions: [
           Container(
+            height: 85,
             decoration: BoxDecoration(
-                border: Border.all(color: navyBlue),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: navyBlue.withOpacity(0.5),
-                    spreadRadius: 3,
-                    blurRadius: 5,
-                  )
-                ],
-                color: Colors.white),
+                border: Border.all(color: navyBlue, width: 2),
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.white
+              ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 TextButton(
-                  onPressed: () => Navigator.pop(context, 'TÜRKÇE'),
+                  onPressed: () => Navigator.pop(context, 'Turkish'),
                   child: Center(
-                    child: const Text('TÜRKÇE'),
+                    child: Text('Turkish', style: TextStyle(color: navyBlue, fontSize: 20),),
                   ),
                 ),
-                Divider(
+                const Divider(
                   height: 0,
                 ),
                 TextButton(
-                  onPressed: () => Navigator.pop(context, 'ENGLİSH'),
+                  onPressed: () => Navigator.pop(context, 'English'),
                   child: Center(
-                    child: const Text('ENGLİSH'),
+                    child: Text('English', style: TextStyle(color: navyBlue, fontSize: 20),),
                   ),
                 )
               ],
@@ -466,8 +463,6 @@ class DialogExample extends StatelessWidget {
       onPressed: () => showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: const Text('AlertDialog Title'),
-          content: const Text('AlertDialog description'),
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.pop(context, 'Cancel'),
