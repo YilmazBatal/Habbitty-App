@@ -34,9 +34,10 @@ class TooltipSample extends StatelessWidget {
       ),
       showDuration: const Duration(milliseconds: 70),
       waitDuration: const Duration(seconds: 1),
-      child: const Icon(
+      child: Icon(
         Icons.info_outline,
         size: 30,
+        color: navyBlue,
       ),
     );
   }
