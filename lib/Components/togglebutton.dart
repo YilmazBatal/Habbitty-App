@@ -43,7 +43,7 @@ class _MyToggleButtonsState extends State<MyToggleButtons> {
             ],
             radiusStyle: true,
             onToggle: (index) {
-              print('switched to: $index');
+              debugPrint('switched to: $index');
             },
           ),
         ),

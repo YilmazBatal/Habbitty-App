@@ -106,7 +106,7 @@ class _TagFieldState extends State<TagField> {
                                                 color: Colors.white),
                                           ),
                                           onTap: () {
-                                            print("$tag selected");
+                                            debugPrint("$tag selected");
                                           },
                                         ),
                                         const SizedBox(width: 4.0),

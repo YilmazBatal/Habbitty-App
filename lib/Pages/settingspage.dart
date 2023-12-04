@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:habbitty/Components/alert_dialog.dart';
-import 'package:habbitty/Components/boxshadow.dart';
 import 'package:habbitty/Components/tooltip.dart';
 import 'package:habbitty/Pages/dailyquotespage.dart';
 import 'package:habbitty/Pages/help.dart';
@@ -189,7 +188,7 @@ class SettingsPage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
-        children: [
+        children: const [
           Column(
             children: [
               SettingClick(),
@@ -203,6 +202,8 @@ class SettingsPage extends StatelessWidget {
 
 // Settings elements
 class SettingClick extends StatelessWidget {
+  const SettingClick({super.key});
+
   void element_1(BuildContext context) {
     debugPrint('Theme Tıklandı!');
     CustomAlertDialog(
@@ -226,7 +227,7 @@ class SettingClick extends StatelessWidget {
   }
 
   void element_3(BuildContext context) {
-    print('Data Reset tıklandı!');
+    debugPrint('Data Reset tıklandı!');
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -244,12 +245,13 @@ class SettingClick extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () => Navigator.pop(context, 'NO'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: lightOrange,
+                    foregroundColor: lightOrange
+                  ),
                   child: const Text(
                     'NO',
                     style: TextStyle(color: Colors.white),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: lightOrange,
                   ),
                 ).withContainerShadow(),
                 SizedBox(
@@ -257,10 +259,11 @@ class SettingClick extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () => Navigator.pop(context, 'YES'),
-                  child: const Text('YES'),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
+                    backgroundColor: Colors.white,
+                    foregroundColor: navyBlue
                   ),
+                  child: const Text('YES'),
                 ).withContainerShadow(),
               ],
             ),
@@ -310,46 +313,45 @@ class SettingClick extends StatelessWidget {
   }
 }
 
-Container SettingsElements(iconName, name, content,
+// ignore: non_constant_identifier_names
+Padding SettingsElements(iconName, name, content,
     {bool useSwitch = true, VoidCallback? onTap}) {
   Color navyBlue = const Color(0xFF122663);
-  return Container(
-    child: Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: GestureDetector(
-        onTap:
-            onTap, // Burada tıklama durumunda çağrılacak fonksiyonu belirliyoruz,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Icon(
-                  iconName,
-                  size: 30,
-                  color: navyBlue,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  name,
-                  style: TextStyle(fontSize: 25, color: navyBlue),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                useSwitch
-                    ? const SwitchExample()
-                    : Container(), // Burada SwitchExample'ı kullanıp kullanmamayı kontrol ediyoruz
-                TooltipSample(
-                  content: content,
-                )
-              ],
-            )
-          ],
-        ),
+  return Padding(
+    padding: const EdgeInsets.all(10.0),
+    child: GestureDetector(
+      onTap:
+          onTap, // Burada tıklama durumunda çağrılacak fonksiyonu belirliyoruz,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Icon(
+                iconName,
+                size: 30,
+                color: navyBlue,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(
+                name,
+                style: TextStyle(fontSize: 25, color: navyBlue),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              useSwitch
+                  ? const SwitchExample()
+                  : Container(), // Burada SwitchExample'ı kullanıp kullanmamayı kontrol ediyoruz
+              TooltipSample(
+                content: content,
+              )
+            ],
+          )
+        ],
       ),
     ),
   );
@@ -417,8 +419,9 @@ class DialogExample extends StatelessWidget {
 extension ElevatedButtonWithShadow on ElevatedButton {
   Widget withContainerShadow() {
     return Container(
+      height: 30,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50),
+        borderRadius: BorderRadius.circular(2),
         boxShadow: [
           BoxShadow(
             color: navyBlue.withOpacity(0.5),

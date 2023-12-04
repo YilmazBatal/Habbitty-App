@@ -21,7 +21,7 @@ String welcomeMessage = "Good Morning!";
 List todaysHabitList = [
   // [name,time,icon,isDone]
   ["10x Push Ups", "10:00 AM - 10:15 AM", Icons.fitness_center_rounded, true],
-  ["Study Math", "12:00 PM - 2:15 PM", Icons.school_rounded, false],
+  ["Study Math", "12:00 PM - 2:15 PM", Icons.school_rounded, true],
   ["Practice Programming", "3:00 PM - 6:00 PM", Icons.code_rounded, false],
   ["Night Routine", "8:00 PM - 8:15 PM", Icons.bed_rounded, false],
 ];

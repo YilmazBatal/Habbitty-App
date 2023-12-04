@@ -29,7 +29,6 @@ class CustomAlertDialog {
         elevation: 20,
         actions: [
           Container(
-            height: 85,
             decoration: BoxDecoration(
               border: Border.all(color: navyBlue.withOpacity(0.5), width: 1),
               borderRadius: BorderRadius.circular(15),
