@@ -24,6 +24,9 @@ List todaysHabitList = [
   ["Study Math", "12:00 PM - 2:15 PM", Icons.school_rounded, true],
   ["Practice Programming", "3:00 PM - 6:00 PM", Icons.code_rounded, false],
   ["Night Routine", "8:00 PM - 8:15 PM", Icons.bed_rounded, false],
+  ["Night Routine", "8:00 PM - 8:15 PM", Icons.bed_rounded, false],
+  ["Night Routine", "8:00 PM - 8:15 PM", Icons.bed_rounded, false],
+  ["Night Routine", "8:00 PM - 8:15 PM", Icons.bed_rounded, false],
 ];
 
 void main() {
@@ -49,6 +52,7 @@ class MyApp extends StatelessWidget {
   // ignore: non_constant_identifier_names
   ThemeData MyTheme() {
     return ThemeData(
+      brightness: Brightness.light,
       colorScheme: ColorScheme.fromSwatch().copyWith(
         primary: lightOrange,
         secondary: Colors.white,
