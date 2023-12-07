@@ -1,10 +1,14 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:habbitty/Components/boxshadow.dart';
+import 'package:habbitty/homepage.dart';
 import 'package:habbitty/main.dart';
 
 // ignore: must_be_immutable
 class HabitTile extends StatelessWidget {
+  final int ID;
   final String itemTitle;
   final String itemTime;
   final IconData itemIcon;
@@ -12,6 +16,7 @@ class HabitTile extends StatelessWidget {
 
   HabitTile({
     super.key,
+    required this.ID,
     required this.itemTitle,
     required this.itemTime,
     required this.itemIcon,
@@ -58,7 +63,7 @@ class HabitTile extends StatelessWidget {
                       onPressed:(context) {
                         completed++;
                         isDone = true;
-                        // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
                       },
                       icon: (Icons.check_circle_outline),
                       backgroundColor: lightGreen,
@@ -78,9 +83,10 @@ class HabitTile extends StatelessWidget {
                     ),
                     SlidableAction(
                       onPressed:(context) {
-                        todaysHabitList.removeAt(0);
-                        
-                      }, icon: (Icons.delete_forever),
+                        todaysHabitList.removeAt(ID);
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
+                      },
+                      icon: (Icons.delete_forever),
                       backgroundColor: Colors.red,
                     ),
                   ]
@@ -120,7 +126,7 @@ class HabitTile extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(width: 250, child: Text(itemTitle, overflow: TextOverflow.ellipsis, style: TextStyle(color: itemColor, fontSize: 20),)),
+                            SizedBox(width: 200, child: Text(itemTitle, overflow: TextOverflow.ellipsis, style: TextStyle(color: itemColor, fontSize: 20),)),
                             Text(itemTime, style: TextStyle(color: itemColor.withOpacity(0.5))),
                           ],
                         ),
