@@ -9,9 +9,9 @@
 
 _Images shown below may not be the same as the app_
 
-<img align="left" alt="MS" width="450px" src="https://github.com/YilmazBatal/Habbitty-App/assets/55242181/bfbd6703-d756-4c7b-bed6-68ac35ff138e"/>
+![MainScreen](https://github.com/YilmazBatal/Habbitty-App/assets/55242181/1e145073-1a72-4a4c-b770-3055e1b316e1)
+![LogIn](https://github.com/YilmazBatal/Habbitty-App/assets/55242181/a8d1e9e0-f1a3-425f-9f33-9678241fae29)
+![LogIn-2](https://github.com/YilmazBatal/Habbitty-App/assets/55242181/0f38ffb1-1887-4054-87d0-b178efc69fd0)
 
-## Simple UI
-
-# More description soon
+## More description soon...
 
