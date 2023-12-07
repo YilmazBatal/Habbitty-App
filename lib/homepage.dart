@@ -323,54 +323,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
         Expanded(
-<<<<<<< HEAD
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                DynamicTextField(
-                  hintText: "Search...",
-                  controller: TextEditingController(),
-                  suffixIcon: Icon(
-                    Icons.search_rounded,
-                    color: lightOrange,
-                  ),
-                  onChanged: (value) {
-                    // Handle username changes
-                  },
-                ),
-                const MyToggleButtons(),
-                SizedBox(
-                  height: 5000,
-                  child: ListView.builder(
-                    itemCount: todaysHabitList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return HabitTile(
-                        itemTitle: todaysHabitList[index][0],
-                        itemTime: todaysHabitList[index][1],
-                        itemIcon: todaysHabitList[index][2],
-                        isDone: todaysHabitList[index][3],
-                      );
-                    },
-                  ),
-                ),
-                // HabitTile(
-                //   itemTitle: todaysHabitList[0][0],
-                //   itemTime: todaysHabitList[0][1],
-                //   itemIcon: todaysHabitList[0][2],
-                //   isDone: todaysHabitList[0][3],
-                // ),
-                // HabitTile(
-                //   itemTitle: todaysHabitList[1][0],
-                //   itemTime: todaysHabitList[1][1],
-                //   itemIcon: todaysHabitList[1][2],
-                //   isDone: todaysHabitList[1][3],
-                // ),
-                // TagField(),
-              ],
-            ),
-=======
           child: ListView.builder(
             itemCount: todaysHabitList.length,
             itemBuilder: (BuildContext context, int index) {
@@ -382,7 +334,6 @@ class HomePage extends StatelessWidget {
                 isDone: todaysHabitList[index][4],
               );
             },
->>>>>>> 3bbb1aaf934f58936a3978b2671baadc8dc31e7f
           ),
         ),
       ]),
