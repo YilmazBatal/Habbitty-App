@@ -7,9 +7,11 @@
 - @yilmazbatal
 - @himmetarda
 
-Images shown below may not be the same as the app
-![MainScreen](https://github.com/YilmazBatal/Habbitty-App/assets/55242181/1cf32449-e601-43ee-b95d-a0102fcdcdde)
-![LogIn-2](https://github.com/YilmazBatal/Habbitty-App/assets/55242181/e6d7729b-d290-4db8-bfb0-418f094ebe68)
-![LogIn-3](https://github.com/YilmazBatal/Habbitty-App/assets/55242181/ca1278c4-ce1b-4b59-83c0-f6822a8b42d7)
+_Images shown below may not be the same as the app_
+
+![MainScreen](https://github.com/YilmazBatal/Habbitty-App/assets/55242181/1e145073-1a72-4a4c-b770-3055e1b316e1)
+![LogIn](https://github.com/YilmazBatal/Habbitty-App/assets/55242181/a8d1e9e0-f1a3-425f-9f33-9678241fae29)
+![LogIn-2](https://github.com/YilmazBatal/Habbitty-App/assets/55242181/0f38ffb1-1887-4054-87d0-b178efc69fd0)
 
 ## More description soon...
+
