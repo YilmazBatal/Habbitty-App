@@ -50,9 +50,7 @@ class HomePage extends StatelessWidget {
                             size: 100,
                             color: Colors.white,
                           ),
-                          Text("<User Name>",
-                              style:
-                                  TextStyle(fontSize: 24, color: Colors.white))
+                          Text("<User Name>",style:TextStyle(fontSize: 24, color: Colors.white))
                         ],
                       ),
                     ),
@@ -191,6 +189,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: Column(children: [
+        
         // Header
         Container(
             height: 225,
@@ -310,7 +309,21 @@ class HomePage extends StatelessWidget {
               ],
             )),
         // Bottom
+        Column(
+          children: [
+            DynamicTextField(
+              hintText: "Search",
+              controller: TextEditingController(),
+              suffixIcon: Icon(Icons.search, color: navyBlue,),
+              onChanged: (value) {
+                
+              }
+            ) ,
+            const MyToggleButtons(),
+          ],
+        ),
         Expanded(
+<<<<<<< HEAD
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: ListView(
@@ -357,9 +370,23 @@ class HomePage extends StatelessWidget {
                 // TagField(),
               ],
             ),
+=======
+          child: ListView.builder(
+            itemCount: todaysHabitList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return HabitTile(
+                ID: todaysHabitList[index][0],
+                itemTitle: todaysHabitList[index][1],
+                itemTime: todaysHabitList[index][2],
+                itemIcon: todaysHabitList[index][3],
+                isDone: todaysHabitList[index][4],
+              );
+            },
+>>>>>>> 3bbb1aaf934f58936a3978b2671baadc8dc31e7f
           ),
-        )
+        ),
       ]),
+      
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
@@ -377,5 +404,10 @@ class HomePage extends StatelessWidget {
         ),
       ),
     );
+  }
+  
+  // ignore: non_constant_identifier_names
+  Search() {
+
   }
 }

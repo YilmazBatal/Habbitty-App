@@ -18,7 +18,7 @@ class _MyToggleButtonsState extends State<MyToggleButtons> {
 
     return Center(
       child: Padding(
-        padding: const EdgeInsets.only(/*left: 30.0, right: 30,*/top: 20),
+        padding: const EdgeInsets.only(/*left: 30.0, right: 30,*/top: 20, bottom: 15),
         child: Container(
           decoration: BoxDecoration(
             boxShadow: [MyBoxShadow(navyBlue.withOpacity(0.5))],
