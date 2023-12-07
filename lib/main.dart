@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habbitty/Pages/welcomePage.dart';
 // ignore: unused_import
 import 'package:habbitty/homepage.dart';
 
@@ -38,22 +39,24 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: MyTheme(),
-      home: const HomePage(),
+      //home: const HomePage(),
       // home: const CreatePage(),
       // home: const StatsPage(),
       // home: const SettingsPage(),
       // home: const CreatePage(),
+      home: welcomePage(),
     );
   }
 
   // ignore: non_constant_identifier_names
   ThemeData MyTheme() {
     return ThemeData(
-      colorScheme: ColorScheme.fromSwatch().copyWith(
+      brightness: Brightness.light,
+      colorScheme: ColorScheme.light(
         primary: lightOrange,
         secondary: Colors.white,
       ),
-      textTheme: GoogleFonts.snigletTextTheme()
+      textTheme: GoogleFonts.snigletTextTheme(),
     );
   }
 }
