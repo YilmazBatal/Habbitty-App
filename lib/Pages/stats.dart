@@ -10,6 +10,10 @@ import 'package:habbitty/homepage.dart';
 import 'package:habbitty/main.dart';
 
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
+
+DateTime now = DateTime.now();
+DateTime date = DateTime(now.month, now.day);
+
 class StatsPage extends StatelessWidget {
   const StatsPage({super.key});
 
@@ -194,7 +198,30 @@ class StatsPage extends StatelessWidget {
                       // onClick: (value) {
                       //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.toString())));
                       // },
-                    )
+                    ),
+                    // child: HeatMap(
+                    //   defaultColor: Colors.white,
+                    //   colorMode: ColorMode.color,
+                    //   startDate: date,
+                    //   datasets: {
+                    //     DateTime(2023, 11, 27): 6,
+                    //     DateTime(2023, 11, 25): 5,
+                    //     DateTime(2023, 11, 29): 4,
+                    //     DateTime(2023, 11, 30): 2,
+                    //     DateTime(2023, 11, 28): 5,
+                    //   },
+                    //   colorsets: {
+                    //     1: Colors.orange.shade50,
+                    //     2: Colors.orange.shade100,
+                    //     3: Colors.orange.shade200,
+                    //     4: Colors.orange.shade300,
+                    //     5: Colors.orange.shade400,
+                    //     6: Colors.orange.shade500,
+                    //   },
+                    //   // onClick: (value) {
+                    //   //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.toString())));
+                    //   // },
+                    // )
                   ),
                 ],
               ),
