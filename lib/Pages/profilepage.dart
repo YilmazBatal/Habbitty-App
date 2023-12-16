@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:habbitty/Components/avatars.dart';
+import 'package:habbitty/Components/boxshadow.dart';
 import 'package:habbitty/Pages/dailyquotespage.dart';
 import 'package:habbitty/Pages/help.dart';
 import 'package:habbitty/Pages/privacypolicypage.dart';
@@ -15,8 +17,12 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         backgroundColor: lightOrange,
-        title: const Text("Profile", style: TextStyle(color: Colors.white),),
+        title: const Text(
+          "Profile",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       drawer: Drawer(
         child: Container(
@@ -28,15 +34,19 @@ class ProfilePage extends StatelessWidget {
                 child: DrawerHeader(
                   padding: const EdgeInsets.all(0.0),
                   child: Container(
-                    decoration: BoxDecoration(
-                      color: lightOrange
-                    ),
+                    decoration: BoxDecoration(color: lightOrange),
                     child: const Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.account_circle_outlined, size: 100, color: Colors.white,),
-                          Text("<User Name>", style: TextStyle(fontSize: 24, color: Colors.white))
+                          Icon(
+                            Icons.account_circle_outlined,
+                            size: 100,
+                            color: Colors.white,
+                          ),
+                          Text("<User Name>",
+                              style:
+                                  TextStyle(fontSize: 24, color: Colors.white)),
                         ],
                       ),
                     ),
@@ -46,77 +56,242 @@ class ProfilePage extends StatelessWidget {
               // HOME
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.home_rounded, color: navyBlue.withOpacity(0.5), size: 40,),
-                title: Text("Home", style: TextStyle(fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                leading: Icon(
+                  Icons.home_rounded,
+                  color: navyBlue.withOpacity(0.5),
+                  size: 40,
+                ),
+                title: Text("Home",
+                    style: TextStyle(
+                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HomePage()));
                 },
               ),
               // STATS
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.equalizer_rounded, color: navyBlue.withOpacity(0.5), size: 40,),
-                title: Text("Stats", style: TextStyle(fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                leading: Icon(
+                  Icons.equalizer_rounded,
+                  color: navyBlue.withOpacity(0.5),
+                  size: 40,
+                ),
+                title: Text("Stats",
+                    style: TextStyle(
+                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const StatsPage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const StatsPage()));
                 },
               ),
               // PROFILE
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.account_circle_outlined, color: lightOrange, size: 40,),
-                title: Text("Profile", style: TextStyle(fontSize: 25, color: lightOrange)),
+                leading: Icon(
+                  Icons.account_circle_outlined,
+                  color: lightOrange,
+                  size: 40,
+                ),
+                title: Text("Profile",
+                    style: TextStyle(fontSize: 25, color: lightOrange)),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfilePage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ProfilePage()));
                 },
               ),
               // STORE
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.shopping_bag_outlined, color: navyBlue.withOpacity(0.5), size: 40,),
-                title: Text("Store", style: TextStyle(fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                leading: Icon(
+                  Icons.shopping_bag_outlined,
+                  color: navyBlue.withOpacity(0.5),
+                  size: 40,
+                ),
+                title: Text("Store",
+                    style: TextStyle(
+                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const StorePage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const StorePage()));
                 },
               ),
               // SETTINGS
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.settings_outlined, color: navyBlue.withOpacity(0.5), size: 40,),
-                title: Text("Settings", style: TextStyle(fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                leading: Icon(
+                  Icons.settings_outlined,
+                  color: navyBlue.withOpacity(0.5),
+                  size: 40,
+                ),
+                title: Text("Settings",
+                    style: TextStyle(
+                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SettingsPage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const SettingsPage()));
                 },
               ),
               // QUOTE OF THE DAY
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.format_quote, color: navyBlue.withOpacity(0.5), size: 40,),
-                title: Text("Daily Quotes", style: TextStyle(fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                leading: Icon(
+                  Icons.format_quote,
+                  color: navyBlue.withOpacity(0.5),
+                  size: 40,
+                ),
+                title: Text("Daily Quotes",
+                    style: TextStyle(
+                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DailyQuotePage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const DailyQuotePage()));
                 },
               ),
               // HELP
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.question_mark_rounded, color: navyBlue.withOpacity(0.5), size: 40,),
-                title: Text("Help", style: TextStyle(fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                leading: Icon(
+                  Icons.question_mark_rounded,
+                  color: navyBlue.withOpacity(0.5),
+                  size: 40,
+                ),
+                title: Text("Help",
+                    style: TextStyle(
+                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HelpPage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HelpPage()));
                 },
               ),
               // PRIVACY POLICY
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.lock_outline, color: navyBlue.withOpacity(0.5), size: 40,),
-                title: Text("Privacy Policy", style: TextStyle(fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                leading: Icon(
+                  Icons.lock_outline,
+                  color: navyBlue.withOpacity(0.5),
+                  size: 40,
+                ),
+                title: Text("Privacy Policy",
+                    style: TextStyle(
+                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PrivacyPolicyPage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const PrivacyPolicyPage()));
                 },
               ),
             ],
           ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(15),
+                    bottomRight: Radius.circular(15)),
+                color: lightOrange,
+              ),
+              width: double.infinity,
+              height: 220,
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text("Welcome <User>",
+                        style: TextStyle(color: Colors.white, fontSize: 30)),
+                    Icon(
+                      Icons.face,
+                      color: Colors.white,
+                      size: 120,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Owned",
+                    style: TextStyle(fontSize: 35, color: navyBlue),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "350 ",
+                        style: TextStyle(fontSize: 30, color: navyBlue),
+                      ),
+                      Icon(
+                        Icons.monetization_on,
+                        size: 28,
+                        color: navyBlue,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  itemCount: avatarList.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount:
+                        MediaQuery.of(context).size.shortestSide < 600 ? 2 : 4,
+                  ),
+                  itemBuilder: (context, index) {
+                    return Avatars(
+                        ID: avatarList[index][0],
+                        avatarPath: avatarList[index][1],
+                        avatarName: avatarList[index][2],
+                        isOwned: avatarList[index][3]);
+                  },
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: 0, left: 30, right: 30, bottom: 30),
+              child: Container(
+                width: double.infinity,
+                height: 45,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [MyBoxShadow(navyBlue)]),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const StorePage()));
+                  },
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      )),
+                      splashFactory: NoSplash.splashFactory,
+                      elevation: MaterialStateProperty.all(0),
+                      backgroundColor: MaterialStateProperty.all(lightOrange),
+                      foregroundColor: MaterialStateProperty.all(Colors.white)),
+                  child: const Text(
+                    "Visit Shop",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

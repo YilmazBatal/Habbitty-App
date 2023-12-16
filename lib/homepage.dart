@@ -23,6 +23,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         backgroundColor: lightOrange,
         title: const Text(
           "Home",
@@ -50,7 +51,9 @@ class HomePage extends StatelessWidget {
                             size: 100,
                             color: Colors.white,
                           ),
-                          Text("<User Name>",style:TextStyle(fontSize: 24, color: Colors.white))
+                          Text("<User Name>",
+                              style:
+                                  TextStyle(fontSize: 24, color: Colors.white))
                         ],
                       ),
                     ),
@@ -189,7 +192,6 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: Column(children: [
-        
         // Header
         Container(
             height: 225,
@@ -312,13 +314,13 @@ class HomePage extends StatelessWidget {
         Column(
           children: [
             DynamicTextField(
-              hintText: "Search",
-              controller: TextEditingController(),
-              suffixIcon: Icon(Icons.search, color: navyBlue,),
-              onChanged: (value) {
-                
-              }
-            ) ,
+                hintText: "Search",
+                controller: TextEditingController(),
+                suffixIcon: Icon(
+                  Icons.search,
+                  color: navyBlue,
+                ),
+                onChanged: (value) {}),
             const MyToggleButtons(),
           ],
         ),
@@ -337,7 +339,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ]),
-      
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
@@ -356,9 +357,7 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-  
-  // ignore: non_constant_identifier_names
-  Search() {
 
-  }
+  // ignore: non_constant_identifier_names
+  Search() {}
 }
