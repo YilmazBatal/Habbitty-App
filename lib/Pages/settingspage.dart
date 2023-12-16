@@ -19,6 +19,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         backgroundColor: lightOrange,
         title: const Text(
           "Settings",
@@ -246,9 +247,8 @@ class SettingClick extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () => Navigator.pop(context, 'NO'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: lightOrange,
-                    foregroundColor: lightOrange
-                  ),
+                      backgroundColor: lightOrange,
+                      foregroundColor: lightOrange),
                   child: const Text(
                     'NO',
                     style: TextStyle(color: Colors.white),
@@ -260,9 +260,7 @@ class SettingClick extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () => Navigator.pop(context, 'YES'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: navyBlue
-                  ),
+                      backgroundColor: Colors.white, foregroundColor: navyBlue),
                   child: const Text('YES'),
                 ).withContainerShadow(),
               ],
@@ -368,24 +366,18 @@ class _SwitchExampleState extends State<SwitchExample> {
   bool light = true;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: navyBlue.withOpacity(0.5), width: 2),
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
-      ),
-      child: Switch(
-        // This bool value toggles the switch.
-        value: light,
-        activeColor: lightOrange,
-        activeTrackColor: Colors.white,
-        inactiveTrackColor: Colors.white,
-        onChanged: (bool value) {
-          // This is called when the user toggles the switch.
-          setState(() {
-            light = value;
-          });
-        },
-      ),
+    return Switch(
+      // This bool value toggles the switch.
+      value: light,
+      activeColor: lightOrange,
+      activeTrackColor: Colors.black12,
+      inactiveTrackColor: Colors.white10,
+      onChanged: (bool value) {
+        // This is called when the user toggles the switch.
+        setState(() {
+          light = value;
+        });
+      },
     );
   }
 }

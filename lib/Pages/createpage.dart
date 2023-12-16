@@ -14,6 +14,7 @@ class CreatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         backgroundColor: lightOrange,
         title: const Text(
           "Create An Avtivity",
