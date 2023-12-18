@@ -187,106 +187,103 @@ class StorePage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Column(
                 children: [
-                  Text(
-                    "Avatars",
-                    style: TextStyle(fontSize: 35, color: navyBlue),
-                  ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "150 ",
-                        style: TextStyle(fontSize: 30, color: navyBlue),
+                        "Avatars",
+                        style: TextStyle(fontSize: 35, color: navyBlue),
                       ),
-                      Icon(
-                        Icons.monetization_on,
-                        size: 28,
-                        color: navyBlue,
+                      Row(
+                        children: [
+                          Text(
+                            "150 ",
+                            style: TextStyle(fontSize: 30, color: navyBlue),
+                          ),
+                          Icon(
+                            Icons.monetization_on,
+                            size: 28,
+                            color: navyBlue,
+                          ),
+                        ],
                       ),
                     ],
                   ),
+                  const SizedBox(height: 10),
+                  const Row(
+                    children: [
+                      Text(
+                        "Each avatars costs 20 ",
+                        style: TextStyle(fontSize: 20, color: Colors.grey),
+                      ),
+                      Icon(
+                        Icons.monetization_on,
+                        size: 20,
+                        color: Colors.grey,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 25),
                 ],
               ),
-              const SizedBox(height: 10),
-              const Row(
-                children: [
-                  Text(
-                    "Each avatars costs 20 ",
-                    style: TextStyle(fontSize: 20, color: Colors.grey),
-                  ),
-                  Icon(
-                    Icons.monetization_on,
-                    size: 20,
-                    color: Colors.grey,
-                  ),
-                ],
+            ),
+            //array
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              itemCount: avatarList.length,
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                maxCrossAxisExtent: 200, //your width
+                mainAxisExtent: 150, //your height
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    itemCount: avatarList.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount:
-                            MediaQuery.of(context).size.shortestSide < 600
-                                ? 2
-                                : 4,
-                        // mainAxisSpacing: 20,
-                        crossAxisSpacing: 20,
-                        childAspectRatio: 1),
-                    itemBuilder: (context, index) {
-                      return Avatars(
-                          ID: avatarList[index][0],
-                          avatarPath: avatarList[index][1],
-                          avatarName: avatarList[index][2],
-                          isOwned: avatarList[index][3]);
-                    },
+              itemBuilder: (BuildContext context, int index) => Avatars(
+                ID: avatarList[index][0],
+                avatarPath: avatarList[index][1],
+                avatarName: avatarList[index][2],
+                isOwned: avatarList[index][3],
+              ),
+            ),
+            // buton
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: 30, left: 30, right: 30, bottom: 30),
+              child: Container(
+                width: double.infinity,
+                height: 45,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [MyBoxShadow(navyBlue)]),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const StorePage()));
+                  },
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      )),
+                      splashFactory: NoSplash.splashFactory,
+                      elevation: MaterialStateProperty.all(0),
+                      backgroundColor: MaterialStateProperty.all(lightOrange),
+                      foregroundColor: MaterialStateProperty.all(Colors.white)),
+                  child: const Text(
+                    "Buy",
+                    style: TextStyle(fontSize: 20),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 0, left: 30, right: 30, bottom: 30),
-                child: Container(
-                  width: double.infinity,
-                  height: 45,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [MyBoxShadow(navyBlue)]),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const StorePage()));
-                    },
-                    style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        )),
-                        splashFactory: NoSplash.splashFactory,
-                        elevation: MaterialStateProperty.all(0),
-                        backgroundColor: MaterialStateProperty.all(lightOrange),
-                        foregroundColor:
-                            MaterialStateProperty.all(Colors.white)),
-                    child: const Text(
-                      "Buy Selected Avatar",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
