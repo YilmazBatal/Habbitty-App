@@ -311,6 +311,8 @@ class HomePage extends StatelessWidget {
               ],
             )),
         // Bottom
+        
+        // Text Field & Toggle
         Column(
           children: [
             DynamicTextField(
@@ -324,6 +326,7 @@ class HomePage extends StatelessWidget {
             const MyToggleButtons(),
           ],
         ),
+        // 
         Expanded(
           child: ListView.builder(
             itemCount: todaysHabitList.length,
@@ -351,6 +354,7 @@ class HomePage extends StatelessWidget {
           ),
           child: const Icon(
             Icons.add_rounded,
+            color: Colors.white,
             size: 50,
           ),
         ),
@@ -359,5 +363,7 @@ class HomePage extends StatelessWidget {
   }
 
   // ignore: non_constant_identifier_names
-  Search() {}
+  Search() {
+
+  }
 }

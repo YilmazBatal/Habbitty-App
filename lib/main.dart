@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:habbitty/Pages/storepage.dart';
-import 'package:habbitty/Pages/welcomePage.dart';
-// import 'package:habbitty/Pages/signup.dart';
-// import 'package:habbitty/Pages/welcomePage.dart';
-// ignore: unused_import
 import 'package:habbitty/homepage.dart';
 
-// ignore: unused_import
-import 'package:habbitty/Pages/createpage.dart';
 
 Color lightOrange = const Color(0xffff8c2e); // Orange 1
 Color darkOrange = const Color(0xFFff5417); // Orange 2
@@ -70,13 +63,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: MyTheme(),
-        // home: const HomePage(),
-        // home: const CreatePage(),
-        // home: const StatsPage(),
-        // home: const SettingsPage(),
-        // home: const CreatePage(),
-        // home: const welcomePage(),
-        home: const StorePage());
+        home: const HomePage()
+    );
   }
 
   // ignore: non_constant_identifier_names
