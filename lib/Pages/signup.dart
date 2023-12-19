@@ -157,7 +157,7 @@ class signup extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Signin();
+                        const Signin();
                       },
                       child: Image.asset("assets/images/google.png"),
                     ),

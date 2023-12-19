@@ -38,6 +38,10 @@ class CustomAlertDialog {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: navyBlue.withOpacity(0.5),
+                    backgroundColor: Colors.transparent,
+                  ),
                   onPressed: () => Navigator.pop(context, contextName),
                   child: Center(
                     child: Text(
@@ -51,7 +55,12 @@ class CustomAlertDialog {
                   color:Colors.grey,
                 ),
                 TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: navyBlue.withOpacity(0.5),
+                    backgroundColor: Colors.transparent,
+                  ),
                   onPressed: () => Navigator.pop(context, contextName_2),
+                  
                   child: Center(
                     child: Text(
                       name_2,

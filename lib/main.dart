@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:habbitty/homepage.dart';
+
+import 'package:habbitty/Pages/welcomePage.dart';
 
 
 Color lightOrange = const Color(0xffff8c2e); // Orange 1
@@ -12,21 +13,9 @@ Color ownedColor = navyBlue;
 
 List todaysHabitList = [
   // [name,time,icon,isDone]
-  [
-    0,
-    "10x Push Ups",
-    "10:00 AM - 10:15 AM",
-    Icons.fitness_center_rounded,
-    true
-  ],
+  [0,"10x Push Upsssss","10:00 AM - 10:15 AM",Icons.fitness_center_rounded,true],
   [1, "Study Math", "12:00 PM - 2:15 PM", Icons.school_rounded, true],
-  [
-    2,
-    "Practice Programming sssssss",
-    "3:00 PM - 6:00 PM",
-    Icons.code_rounded,
-    false
-  ],
+  [2,"Practice Programming sssssss","3:00 PM - 6:00 PM",Icons.code_rounded,false],
   [3, "Night Routine", "8:00 PM - 8:15 PM", Icons.bed_rounded, false],
   [4, "Bike Tour", "8:00 PM - 8:15 PM", Icons.pedal_bike_rounded, false],
   [5, "Brushing Teeths", "8:00 PM - 8:15 PM", Icons.bed_rounded, false],
@@ -63,7 +52,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: MyTheme(),
-        home: const HomePage()
+        home: const welcomePage()
     );
   }
 

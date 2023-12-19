@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, library_private_types_in_public_api
+
 import 'package:habbitty/Components/title.dart';
 import 'package:habbitty/Pages/signin.dart';
 import 'package:habbitty/Pages/signup.dart';
@@ -16,7 +18,7 @@ class welcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: const MyApp().MyTheme(),
-      home: Scaffold(
+      home: const Scaffold(
         body: MyAnimation(),
       ),
       debugShowCheckedModeBanner: false,
@@ -153,7 +155,7 @@ class MyClipPath extends AnimatedWidget {
 class BottomWaveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    var path = new Path();
+    var path = Path();
 
     path.lineTo(0.0, 40.0);
     path.lineTo(0.0, size.height);
@@ -189,6 +191,8 @@ class BottomWaveClipper extends CustomClipper<Path> {
 }
 
 class MyAnimation extends StatefulWidget {
+  const MyAnimation({super.key});
+
   @override
   _MyAnimationState createState() => _MyAnimationState();
 }
@@ -202,7 +206,7 @@ class _MyAnimationState extends State<MyAnimation>
   void initState() {
     super.initState();
     _controller =
-        AnimationController(duration: Duration(seconds: 6), vsync: this)
+        AnimationController(duration: const Duration(seconds: 6), vsync: this)
           ..repeat();
 
     animation = Tween<double>(begin: -500, end: 0).animate(_controller);
