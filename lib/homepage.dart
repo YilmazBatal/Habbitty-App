@@ -16,9 +16,14 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:habbitty/Components/boxshadow.dart';
 import 'package:habbitty/Components/togglebutton.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -344,6 +349,9 @@ class HomePage extends StatelessWidget {
       ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          setState(() {
+            
+          });
           // Navigator.of(context).push(
           //     MaterialPageRoute(builder: (context) => const CreatePage()));
         },
@@ -367,3 +375,27 @@ class HomePage extends StatelessWidget {
 
   }
 }
+
+
+// @override
+//   void initState() {
+//     loadMyHabit();
+//     super.initState();
+//   }
+
+//   void loadMyHabit() async {
+//     final prefs = await SharedPreferences.getInstance();
+
+//     setState(() {
+//       this.ID = prefs.getBool("$this.ID") ?? 0;
+//     });
+//   }
+//   void saveMyHabit() async {
+    
+//     // Load and obtain the shared preferences for this app.
+//     final prefs = await SharedPreferences.getInstance();
+
+//     // Save the counter value to persistent storage under the 'counter' key.
+//     await prefs.setBool('$this.ID', true);
+    
+//   }

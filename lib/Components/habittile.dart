@@ -5,16 +5,17 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:habbitty/Components/boxshadow.dart';
 import 'package:habbitty/homepage.dart';
 import 'package:habbitty/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
-class HabitTile extends StatelessWidget {
+class HabitTile extends StatefulWidget {
   final int ID;
   final String itemTitle;
   final String itemTime;
   final IconData itemIcon;
-  bool isDone;
+  final bool isDone;
 
-  HabitTile({
+  const HabitTile({
     super.key,
     required this.ID,
     required this.itemTitle,
@@ -24,17 +25,23 @@ class HabitTile extends StatelessWidget {
   });
 
   @override
+  State<HabitTile> createState() => _HabitTileState();
+}
+
+class _HabitTileState extends State<HabitTile> {
+
+  @override
   Widget build(BuildContext context) {
 
     Color itemColor = Colors.white;
     Color itemBgColor = Colors.white;
     Color shadowColor = Colors.white;
 
-    if (isDone) {
+    if (widget.isDone) {
       itemColor = Colors.white;
       itemBgColor = lightGreen;
       shadowColor = darkGreen;
-    } else if (!isDone) {
+    } else if (!widget.isDone) {
       itemColor = navyBlue;
       itemBgColor = Colors.white;
       shadowColor = navyBlue;
@@ -62,8 +69,9 @@ class HabitTile extends StatelessWidget {
                     SlidableAction(
                       onPressed:(context) {
                         completed++;
-                        isDone = true;
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
+                        // isDone = true;
+                        // saveMyHabit();
+                        // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
                       },
                       icon: (Icons.check_circle_outline),
                       backgroundColor: lightGreen,
@@ -83,7 +91,7 @@ class HabitTile extends StatelessWidget {
                     ),
                     SlidableAction(
                       onPressed:(context) {
-                        todaysHabitList.removeAt(ID);
+                        todaysHabitList.removeAt(widget.ID);
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
                       },
                       icon: (Icons.delete_forever),
@@ -113,7 +121,7 @@ class HabitTile extends StatelessWidget {
                               color: itemBgColor,
                             ),
                             child: Icon(
-                              itemIcon,
+                              widget.itemIcon,
                               size: 50,
                               color: itemColor
                             )
@@ -126,8 +134,8 @@ class HabitTile extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(width: 200, child: Text(itemTitle, overflow: TextOverflow.ellipsis, style: TextStyle(color: itemColor, fontSize: 20),)),
-                            Text(itemTime, style: TextStyle(color: itemColor.withOpacity(0.5))),
+                            SizedBox(width: 200, child: Text(widget.itemTitle, overflow: TextOverflow.ellipsis, style: TextStyle(color: itemColor, fontSize: 20),)),
+                            Text(widget.itemTime, style: TextStyle(color: itemColor.withOpacity(0.5))),
                           ],
                         ),
                       )
@@ -141,4 +149,6 @@ class HabitTile extends StatelessWidget {
       ),
     );
   }
+  
+  
 }
