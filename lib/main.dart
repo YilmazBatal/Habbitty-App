@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:habbitty/Pages/welcomePage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 Color lightOrange = const Color(0xffff8c2e); // Orange 1
@@ -12,7 +13,7 @@ Color navyBlue = const Color(0xFF122663); // Navy 1
 Color ownedColor = navyBlue;
 
 List todaysHabitList = [
-  // [name,time,icon,isDone]
+  // ["id",name,time,icon,isDone]
   [0,"10x Push Upsssss","10:00 AM - 10:15 AM",Icons.fitness_center_rounded,true],
   [1, "Study Math", "12:00 PM - 2:15 PM", Icons.school_rounded, true],
   [2,"Practice Programming sssssss","3:00 PM - 6:00 PM",Icons.code_rounded,false],
@@ -23,15 +24,19 @@ List todaysHabitList = [
 
 List avatarList = [
   // [assetImage,avatarName,isOwned]
-  [0, "assets/avatars/Layer1.png", "Jenny", true],
-  [1, "assets/avatars/Layer2.png", "Jenny", true],
-  [2, "assets/avatars/Layer3.png", "Jenny", false],
-  [3, "assets/avatars/Layer4.png", "Jenny", false],
-  [4, "assets/avatars/Layer5.png", "Jenny", true],
-  [5, "assets/avatars/Layer6.png", "Jenny", false],
-  [6, "assets/avatars/Layer7.png", "Jenny", false],
-  [7, "assets/avatars/Layer8.png", "Jenny", false],
-  [8, "assets/avatars/Layer9.png", "Jenny", false],
+  [0, "assets/avatars/1.png", "Jenny", true],
+  [1, "assets/avatars/2.png", "Jenny", true],
+  [2, "assets/avatars/3.png", "Jenny", false],
+  [3, "assets/avatars/4.png", "Jenny", false],
+  [4, "assets/avatars/5.png", "Jenny", true],
+  [5, "assets/avatars/6.png", "Jenny", false],
+  [6, "assets/avatars/7.png", "Jenny", false],
+  [7, "assets/avatars/8.png", "Jenny", false],
+  [8, "assets/avatars/9.png", "Jenny", false],
+  [9, "assets/avatars/10.png", "Jenny", false],
+  [10, "assets/avatars/11.png", "Jenny", false],
+  [11, "assets/avatars/12.png", "Jenny", false],
+
 ];
 
 int credits = 24;
@@ -39,6 +44,12 @@ int streak = 4;
 int completed = 2;
 int toBeCompleted = todaysHabitList.length;
 String welcomeMessage = "Good Morning!";
+
+void sp() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setInt('progressData', completed);
+}
+
 
 void main() {
   runApp(const MyApp());
