@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -27,8 +27,31 @@ class HabitTile extends StatefulWidget {
   @override
   State<HabitTile> createState() => _HabitTileState();
 }
-
 class _HabitTileState extends State<HabitTile> {
+  // @override
+  // void initState() {
+  //   loadData();
+  //   super.initState();
+  // }
+
+  // void loadData() async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     prefs.getInt("done");
+  //   });
+  // }
+
+  // void updateData() async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   // final updateData = {
+  //   //   'id': HabitTile(
+  //   //     this.ID: ,
+  //   //   ),
+  //   // }
+  //   setState(() {
+  //     prefs.setInt("done", 5);
+  //   }); 
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +77,7 @@ class _HabitTileState extends State<HabitTile> {
           Expanded(
             child: Container(
               clipBehavior: Clip.hardEdge,
-              height: 75,
+              height: 65,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(15),
@@ -69,6 +92,9 @@ class _HabitTileState extends State<HabitTile> {
                     SlidableAction(
                       onPressed:(context) {
                         completed++;
+                        setState(() {
+                          // final int? completed = prefs.getInt('progressData');
+                        });
                         // isDone = true;
                         // saveMyHabit();
                         // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
@@ -100,7 +126,7 @@ class _HabitTileState extends State<HabitTile> {
                   ]
                 ),
                 child: Container(
-                  height: 75,
+                  height: 65,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: itemBgColor,
@@ -110,8 +136,8 @@ class _HabitTileState extends State<HabitTile> {
                       Column(
                         children: [
                           Container(
-                            width: 75,
-                            height: 75,
+                            width: 65,
+                            height: 65,
                             decoration: BoxDecoration(
                               borderRadius: const BorderRadius.only(
                                 bottomRight: Radius.circular(15), 
@@ -122,7 +148,7 @@ class _HabitTileState extends State<HabitTile> {
                             ),
                             child: Icon(
                               widget.itemIcon,
-                              size: 50,
+                              size: 40,
                               color: itemColor
                             )
                           )
@@ -149,6 +175,4 @@ class _HabitTileState extends State<HabitTile> {
       ),
     );
   }
-  
-  
 }
