@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:habbitty/Components/boxshadow.dart';
 import 'package:habbitty/Components/dynamictextfield.dart';
+import 'package:habbitty/Components/selectIcon.dart';
 import 'package:habbitty/Components/title.dart';
 import 'package:habbitty/Components/togglebutton.dart';
 
@@ -60,43 +61,42 @@ class CreatePage extends StatelessWidget {
                     },
                   ),
                   MyTitle("Select Icon", navyBlue),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 15.0, left: 30, right: 30),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                        boxShadow: [MyBoxShadow(navyBlue)],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          children: [
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                children: [
-                                  SelectIcon(
-                                      const Color(0xFFff595e), Icons.school),
-                                  SelectIcon(const Color(0xFFffca3a),
-                                      Icons.fitness_center_outlined),
-                                  SelectIcon(const Color(0xFF8ac926),
-                                      Icons.shopping_bag),
-                                  SelectIcon(const Color(0xFF1982c4),
-                                      Icons.pedal_bike),
-                                  SelectIcon(const Color(0xFF6a4c93),
-                                      Icons.code_rounded),
-                                  SelectIcon(
-                                      const Color(0xFF2ec4b6), Icons.school),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 15.0, left: 30, right: 30),
+                        child: selectIcon(),
+                    // child: Container(
+                    //   decoration: BoxDecoration(
+                    //     color: Colors.white,
+                    //     borderRadius: BorderRadius.circular(15),
+                    //     boxShadow: [MyBoxShadow(navyBlue)],
+                    //   ),
+                    //   // child: Padding(
+                    //   //   padding: const EdgeInsets.all(10.0),
+                    //   //   child: Column(
+                    //   //     children: [
+                    //   //       SingleChildScrollView(
+                    //   //         scrollDirection: Axis.horizontal,
+                    //   //         child: Row(
+                    //   //           children: [
+                    //   //             SelectIcon(
+                    //   //                 const Color(0xFFff595e), Icons.school),
+                    //   //             SelectIcon(const Color(0xFFffca3a),
+                    //   //                 Icons.fitness_center_outlined),
+                    //   //             SelectIcon(const Color(0xFF8ac926),
+                    //   //                 Icons.shopping_bag),
+                    //   //             SelectIcon(const Color(0xFF1982c4),
+                    //   //                 Icons.pedal_bike),
+                    //   //             SelectIcon(const Color(0xFF6a4c93),
+                    //   //                 Icons.code_rounded),
+                    //   //             SelectIcon(
+                    //   //                 const Color(0xFF2ec4b6), Icons.school),
+                    //   //           ],
+                    //   //         ),
+                    //   //       ),
+                    //   //     ],
+                    //   //   ),
+                    //   // ),
                     ),
-                  ),
                   // SelectTime
                   Padding(
                       padding:
@@ -108,7 +108,9 @@ class CreatePage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
                             boxShadow: [MyBoxShadow(navyBlue)]),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            TimePickerDialog(initialTime: TimeOfDay(hour: 00, minute: 00));
+                          },
                           style: ButtonStyle(
                               shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(

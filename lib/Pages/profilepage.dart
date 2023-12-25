@@ -240,21 +240,24 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemCount: avatarList.length,
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                maxCrossAxisExtent: 200, //your width
-                mainAxisExtent: 150, //your height
-              ),
-              itemBuilder: (BuildContext context, int index) => Avatars(
-                ID: avatarList[index][0],
-                avatarPath: avatarList[index][1],
-                avatarName: avatarList[index][2],
-                isOwned: avatarList[index][3],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemCount: avatarList.length,
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 10,
+                  maxCrossAxisExtent: 150, //your width
+                  mainAxisExtent: 150, //your height
+                ),
+                itemBuilder: (BuildContext context, int index) => Avatars(
+                  ID: avatarList[index][0],
+                  avatarPath: avatarList[index][1],
+                  avatarName: avatarList[index][2],
+                  isOwned: avatarList[index][3],
+                ),
               ),
             ),
             Padding(

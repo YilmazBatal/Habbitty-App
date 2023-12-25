@@ -126,108 +126,204 @@ class StatsPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 25.0, right: 25, bottom: 20, top: 20),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0, right: 16, left: 16, bottom: 8),
-                    child: Text(
-                      "Your Stats",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: navyBlue
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: const EdgeInsets.all(30),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16.0, right: 16, left: 16, bottom: 8),
+                      child: Text(
+                        "Your Stats",
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: navyBlue
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, right: 16, left: 16, bottom: 8),
-                    child: Row(
-                      children: [
-                        Text(
-                          "Current Strike : ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: navyBlue
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, right: 16, left: 16, bottom: 8),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Current Strike : ",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: navyBlue
+                            ),
+                            textAlign: TextAlign.left,
                           ),
-                          textAlign: TextAlign.left,
-                        ),
-                        Text(
-                          streak.toString(),
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: navyBlue
+                          Text(
+                            streak.toString(),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: navyBlue
+                            ),
+                            textAlign: TextAlign.left,
                           ),
-                          textAlign: TextAlign.left,
+                          Icon(Icons.local_fire_department, size: 30, color: lightOrange,),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(16.0),
+                      // height: 500, //70,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15.0),
+                        boxShadow: [
+                          MyBoxShadow(navyBlue)
+                        ],
+                      ),
+                      child: HeatMapCalendar(
+                        defaultColor: Colors.white,
+                        flexible: true,
+                        colorMode: ColorMode.color,
+                        datasets: {
+                          DateTime(2023, 12, 27): 6,
+                          DateTime(2023, 12, 25): 5,
+                          DateTime(2023, 12, 29): 4,
+                          DateTime(2023, 12, 30): 5,
+                          DateTime(2023, 12, 28): 5,
+                        },
+                        colorsets: {
+                          1: Colors.orange.shade50,
+                          2: Colors.orange.shade100,
+                          3: Colors.orange.shade200,
+                          4: Colors.orange.shade300,
+                          5: Colors.orange.shade400,
+                          6: Colors.orange.shade500,
+                        },
+                        onClick: (value) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You've completed 5 goals on " + value.toString())));
+                        },
+                      ),
+                      // child: HeatMap(
+                      //   defaultColor: Colors.white,
+                      //   colorMode: ColorMode.color,
+                      //   startDate: date,
+                      //   datasets: {
+                      //     DateTime(2023, 11, 27): 6,
+                      //     DateTime(2023, 11, 25): 5,
+                      //     DateTime(2023, 11, 29): 4,
+                      //     DateTime(2023, 11, 30): 2,
+                      //     DateTime(2023, 11, 28): 5,
+                      //   },
+                      //   colorsets: {
+                      //     1: Colors.orange.shade50,
+                      //     2: Colors.orange.shade100,
+                      //     3: Colors.orange.shade200,
+                      //     4: Colors.orange.shade300,
+                      //     5: Colors.orange.shade400,
+                      //     6: Colors.orange.shade500,
+                      //   },
+                      //   // onClick: (value) {
+                      //   //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.toString())));
+                      //   // },
+                      // )
+                    ),
+      
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16.0, right: 16, left: 16, bottom: 8),
+                      child: Text(
+                        "Your Stats",
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: navyBlue
                         ),
-                        Icon(Icons.local_fire_department, size: 30, color: lightOrange,),
-                      ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(16.0),
-                    // height: 500, //70,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15.0),
-                      boxShadow: [
-                        MyBoxShadow(navyBlue)
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, right: 16, left: 16, bottom: 8),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Current Strike : ",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: navyBlue
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                          Text(
+                            streak.toString(),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: navyBlue
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                          Icon(Icons.local_fire_department, size: 30, color: lightOrange,),
+                        ],
+                      ),
                     ),
-                    child: HeatMapCalendar(
-                      defaultColor: Colors.white,
-                      flexible: true,
-                      colorMode: ColorMode.color,
-                      datasets: {
-                        DateTime(2023, 11, 27): 6,
-                        DateTime(2023, 11, 25): 5,
-                        DateTime(2023, 11, 29): 4,
-                        DateTime(2023, 11, 30): 5,
-                        DateTime(2023, 11, 28): 5,
-                      },
-                      colorsets: {
-                        1: Colors.orange.shade50,
-                        2: Colors.orange.shade100,
-                        3: Colors.orange.shade200,
-                        4: Colors.orange.shade300,
-                        5: Colors.orange.shade400,
-                        6: Colors.orange.shade500,
-                      },
-                      // onClick: (value) {
-                      //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.toString())));
-                      // },
+                    Container(
+                      padding: const EdgeInsets.all(16.0),
+                      // height: 500, //70,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15.0),
+                        boxShadow: [
+                          MyBoxShadow(navyBlue)
+                        ],
+                      ),
+                      child: HeatMapCalendar(
+                        defaultColor: Colors.white,
+                        flexible: true,
+                        colorMode: ColorMode.color,
+                        datasets: {
+                          DateTime(2023, 12, 27): 6,
+                          DateTime(2023, 12, 25): 5,
+                          DateTime(2023, 12, 29): 4,
+                          DateTime(2023, 12, 30): 5,
+                          DateTime(2023, 12, 28): 5,
+                        },
+                        colorsets: {
+                          1: Colors.orange.shade50,
+                          2: Colors.orange.shade100,
+                          3: Colors.orange.shade200,
+                          4: Colors.orange.shade300,
+                          5: Colors.orange.shade400,
+                          6: Colors.orange.shade500,
+                        },
+                        onClick: (value) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You've completed 5 goals on " + value.toString())));
+                        },
+                      ),
+                      // child: HeatMap(
+                      //   defaultColor: Colors.white,
+                      //   colorMode: ColorMode.color,
+                      //   startDate: date,
+                      //   datasets: {
+                      //     DateTime(2023, 11, 27): 6,
+                      //     DateTime(2023, 11, 25): 5,
+                      //     DateTime(2023, 11, 29): 4,
+                      //     DateTime(2023, 11, 30): 2,
+                      //     DateTime(2023, 11, 28): 5,
+                      //   },
+                      //   colorsets: {
+                      //     1: Colors.orange.shade50,
+                      //     2: Colors.orange.shade100,
+                      //     3: Colors.orange.shade200,
+                      //     4: Colors.orange.shade300,
+                      //     5: Colors.orange.shade400,
+                      //     6: Colors.orange.shade500,
+                      //   },
+                      //   // onClick: (value) {
+                      //   //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.toString())));
+                      //   // },
+                      // )
                     ),
-                    // child: HeatMap(
-                    //   defaultColor: Colors.white,
-                    //   colorMode: ColorMode.color,
-                    //   startDate: date,
-                    //   datasets: {
-                    //     DateTime(2023, 11, 27): 6,
-                    //     DateTime(2023, 11, 25): 5,
-                    //     DateTime(2023, 11, 29): 4,
-                    //     DateTime(2023, 11, 30): 2,
-                    //     DateTime(2023, 11, 28): 5,
-                    //   },
-                    //   colorsets: {
-                    //     1: Colors.orange.shade50,
-                    //     2: Colors.orange.shade100,
-                    //     3: Colors.orange.shade200,
-                    //     4: Colors.orange.shade300,
-                    //     5: Colors.orange.shade400,
-                    //     6: Colors.orange.shade500,
-                    //   },
-                    //   // onClick: (value) {
-                    //   //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.toString())));
-                    //   // },
-                    // )
-                  ),
-                ],
+                  
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

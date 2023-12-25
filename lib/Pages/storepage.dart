@@ -194,27 +194,30 @@ class StorePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Avatars",
-                        style: TextStyle(fontSize: 35, color: navyBlue),
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "150 ",
-                            style: TextStyle(fontSize: 30, color: navyBlue),
-                          ),
-                          Icon(
-                            Icons.monetization_on,
-                            size: 28,
-                            color: navyBlue,
-                          ),
-                        ],
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Avatars",
+                          style: TextStyle(fontSize: 35, color: navyBlue),
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "150 ",
+                              style: TextStyle(fontSize: 30, color: navyBlue),
+                            ),
+                            Icon(
+                              Icons.monetization_on,
+                              size: 28,
+                              color: navyBlue,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 10),
                   const Row(
@@ -235,21 +238,24 @@ class StorePage extends StatelessWidget {
               ),
             ),
             //array
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemCount: avatarList.length,
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                maxCrossAxisExtent: 200, //your width
-                mainAxisExtent: 150, //your height
-              ),
-              itemBuilder: (BuildContext context, int index) => Avatars(
-                ID: avatarList[index][0],
-                avatarPath: avatarList[index][1],
-                avatarName: avatarList[index][2],
-                isOwned: avatarList[index][3],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemCount: avatarList.length,
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 10,
+                  maxCrossAxisExtent: 150, //your width
+                  mainAxisExtent: 150, //your height
+                ),
+                itemBuilder: (BuildContext context, int index) => Avatars(
+                  ID: avatarList[index][0],
+                  avatarPath: avatarList[index][1],
+                  avatarName: avatarList[index][2],
+                  isOwned: avatarList[index][3],
+                ),
               ),
             ),
             // buton
