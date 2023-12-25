@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habbitty/Components/dynamictextfield.dart';
+// import 'package:habbitty/Components/dynamictextfield.dart';
 import 'package:habbitty/Components/habittile.dart';
 import 'package:habbitty/Pages/createpage.dart';
 import 'package:habbitty/Pages/dailyquotespage.dart';
@@ -15,6 +15,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import 'package:habbitty/Components/boxshadow.dart';
 import 'package:habbitty/Components/togglebutton.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,7 +24,45 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+// Variables
+var toBeCompletedKey = todaysHabitList.length;
+var completedKey = 0;
+
+
 class _HomePageState extends State<HomePage> {
+
+  @override
+  void initState() {
+    loadData();
+    super.initState();
+  }
+
+  void loadData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      completedKey = prefs.getInt("done") ?? 0;
+    });
+  }
+
+  void updateData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      int doneCount = 0;
+      for (var i = 0; i < todaysHabitList.length; i++) {
+        if (todaysHabitList[i][4] == true) {
+          doneCount++;
+        }
+      }
+
+      prefs.setInt("done", doneCount);
+      completedKey = prefs.getInt("done") ?? 0;
+      prefs.setInt("toBeDone", todaysHabitList.length);
+      toBeCompleted = prefs.getInt("toBeDone") ?? 0;
+
+      
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -281,7 +320,7 @@ class _HomePageState extends State<HomePage> {
                                         style: TextStyle(
                                             color: navyBlue, fontSize: 16)),
                                     Text(
-                                      "$completed/$toBeCompleted",
+                                      "$completedKey/$toBeCompleted",
                                       style: TextStyle(
                                           color: navyBlue, fontSize: 16),
                                     ),
@@ -299,7 +338,7 @@ class _HomePageState extends State<HomePage> {
                                         animation: true,
                                         lineHeight: 5.0,
                                         animationDuration: 2000,
-                                        percent: (completed / toBeCompleted),
+                                        percent: (completedKey / toBeCompleted),
                                         progressColor: darkOrange,
                                       ),
                                     ),
@@ -316,44 +355,51 @@ class _HomePageState extends State<HomePage> {
               ],
             )),
         // Bottom
-        
+
         // Text Field & Toggle
-        Column(
-          children: [
-            DynamicTextField(
-                hintText: "Search",
-                controller: TextEditingController(),
-                suffixIcon: Icon(
-                  Icons.search,
-                  color: navyBlue,
-                ),
-                onChanged: (value) {}),
-            const MyToggleButtons(),
-          ],
-        ),
+        // Column(
+        //   children: [
+        //     // DynamicTextField(
+        //     //     hintText: "Search",
+        //     //     controller: TextEditingController(),
+        //     //     suffixIcon: Icon(
+        //     //       Icons.search,
+        //     //       color: navyBlue,
+        //     //     ),
+        //     //     onChanged: (value) {}),
+        //   ],
+        // ),
         // 
         Expanded(
           child: ListView.builder(
-            itemCount: todaysHabitList.length,
+            itemCount: todaysHabitList.length + 1, // Add 1 for the toggle button
             itemBuilder: (BuildContext context, int index) {
-              return HabitTile(
-                ID: todaysHabitList[index][0],
-                itemTitle: todaysHabitList[index][1],
-                itemTime: todaysHabitList[index][2],
-                itemIcon: todaysHabitList[index][3],
-                isDone: todaysHabitList[index][4],
-              );
+              if (index == 0) {
+                // This is the first item, return the toggle button
+                return const MyToggleButtons();
+              } else {
+                // Subtract 1 from index to get the correct habit item
+                index -= 1;
+                return HabitTile(
+                  ID: todaysHabitList[index][0],
+                  itemTitle: todaysHabitList[index][1],
+                  itemTime: todaysHabitList[index][2],
+                  itemIcon: todaysHabitList[index][3],
+                  isDone: todaysHabitList[index][4],
+                );
+              }
             },
           ),
         ),
       ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            
-          });
-          // Navigator.of(context).push(
-          //     MaterialPageRoute(builder: (context) => const CreatePage()));
+          // setState(() {
+          //   updateData();
+          // });
+          updateData();
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const CreatePage()));
         },
         backgroundColor: lightOrange,
         child: Container(
