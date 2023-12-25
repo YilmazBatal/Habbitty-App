@@ -30,16 +30,19 @@ class Avatars extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 100,
-          height: 100,
+          width: 80,
+          height: 80,
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(15),
               boxShadow: [MyBoxShadow(navyBlue)]),
-          child: Image(
-            width: 100,
-            height: 100,
-            image: AssetImage(avatarPath),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image(
+              width: 80,
+              height: 80,
+              image: AssetImage(avatarPath),
+            ),
           ),
         ),
         const SizedBox(
