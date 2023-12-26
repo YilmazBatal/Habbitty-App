@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+// ignore: unused_import
 import 'package:habbitty/Pages/welcomePage.dart';
+import 'package:habbitty/homepage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -63,7 +64,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: MyTheme(),
-        home: const welcomePage()
+        home: const HomePage()
     );
   }
 
