@@ -8,9 +8,25 @@ import 'package:habbitty/Components/togglebutton.dart';
 
 import 'package:habbitty/main.dart';
 
-class CreatePage extends StatelessWidget {
-  const CreatePage({super.key});
+class EditPage extends StatefulWidget {
+  final String itemTitle;
+  final String itemTime;
+  final String itemDesc;
+  final IconData itemIcon;
 
+  const EditPage({
+    super.key,
+    required this.itemTitle,
+    required this.itemTime,
+    required this.itemDesc,
+    required this.itemIcon,
+  });
+
+  @override
+  State<EditPage> createState() => _EditPageState();
+}
+
+class _EditPageState extends State<EditPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +34,7 @@ class CreatePage extends StatelessWidget {
         foregroundColor: Colors.white,
         backgroundColor: lightOrange,
         title: const Text(
-          "Create An Avtivity",
+          "Edit An Avtivity",
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -33,8 +49,9 @@ class CreatePage extends StatelessWidget {
                   const MyToggleButtons(),
                   MyTitle("Activity Name", navyBlue),
                   DynamicTextField(
+                    
                     hintText: "Water Plants",
-                    controller: TextEditingController(),
+                    controller: TextEditingController(text: widget.itemTitle),
                     suffixIcon: Icon(
                       Icons.edit_note_rounded,
                       color: navyBlue,
@@ -48,7 +65,7 @@ class CreatePage extends StatelessWidget {
                   MyTitle("Activity Notes", navyBlue),
                   DynamicTextField(
                     hintText: "Neighbor's plants, Only her cactus",
-                    controller: TextEditingController(),
+                    controller: TextEditingController(text: widget.itemDesc),
                     suffixIcon: Icon(
                       Icons.notes_rounded,
                       color: navyBlue,
@@ -106,7 +123,7 @@ class CreatePage extends StatelessWidget {
                             boxShadow: [MyBoxShadow(navyBlue)]),
                         child: ElevatedButton(
                           onPressed: () {
-                            //TimePickerDialog(initialTime: TimeOfDay(hour: 00, minute: 00));
+                            const TimePickerDialog(initialTime: TimeOfDay(hour: 00, minute: 00));
                           },
                           style: ButtonStyle(
                               shape: MaterialStateProperty.all<

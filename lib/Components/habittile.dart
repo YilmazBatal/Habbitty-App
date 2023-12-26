@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:habbitty/Components/boxshadow.dart';
+import 'package:habbitty/Pages/editpage.dart';
 import 'package:habbitty/homepage.dart';
 import 'package:habbitty/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +13,7 @@ class HabitTile extends StatefulWidget {
   final int ID;
   final String itemTitle;
   final String itemTime;
+  final String itemDesc;
   final IconData itemIcon;
   final bool isDone;
 
@@ -19,6 +21,7 @@ class HabitTile extends StatefulWidget {
     super.key,
     required this.ID,
     required this.itemTitle,
+    this.itemDesc = "",
     required this.itemTime,
     required this.itemIcon,
     required this.isDone,
@@ -107,9 +110,10 @@ class _HabitTileState extends State<HabitTile> {
                         topLeft: Radius.circular(15),
                       ),
                     ),
+                    
                     SlidableAction(
                       onPressed:(context) {
-                        showTimePicker(context: context, initialTime: const TimeOfDay(hour: 20, minute: 20));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => EditPage(itemTitle: widget.itemTitle, itemIcon: widget.itemIcon, itemTime: widget.itemTime, itemDesc: widget.itemDesc)));
                       },
                       icon: (Icons.edit),
                       backgroundColor: const Color.fromARGB(255, 247, 195, 24),
