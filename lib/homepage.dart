@@ -1,5 +1,6 @@
+// import 'package:habbitty/Components/dynamictextfield.dart'; 
 import 'package:flutter/material.dart';
-// import 'package:habbitty/Components/dynamictextfield.dart';
+import 'package:habbitty/Components/dataTimeLine.dart';
 import 'package:habbitty/Components/habittile.dart';
 import 'package:habbitty/Pages/createpage.dart';
 import 'package:habbitty/Pages/dailyquotespage.dart';
@@ -238,121 +239,125 @@ class _HomePageState extends State<HomePage> {
       body: Column(children: [
         // Header
         Container(
-            height: 225,
+            // height: 225,
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(15),
                   bottomRight: Radius.circular(15),
                 ),
                 color: lightOrange),
-            child: Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 25.0, right: 25, bottom: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(welcomeMessage,
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 32)),
-                      Row(
-                        children: [
-                          Text(credits.toString(),
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 30)),
-                          const Icon(
-                            Icons.monetization_on,
-                            size: 28,
-                            color: Colors.white,
-                          ),
-                        ],
-                      )
-                    ],
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 15),
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 25.0, right: 25, bottom: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(welcomeMessage,
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 32)),
+                        Row(
+                          children: [
+                            Text(credits.toString(),
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 30)),
+                            const Icon(
+                              Icons.monetization_on,
+                              size: 28,
+                              color: Colors.white,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 25.0, right: 25, bottom: 20),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 70, //70,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15.0),
-                            boxShadow: [MyBoxShadow(navyBlue)],
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 25.0, right: 25, bottom: 20),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            clipBehavior: Clip.hardEdge,
+                            // height: 70, //70,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15.0),
+                              boxShadow: [MyBoxShadow(navyBlue)],
+                            ),
+                            child: const DateView(),
                           ),
-                          child: Container(),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 25, right: 25, bottom: 1),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 55,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15.0),
-                            boxShadow: [
-                              MyBoxShadow(navyBlue),
-                            ],
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("Progress",
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 25, right: 25, bottom: 1),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: 55,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15.0),
+                              boxShadow: [
+                                MyBoxShadow(navyBlue),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("Progress",
+                                          style: TextStyle(
+                                              color: navyBlue, fontSize: 16)),
+                                      Text(
+                                        "$completedKey/$toBeCompleted",
                                         style: TextStyle(
-                                            color: navyBlue, fontSize: 16)),
-                                    Text(
-                                      "$completedKey/$toBeCompleted",
-                                      style: TextStyle(
-                                          color: navyBlue, fontSize: 16),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: LinearPercentIndicator(
-                                        animation: true,
-                                        lineHeight: 5.0,
-                                        animationDuration: 2000,
-                                        percent: (completedKey / toBeCompleted),
-                                        progressColor: darkOrange,
+                                            color: navyBlue, fontSize: 16),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              )
-                            ],
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: LinearPercentIndicator(
+                                          animation: true,
+                                          lineHeight: 5.0,
+                                          animationDuration: 2000,
+                                          percent: (completedKey / toBeCompleted),
+                                          progressColor: darkOrange,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             )),
         // Bottom
 
