@@ -199,7 +199,7 @@ class StatsPage extends StatelessWidget {
                           6: Colors.orange.shade500,
                         },
                         onClick: (value) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You've completed 5 goals on " + value.toString())));
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You've completed 5 goals on $value")));
                         },
                       ),
                       // child: HeatMap(
@@ -291,7 +291,7 @@ class StatsPage extends StatelessWidget {
                           6: Colors.orange.shade500,
                         },
                         onClick: (value) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You've completed 5 goals on " + value.toString())));
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You've completed 5 goals on $value")));
                         },
                       ),
                       // child: HeatMap(
