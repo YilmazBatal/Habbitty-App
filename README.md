@@ -1,17 +1,22 @@
 # Habbitty
 
-- Habit and Task Tracker
+## What is Habbitty?
+- Habit, Task and Mood tracker that helps you to improve your efficency in your life...
+- With weekly and monthly reports you can see your overall mood and streak progress.
+- Yeah also no wasting your time with ADs!
+
+## Why Should i use Habbitty instead of other trackers?
+- Habbitty has the most simplified UI ever and free to use without any subscription or ADs experience.
+
+
+<img src="https://github.com/YilmazBatal/Habbitty-App/assets/55242181/f269bdea-3292-40b5-9768-e1fef3196f23"  width="400" />
 
 ## Project Members
 
 - @yilmazbatal
 - @himmetarda
 
-_Images shown below may not be the same as the app_
 
-![MainScreen](https://github.com/YilmazBatal/Habbitty-App/assets/55242181/1e145073-1a72-4a4c-b770-3055e1b316e1)
-![LogIn](https://github.com/YilmazBatal/Habbitty-App/assets/55242181/a8d1e9e0-f1a3-425f-9f33-9678241fae29)
-![LogIn-2](https://github.com/YilmazBatal/Habbitty-App/assets/55242181/0f38ffb1-1887-4054-87d0-b178efc69fd0)
 
 ## More description soon...
 
