@@ -52,7 +52,7 @@ class DateView extends StatelessWidget {
           ),
           
           dayStructure: DayStructure.dayNumDayStr,
-          height: 70,
+          height: 60,
           width: 50,
           todayHighlightColor: Colors.white
         ),

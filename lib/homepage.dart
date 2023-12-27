@@ -35,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     loadData();
+    updateData();
     super.initState();
   }
 
@@ -63,6 +64,14 @@ class _HomePageState extends State<HomePage> {
       
     });
   }
+
+  // void createActivity(){
+  //   showDialog(context: context, builder: (context) => AlertDialog(
+  //     insetPadding: EdgeInsets.symmetric(horizontal: 5, vertical: 50),
+  //     contentPadding: EdgeInsets.all(0),
+  //     content: CreatePage(),
+  //   ));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -402,6 +411,7 @@ class _HomePageState extends State<HomePage> {
           // setState(() {
           //   updateData();
           // });
+          // createActivity();
           updateData();
           Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => const CreatePage()));
