@@ -106,12 +106,12 @@ class StorePage extends StatelessWidget {
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
                 leading: Icon(
                   Icons.shopping_bag_outlined,
-                  color: navyBlue.withOpacity(0.5),
+                  color: lightOrange.withOpacity(1),
                   size: 40,
                 ),
                 title: Text("Store",
                     style: TextStyle(
-                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                        fontSize: 25, color: lightOrange.withOpacity(1))),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const StorePage()));
