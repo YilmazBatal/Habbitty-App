@@ -7,8 +7,7 @@
 
 ## Why Should i use Habbitty instead of other trackers?
 - Habbitty has the most simplified UI ever and free to use without any subscription or ADs experience.
-- 
-_Images shown below may not be the same as the app_
+
 
 <img src="https://github.com/YilmazBatal/Habbitty-App/assets/55242181/f269bdea-3292-40b5-9768-e1fef3196f23"  width="400" />
 
