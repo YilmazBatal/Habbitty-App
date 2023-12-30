@@ -8,8 +8,30 @@ import 'package:habbitty/Components/togglebutton.dart';
 
 import 'package:habbitty/main.dart';
 
-class CreatePage extends StatelessWidget {
-  const CreatePage({super.key});
+class CreatePage extends StatefulWidget {
+
+  final bool editMode;
+  final int id;
+
+  const CreatePage({super.key, this.editMode = false, this.id = -1});
+
+  @override
+  State<CreatePage> createState() => _CreatePageState();
+}
+
+class _CreatePageState extends State<CreatePage> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // id = 
+    // widget.id
+    if(widget.editMode) {
+      // veritabanindan oku verileri
+      // widget.id
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

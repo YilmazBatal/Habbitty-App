@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+// import 'package:habbitty/Models/activitydatabase.dart';
 // ignore: unused_import
 import 'package:habbitty/Pages/welcomePage.dart';
 import 'package:habbitty/homepage.dart';
+// import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -15,12 +17,19 @@ Color ownedColor = navyBlue;
 
 List todaysHabitList = [
   // ["id",name,time,icon,isDone]
-  [0,"10x Push Upsssss","10:00 AM - 10:15 AM",Icons.fitness_center_rounded,true],
+  [0, "10x Push Upsssss","10:00 AM - 10:15 AM",Icons.fitness_center_rounded,true],
   [1, "Study Math", "12:00 PM - 2:15 PM", Icons.school_rounded, true],
-  [2,"Practice Programming sssssss","3:00 PM - 6:00 PM",Icons.code_rounded,false],
+  [2, "Practice Programming sssssss","3:00 PM - 6:00 PM",Icons.code_rounded,false],
   [3, "Night Routine", "8:00 PM - 8:15 PM", Icons.bed_rounded, false],
   [4, "Bike Tour", "8:00 PM - 8:15 PM", Icons.pedal_bike_rounded, false],
   [5, "Brushing Teeths", "8:00 PM - 8:15 PM", Icons.bed_rounded, false],
+];
+
+List todaysTaskList = [
+  // ["id",name,time,icon,isDone]
+  [0, "Pay the Bills","10:00 AM - 10:15 AM", Icons.calendar_today_outlined,true],
+  [1, "Contact the Bank", "12:00 PM - 2:15 PM", Icons.calendar_today_outlined, false],
+  [2, "Groceries","3:00 PM - 6:00 PM" ,Icons.shopping_bag_outlined,false],
 ];
 
 List avatarList = [
@@ -52,8 +61,19 @@ void sp() async {
 }
 
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized;
+  // await ActivityDatabase.initalize();
+  
+  // runApp(
+  //   ChangeNotifierProvider(
+  //     create: (context) => ActivityDatabase(),
+  //     child: const MyApp()
+  //   )
+  // );
+  runApp(
+    const MyApp()
+  );
 }
 
 class MyApp extends StatelessWidget {
