@@ -12,14 +12,11 @@ import 'package:habbitty/Pages/stats.dart';
 import 'package:habbitty/Pages/profilepage.dart';
 import 'package:habbitty/Pages/storepage.dart';
 import 'package:habbitty/main.dart';
-import 'package:isar/isar.dart';
-import 'package:habbitty/Models/habit.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:habbitty/Components/boxshadow.dart';
+
 // import 'package:habbitty/Components/togglebutton.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'package:path_provider/path_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -35,47 +32,10 @@ var completedKey = 0;
 class _HomePageState extends State<HomePage> {
   List<bool> isSelected = [true, false];
 
-  late Isar isar;
-
-  openConnection() async {
-    final dir = await getApplicationDocumentsDirectory();
-    isar = await Isar.open(
-      [HabitSchema],
-      directory: dir.path
-    );
-
-    if (isar.isOpen) {
-      debugPrint("isar is open");
-    } else {
-      debugPrint("isar is not open");
-    }
-  } 
-
-  Future<void> addHabit(String title, String desc, String icon, DateTime time) async {
-    Habit newHabit = Habit()
-      ..title = title 
-      ..desc = desc 
-      ..iconData = icon
-      ..time = time; 
-    await isar.writeTxn(() async {
-      var addedID = await isar.habits.put(newHabit);
-      debugPrint(addedID.toString());
-    });
-  }
-  
-  closeConnection() async {
-    // var result = await Isar.close();
-
-    // if (result) {
-    //   debugPrint("Successfully Closed");
-    // }
-  }  
-
   @override
   void initState() {
     debugPrint("login");
-    openConnection();
-
+    
     loadData();
     updateData();
 
@@ -85,7 +45,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     debugPrint("exit");
-    closeConnection();
 
     super.dispose();
   }
