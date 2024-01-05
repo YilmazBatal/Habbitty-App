@@ -11,7 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-
+  
+    
   percent_indicator: ^4.0.1
   cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0
