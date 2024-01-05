@@ -9,7 +9,7 @@ import 'package:habbitty/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
-class HabitTile extends StatefulWidget {
+class TaskTile extends StatefulWidget {
   final int ID;
   final String itemTitle;
   final String itemTime;
@@ -17,7 +17,7 @@ class HabitTile extends StatefulWidget {
   final IconData itemIcon;
   final bool isDone;
 
-  const HabitTile({
+  const TaskTile({
     super.key,
     required this.ID,
     required this.itemTitle,
@@ -28,9 +28,9 @@ class HabitTile extends StatefulWidget {
   });
 
   @override
-  State<HabitTile> createState() => _HabitTileState();
+  State<TaskTile> createState() => _TaskTileState();
 }
-class _HabitTileState extends State<HabitTile> {
+class _TaskTileState extends State<TaskTile> {
   // @override
   // void initState() {
   //   loadData();
@@ -47,7 +47,7 @@ class _HabitTileState extends State<HabitTile> {
   // void updateData() async {
   //   final SharedPreferences prefs = await SharedPreferences.getInstance();
   //   // final updateData = {
-  //   //   'id': HabitTile(
+  //   //   'id': TaskTile(
   //   //     this.ID: ,
   //   //   ),
   //   // }
@@ -74,7 +74,7 @@ class _HabitTileState extends State<HabitTile> {
     }
 
     return Padding(
-      padding: const EdgeInsets.only(top: 10,left: 30, right: 30, bottom: 10),
+      padding: const EdgeInsets.only(top: 10 ,left: 30, right: 30, bottom: 10),
       child: Row(
         children: [
           Expanded(
@@ -99,7 +99,7 @@ class _HabitTileState extends State<HabitTile> {
                           // final int? completed = prefs.getInt('progressData');
                         });
                         // isDone = true;
-                        // saveMyHabit();
+                        // saveMyTask();
                         // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
                       },
                       icon: (Icons.check_circle_outline),
@@ -121,7 +121,7 @@ class _HabitTileState extends State<HabitTile> {
                     ),
                     SlidableAction(
                       onPressed:(context) {
-                        todaysHabitList.removeAt(widget.ID);
+                        todaysTaskList.removeAt(widget.ID);
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
                       },
                       icon: (Icons.delete_forever),

@@ -1,7 +1,8 @@
-// import 'package:habbitty/Components/dynamictextfield.dart'; 
+// import 'package:habbitty/Components/dynamictextfield.dart';
 import 'package:flutter/material.dart';
 import 'package:habbitty/Components/dataTimeLine.dart';
 import 'package:habbitty/Components/habittile.dart';
+import 'package:habbitty/Components/tasktile.dart';
 import 'package:habbitty/Pages/createpage.dart';
 import 'package:habbitty/Pages/dailyquotespage.dart';
 import 'package:habbitty/Pages/help.dart';
@@ -11,11 +12,10 @@ import 'package:habbitty/Pages/stats.dart';
 import 'package:habbitty/Pages/profilepage.dart';
 import 'package:habbitty/Pages/storepage.dart';
 import 'package:habbitty/main.dart';
-
 import 'package:percent_indicator/linear_percent_indicator.dart';
-
 import 'package:habbitty/Components/boxshadow.dart';
-import 'package:habbitty/Components/togglebutton.dart';
+
+// import 'package:habbitty/Components/togglebutton.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,14 +29,24 @@ class HomePage extends StatefulWidget {
 var toBeCompletedKey = todaysHabitList.length;
 var completedKey = 0;
 
-
 class _HomePageState extends State<HomePage> {
+  List<bool> isSelected = [true, false];
 
   @override
   void initState() {
+    debugPrint("login");
+    
     loadData();
     updateData();
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    debugPrint("exit");
+
+    super.dispose();
   }
 
   void loadData() async {
@@ -60,8 +70,6 @@ class _HomePageState extends State<HomePage> {
       completedKey = prefs.getInt("done") ?? 0;
       prefs.setInt("toBeDone", todaysHabitList.length);
       toBeCompleted = prefs.getInt("toBeDone") ?? 0;
-
-      
     });
   }
 
@@ -143,6 +151,10 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const StatsPage()));
+
+                  // TODO: EDIT PAGE
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (context) => const CreatePage(editMode: true, id: 2,)));
                 },
               ),
               // PROFILE
@@ -248,128 +260,131 @@ class _HomePageState extends State<HomePage> {
       body: Column(children: [
         // Header
         Container(
-            // height: 225,
-            decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(15),
-                  bottomRight: Radius.circular(15),
-                ),
-                color: lightOrange),
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 15),
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 25.0, right: 25, bottom: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(welcomeMessage,
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 32)),
-                        Row(
-                          children: [
-                            Text(credits.toString(),
-                                style: const TextStyle(
-                                    color: Colors.white, fontSize: 30)),
-                            const Icon(
-                              Icons.monetization_on,
-                              size: 28,
-                              color: Colors.white,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 25.0, right: 25, bottom: 20),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            clipBehavior: Clip.hardEdge,
-                            // height: 70, //70,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15.0),
-                              boxShadow: [MyBoxShadow(navyBlue)],
-                            ),
-                            child: const DateView(),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 25, right: 25, bottom: 1),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 55,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15.0),
-                              boxShadow: [
-                                MyBoxShadow(navyBlue),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 20),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("Progress",
-                                          style: TextStyle(
-                                              color: navyBlue, fontSize: 16)),
-                                      Text(
-                                        "$completedKey/$toBeCompleted",
-                                        style: TextStyle(
-                                            color: navyBlue, fontSize: 16),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 10),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Expanded(
-                                        child: LinearPercentIndicator(
-                                          animation: true,
-                                          lineHeight: 5.0,
-                                          animationDuration: 2000,
-                                          percent: (completedKey / toBeCompleted),
-                                          progressColor: darkOrange,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+          // height: 225,
+          decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(15),
+                bottomRight: Radius.circular(15),
               ),
-            )),
+              color: lightOrange),
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 15),
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 25.0, right: 25, bottom: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(welcomeMessage,
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 32)),
+                      Row(
+                        children: [
+                          Text(credits.toString(),
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 30)),
+                          const Icon(
+                            Icons.monetization_on,
+                            size: 28,
+                            color: Colors.white,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 25.0, right: 25, bottom: 20),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          clipBehavior: Clip.hardEdge,
+                          // height: 70, //70,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15.0),
+                            boxShadow: [MyBoxShadow(navyBlue)],
+                          ),
+                          child: const DateView(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 25, right: 25, bottom: 1),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 55,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15.0),
+                            boxShadow: [
+                              MyBoxShadow(navyBlue),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Progress",
+                                        style: TextStyle(
+                                            color: navyBlue, fontSize: 16)),
+                                    Text(
+                                      "$completedKey/$toBeCompleted",
+                                      style: TextStyle(
+                                          color: navyBlue, fontSize: 16),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: LinearPercentIndicator(
+                                        animation: true,
+                                        lineHeight: 5.0,
+                                        animationDuration: 2000,
+                                        percent:
+                                            (completedKey / toBeCompleted),
+                                        progressColor: darkOrange,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )
+        ),
+        
+        
         // Bottom
-
         // Text Field & Toggle
         // Column(
         //   children: [
@@ -383,24 +398,71 @@ class _HomePageState extends State<HomePage> {
         //     //     onChanged: (value) {}),
         //   ],
         // ),
-        // 
+        //
         Expanded(
           child: ListView.builder(
-            itemCount: todaysHabitList.length + 1, // Add 1 for the toggle button
+            itemCount:
+                isSelected[0] ? todaysHabitList.length + 1 : todaysTaskList.length + 1, // Add 1 for the toggle button
             itemBuilder: (BuildContext context, int index) {
               if (index == 0) {
                 // This is the first item, return the toggle button
-                return const MyToggleButtons();
-              } else {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: 20, left: 30, right: 30),
+                  child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [MyBoxShadow(navyBlue.withOpacity(0.5))],
+                            borderRadius: BorderRadius.circular(15)),
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            return ToggleButtons(
+                              borderRadius: BorderRadius.circular(15),
+                              renderBorder: false,
+                              isSelected: isSelected,
+                              fillColor: lightOrange,
+                              selectedColor: Colors.white,
+                              color: navyBlue,
+                              constraints: BoxConstraints.expand(
+                                  width: constraints.maxWidth / 2),
+                              onPressed: (int index) {
+                                setState(() {
+                                  for (int i = 0; i < isSelected.length; i++) {
+                                    isSelected[i] = i == index;
+                                  }
+                                });
+                              },
+                              children: const [
+                                Text("Habbits", style: TextStyle(fontSize: 20)),
+                                Text("Tasks", style: TextStyle(fontSize: 20))
+                              ],
+                            );
+                          },
+                        )));
+              }
+              else {
                 // Subtract 1 from index to get the correct habit item
-                index -= 1;
-                return HabitTile(
-                  ID: todaysHabitList[index][0],
-                  itemTitle: todaysHabitList[index][1],
-                  itemTime: todaysHabitList[index][2],
-                  itemIcon: todaysHabitList[index][3],
-                  isDone: todaysHabitList[index][4],
-                );
+                if(isSelected[0]) {
+                  index -= 1;
+                  return HabitTile(
+                    ID: todaysHabitList[index][0],
+                    itemTitle: todaysHabitList[index][1],
+                    itemTime: todaysHabitList[index][2],
+                    itemIcon: todaysHabitList[index][3],
+                    isDone: todaysHabitList[index][4],
+                  );
+                }
+                else {
+                  index -= 1;
+                  return TaskTile(
+                    ID: todaysTaskList[index][0],
+                    itemTitle: todaysTaskList[index][1],
+                    itemTime: todaysTaskList[index][2],
+                    itemIcon: todaysTaskList[index][3],
+                    isDone: todaysTaskList[index][4],
+                  );
+                }
+                
               }
             },
           ),
@@ -432,11 +494,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   // ignore: non_constant_identifier_names
-  Search() {
-
-  }
+  Search() {}
 }
-
 
 // @override
 //   void initState() {
@@ -452,11 +511,11 @@ class _HomePageState extends State<HomePage> {
 //     });
 //   }
 //   void saveMyHabit() async {
-    
+
 //     // Load and obtain the shared preferences for this app.
 //     final prefs = await SharedPreferences.getInstance();
 
 //     // Save the counter value to persistent storage under the 'counter' key.
 //     await prefs.setBool('$this.ID', true);
-    
+
 //   }
