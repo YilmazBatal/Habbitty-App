@@ -130,7 +130,8 @@ class signup extends StatelessWidget {
                           },
                           style: ButtonStyle(
                               shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(RoundedRectangleBorder(
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               )),
                               splashFactory: NoSplash.splashFactory,
@@ -155,12 +156,12 @@ class signup extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        const Signin();
-                      },
-                      child: Image.asset("assets/images/google.png"),
-                    ),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     const Signin()
+                    //   },
+                    //   child: Image.asset("assets/images/google.png"),
+                    // ),
                   ],
                 ),
               ),

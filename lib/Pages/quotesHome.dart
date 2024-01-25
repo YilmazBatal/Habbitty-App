@@ -30,21 +30,22 @@ class _QuotesScreenState extends State<QuotesScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(height: 10),
-            IconButton(
-              icon: const Icon(
-                Icons.refresh_outlined,
-              ),
-              iconSize: 30,
-              onPressed: () {
-                print("icon refresh");
-                loadDailyQuote();
-              },
-            ),
+            // const SizedBox(height: 10),
+            // IconButton(
+            //   icon: const Icon(
+            //     Icons.refresh_outlined,
+            //   ),
+            //   iconSize: 30,
+            //   onPressed: () {
+            //     loadDailyQuote();
+            //     print("icon refresh");
+            //   },
+            // ),
             Card(
               margin: const EdgeInsets.only(top: 20),
-              color: Colors.white,
+              color: const Color.fromARGB(255, 33, 173, 243),
               elevation: 10,
               child: Padding(
                 padding:
@@ -53,13 +54,13 @@ class _QuotesScreenState extends State<QuotesScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     isLoading
-                        ? CircularProgressIndicator()
+                        ? const CircularProgressIndicator()
                         : Text(
                             '${data?.content ?? ""}',
                             textAlign: TextAlign.justify,
                             style: const TextStyle(
                               fontSize: 20,
-                              fontStyle: FontStyle.italic,
+                              //fontStyle: FontStyle.italic,
                             ),
                           ),
                     const SizedBox(height: 22),

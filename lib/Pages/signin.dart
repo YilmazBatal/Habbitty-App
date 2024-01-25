@@ -6,8 +6,16 @@ import 'package:habbitty/Pages/welcomePage.dart';
 import 'package:habbitty/homepage.dart';
 import 'package:habbitty/main.dart';
 
-class Signin extends StatelessWidget {
-  const Signin({super.key});
+class Signin extends StatefulWidget {
+  const Signin({Key? key}) : super(key: key);
+
+  @override
+  _SigninState createState() => _SigninState();
+}
+
+class _SigninState extends State<Signin> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +46,8 @@ class Signin extends StatelessWidget {
                 children: [
                   MyTitle("Welcome Back!", lightOrange),
                   DynamicTextField(
-                    hintText: "Kullanıcı adı..",
-                    controller: TextEditingController(),
+                    hintText: "Username..",
+                    controller: usernameController,
                     suffixIcon: Icon(
                       Icons.person_outlined,
                       color: navyBlue,
@@ -49,14 +57,14 @@ class Signin extends StatelessWidget {
                     },
                   ),
                   DynamicTextField(
-                    hintText: "Parola..",
-                    controller: TextEditingController(),
+                    hintText: "Password..",
+                    controller: passwordController,
                     suffixIcon: Icon(
                       Icons.password_outlined,
                       color: navyBlue,
                     ),
                     onChanged: (value) {
-                      // Handle username changes
+                      // Handle password changes
                     },
                   ),
                   const SizedBox(height: 20),
@@ -71,14 +79,33 @@ class Signin extends StatelessWidget {
                           boxShadow: [MyBoxShadow(navyBlue)]),
                       child: ElevatedButton(
                         onPressed: () {
-                          // const HomePage();
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const HomePage()));
+                          if (authenticateUser(
+                              usernameController.text, passwordController.text)) {
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) => HomePage()));
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Error'),
+                                  content: Text('Invalid username or password.'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('OK'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
                         },
                         style: ButtonStyle(
                             shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15.0),
                             )),
                             splashFactory: NoSplash.splashFactory,
@@ -111,8 +138,7 @@ class Signin extends StatelessWidget {
                         },
                         style: ButtonStyle(
                             shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15.0),
                             )),
                             elevation: MaterialStateProperty.all(0),
@@ -147,5 +173,21 @@ class Signin extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  // Kullanıcıyı doğrula
+  bool authenticateUser(String username, String password) {
+    // Bu kısmı kullanıcı veritabanınıza göre uyarlayın
+    List<Map<String, dynamic>> users = [
+      {"username": "user1", "password": "password1", "name": "John Doe"},
+      {"username": "user2", "password": "password2", "name": "Jane Doe"},
+    ];
+
+    for (var user in users) {
+      if (user['username'] == username && user['password'] == password) {
+        return true;
+      }
+    }
+    return false;
   }
 }

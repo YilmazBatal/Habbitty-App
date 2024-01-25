@@ -26,6 +26,7 @@ dependencies:
   easy_date_timeline: ^1.0.2
   path_provider: ^2.1.1
   provider: ^6.1.1
+  http: ^1.2.0
 
 dev_dependencies:
   flutter_test:
@@ -37,3 +38,4 @@ flutter:
   assets:
     - assets/images/
     - assets/avatars/
+    - lib/model/data.json

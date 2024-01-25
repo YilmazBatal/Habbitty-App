@@ -63,7 +63,11 @@ class MyClipPath extends AnimatedWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      buttonElements(context, "Sign In", const Signin()),
+                      buttonElements(context, "Sign In", () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const Signin()));
+                      }),
+
                       const SizedBox(
                         height: 10,
                       ),
@@ -79,12 +83,12 @@ class MyClipPath extends AnimatedWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          const Signin();
-                        },
-                        child: Image.asset("assets/images/google.png"),
-                      ),
+                      // GestureDetector(
+                      //   onTap: () {
+                      //     const Signin();
+                      //   },
+                      //   child: Image.asset("assets/images/google.png"),
+                      // ),
                     ],
                   ),
                 ),
