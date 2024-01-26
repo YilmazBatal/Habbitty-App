@@ -2,10 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:habbitty/main.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HelpPage extends StatelessWidget {
   const HelpPage({super.key});
 
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,9 +46,18 @@ class HelpPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: ()async{
+                        final Uri myWebsiteUrl = Uri.parse("https://github.com/YilmazBatal/Habbitty-App/blob/main/README.md");
+                        
+                        try{
+                          await launchUrl(myWebsiteUrl);
+                        } catch (err) {
+                          // ignore: avoid_print
+                          print(err);
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: lightOrange,
                       ),
@@ -62,7 +74,14 @@ class HelpPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: () async {
+                        final Uri myMailUrl = Uri(
+                          scheme: 'mailto',
+                          path: 'support@habbitty.com'
+                        );
+
+                        launchUrl(myMailUrl);
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: lightOrange,
                       ),
@@ -71,6 +90,30 @@ class HelpPage extends StatelessWidget {
                         children: [
                           Icon(Icons.mail),
                           Text("support@habbitty.com", textAlign: TextAlign.center,),
+                          Text(""),
+                        ],
+                      )
+                    ),
+                  ), 
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        final Uri myTel = Uri(
+                          scheme: 'tel',
+                          path: '+90 532 123 45 67'
+                        );
+
+                        launchUrl(myTel);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: lightOrange,
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(Icons.phone),
+                          Text("Call Us", textAlign: TextAlign.center,),
                           Text(""),
                         ],
                       )
