@@ -10,12 +10,33 @@ import 'package:habbitty/homepage.dart';
 import 'package:habbitty/main.dart';
 
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 DateTime now = DateTime.now();
 DateTime date = DateTime(now.month, now.day);
 
-class StatsPage extends StatelessWidget {
-  const StatsPage({super.key});
+class StatsPage extends StatefulWidget {
+  const StatsPage({Key? key}) : super(key: key);
+
+  @override
+  _StatsPageState createState() => _StatsPageState();
+}
+
+class _StatsPageState extends State<StatsPage> {
+  String? storedUsername;
+
+  @override
+  void initState() {
+    super.initState();
+    loadUsername();
+  }
+
+  Future<void> loadUsername() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      storedUsername = prefs.getString('username');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +44,10 @@ class StatsPage extends StatelessWidget {
       appBar: AppBar(
         foregroundColor: Colors.white,
         backgroundColor: lightOrange,
-        title: const Text("Stats", style: TextStyle(color: Colors.white),),
+        title: const Text(
+          "Stats",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       drawer: Drawer(
         child: Container(
@@ -34,16 +58,24 @@ class StatsPage extends StatelessWidget {
                 height: 200,
                 child: DrawerHeader(
                   padding: const EdgeInsets.all(0.0),
+                  decoration: BoxDecoration(color: lightOrange),
                   child: Container(
-                    decoration: BoxDecoration(
-                      color: lightOrange
-                    ),
-                    child: const Center(
+                    child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.account_circle_outlined, size: 100, color: Colors.white,),
-                          Text("<User Name>", style: TextStyle(fontSize: 24, color: Colors.white))
+                          const Icon(
+                            Icons.account_circle_outlined,
+                            size: 100,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            storedUsername != null
+                                ? "Welcome $storedUsername"
+                                : "Welcome User",
+                            style: const TextStyle(
+                                fontSize: 24, color: Colors.white),
+                          )
                         ],
                       ),
                     ),
@@ -53,73 +85,128 @@ class StatsPage extends StatelessWidget {
               // HOME
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.home_rounded, color: navyBlue.withOpacity(0.5), size: 40,),
-                title: Text("Home", style: TextStyle(fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                leading: Icon(
+                  Icons.home_rounded,
+                  color: navyBlue.withOpacity(0.5),
+                  size: 40,
+                ),
+                title: Text("Home",
+                    style: TextStyle(
+                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HomePage()));
                 },
               ),
               // STATS
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.equalizer_rounded, color: lightOrange, size: 40,),
-                title: Text("Stats", style: TextStyle(fontSize: 25, color: lightOrange)),
+                leading: Icon(
+                  Icons.equalizer_rounded,
+                  color: lightOrange,
+                  size: 40,
+                ),
+                title: Text("Stats",
+                    style: TextStyle(fontSize: 25, color: lightOrange)),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const StatsPage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const StatsPage()));
                 },
               ),
               // PROFILE
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.account_circle_outlined, color: navyBlue.withOpacity(0.5), size: 40,),
-                title: Text("Profile", style: TextStyle(fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                leading: Icon(
+                  Icons.account_circle_outlined,
+                  color: navyBlue.withOpacity(0.5),
+                  size: 40,
+                ),
+                title: Text("Profile",
+                    style: TextStyle(
+                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfilePage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ProfilePage()));
                 },
               ),
               // STORE
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.shopping_bag_outlined, color: navyBlue.withOpacity(0.5), size: 40,),
-                title: Text("Store", style: TextStyle(fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                leading: Icon(
+                  Icons.shopping_bag_outlined,
+                  color: navyBlue.withOpacity(0.5),
+                  size: 40,
+                ),
+                title: Text("Store",
+                    style: TextStyle(
+                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const StorePage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const StorePage()));
                 },
               ),
               // SETTINGS
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.settings_outlined, color: navyBlue.withOpacity(0.5), size: 40,),
-                title: Text("Settings", style: TextStyle(fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                leading: Icon(
+                  Icons.settings_outlined,
+                  color: navyBlue.withOpacity(0.5),
+                  size: 40,
+                ),
+                title: Text("Settings",
+                    style: TextStyle(
+                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SettingsPage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const SettingsPage()));
                 },
               ),
               // QUOTE OF THE DAY
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.format_quote, color: navyBlue.withOpacity(0.5), size: 40,),
-                title: Text("Daily Quotes", style: TextStyle(fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                leading: Icon(
+                  Icons.format_quote,
+                  color: navyBlue.withOpacity(0.5),
+                  size: 40,
+                ),
+                title: Text("Daily Quotes",
+                    style: TextStyle(
+                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DailyQuotePage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const DailyQuotePage()));
                 },
               ),
               // HELP
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.question_mark_rounded, color: navyBlue.withOpacity(0.5), size: 40,),
-                title: Text("Help", style: TextStyle(fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                leading: Icon(
+                  Icons.question_mark_rounded,
+                  color: navyBlue.withOpacity(0.5),
+                  size: 40,
+                ),
+                title: Text("Help",
+                    style: TextStyle(
+                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HelpPage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HelpPage()));
                 },
               ),
               // PRIVACY POLICY
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                leading: Icon(Icons.lock_outline, color: navyBlue.withOpacity(0.5), size: 40,),
-                title: Text("Privacy Policy", style: TextStyle(fontSize: 25, color: navyBlue.withOpacity(0.5))),
+                leading: Icon(
+                  Icons.lock_outline,
+                  color: navyBlue.withOpacity(0.5),
+                  size: 40,
+                ),
+                title: Text("Privacy Policy",
+                    style: TextStyle(
+                        fontSize: 25, color: navyBlue.withOpacity(0.5))),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PrivacyPolicyPage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const PrivacyPolicyPage()));
                 },
               ),
             ],
@@ -136,36 +223,33 @@ class StatsPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 16.0, right: 16, left: 16, bottom: 8),
+                      padding: const EdgeInsets.only(
+                          top: 16.0, right: 16, left: 16, bottom: 8),
                       child: Text(
                         "Your Stats",
-                        style: TextStyle(
-                          fontSize: 30,
-                          color: navyBlue
-                        ),
+                        style: TextStyle(fontSize: 30, color: navyBlue),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8.0, right: 16, left: 16, bottom: 8),
+                      padding: const EdgeInsets.only(
+                          top: 8.0, right: 16, left: 16, bottom: 8),
                       child: Row(
                         children: [
                           Text(
                             "Current Strike : ",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: navyBlue
-                            ),
+                            style: TextStyle(fontSize: 20, color: navyBlue),
                             textAlign: TextAlign.left,
                           ),
                           Text(
                             streak.toString(),
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: navyBlue
-                            ),
+                            style: TextStyle(fontSize: 20, color: navyBlue),
                             textAlign: TextAlign.left,
                           ),
-                          Icon(Icons.local_fire_department, size: 30, color: lightOrange,),
+                          Icon(
+                            Icons.local_fire_department,
+                            size: 30,
+                            color: lightOrange,
+                          ),
                         ],
                       ),
                     ),
@@ -175,9 +259,7 @@ class StatsPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15.0),
-                        boxShadow: [
-                          MyBoxShadow(navyBlue)
-                        ],
+                        boxShadow: [MyBoxShadow(navyBlue)],
                       ),
                       child: HeatMapCalendar(
                         defaultColor: Colors.white,
@@ -199,7 +281,9 @@ class StatsPage extends StatelessWidget {
                           6: Colors.orange.shade500,
                         },
                         onClick: (value) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You've completed 5 goals on $value")));
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content:
+                                  Text("You've completed 5 goals on $value")));
                         },
                       ),
                       // child: HeatMap(
@@ -226,38 +310,34 @@ class StatsPage extends StatelessWidget {
                       //   // },
                       // )
                     ),
-      
                     Padding(
-                      padding: const EdgeInsets.only(top: 16.0, right: 16, left: 16, bottom: 8),
+                      padding: const EdgeInsets.only(
+                          top: 16.0, right: 16, left: 16, bottom: 8),
                       child: Text(
                         "Your Stats",
-                        style: TextStyle(
-                          fontSize: 30,
-                          color: navyBlue
-                        ),
+                        style: TextStyle(fontSize: 30, color: navyBlue),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8.0, right: 16, left: 16, bottom: 8),
+                      padding: const EdgeInsets.only(
+                          top: 8.0, right: 16, left: 16, bottom: 8),
                       child: Row(
                         children: [
                           Text(
                             "Current Strike : ",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: navyBlue
-                            ),
+                            style: TextStyle(fontSize: 20, color: navyBlue),
                             textAlign: TextAlign.left,
                           ),
                           Text(
                             streak.toString(),
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: navyBlue
-                            ),
+                            style: TextStyle(fontSize: 20, color: navyBlue),
                             textAlign: TextAlign.left,
                           ),
-                          Icon(Icons.local_fire_department, size: 30, color: lightOrange,),
+                          Icon(
+                            Icons.local_fire_department,
+                            size: 30,
+                            color: lightOrange,
+                          ),
                         ],
                       ),
                     ),
@@ -267,9 +347,7 @@ class StatsPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15.0),
-                        boxShadow: [
-                          MyBoxShadow(navyBlue)
-                        ],
+                        boxShadow: [MyBoxShadow(navyBlue)],
                       ),
                       child: HeatMapCalendar(
                         defaultColor: Colors.white,
@@ -291,7 +369,9 @@ class StatsPage extends StatelessWidget {
                           6: Colors.orange.shade500,
                         },
                         onClick: (value) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You've completed 5 goals on $value")));
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content:
+                                  Text("You've completed 5 goals on $value")));
                         },
                       ),
                       // child: HeatMap(
@@ -318,7 +398,6 @@ class StatsPage extends StatelessWidget {
                       //   // },
                       // )
                     ),
-                  
                   ],
                 ),
               ),

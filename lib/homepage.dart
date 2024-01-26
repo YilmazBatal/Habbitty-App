@@ -14,12 +14,11 @@ import 'package:habbitty/Pages/storepage.dart';
 import 'package:habbitty/main.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:habbitty/Components/boxshadow.dart';
-
 // import 'package:habbitty/Components/togglebutton.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -31,22 +30,28 @@ var completedKey = 0;
 
 class _HomePageState extends State<HomePage> {
   List<bool> isSelected = [true, false];
+  String? storedUsername;
 
   @override
   void initState() {
+    super.initState();
     debugPrint("login");
-    
+    loadUsername();
     loadData();
     updateData();
-
-    super.initState();
   }
 
   @override
   void dispose() {
     debugPrint("exit");
-
     super.dispose();
+  }
+
+  Future<void> loadUsername() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      storedUsername = prefs.getString('username');
+    });
   }
 
   void loadData() async {
@@ -69,10 +74,9 @@ class _HomePageState extends State<HomePage> {
       prefs.setInt("done", doneCount);
       completedKey = prefs.getInt("done") ?? 0;
       prefs.setInt("toBeDone", todaysHabitList.length);
-      toBeCompleted = prefs.getInt("toBeDone") ?? 0;
+      toBeCompletedKey = prefs.getInt("toBeDone") ?? 0;
     });
   }
-
   // void createActivity(){
   //   showDialog(context: context, builder: (context) => AlertDialog(
   //     insetPadding: EdgeInsets.symmetric(horizontal: 5, vertical: 50),
@@ -104,18 +108,21 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(0.0),
                   child: Container(
                     decoration: BoxDecoration(color: lightOrange),
-                    child: const Center(
+                    child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.account_circle_outlined,
                             size: 100,
                             color: Colors.white,
                           ),
-                          Text("<User Name>",
-                              style:
-                                  TextStyle(fontSize: 24, color: Colors.white))
+                          Text(
+                              storedUsername != null
+                                  ? "Welcome $storedUsername"
+                                  : "Welcome User",
+                              style: const TextStyle(
+                                  fontSize: 24, color: Colors.white))
                         ],
                       ),
                     ),
@@ -260,130 +267,128 @@ class _HomePageState extends State<HomePage> {
       body: Column(children: [
         // Header
         Container(
-          // height: 225,
-          decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(15),
-                bottomRight: Radius.circular(15),
-              ),
-              color: lightOrange),
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 15),
-            child: Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: 25.0, right: 25, bottom: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(welcomeMessage,
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 32)),
-                      Row(
-                        children: [
-                          Text(credits.toString(),
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 30)),
-                          const Icon(
-                            Icons.monetization_on,
-                            size: 28,
-                            color: Colors.white,
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
+            // height: 225,
+            decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(15),
+                  bottomRight: Radius.circular(15),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: 25.0, right: 25, bottom: 20),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          clipBehavior: Clip.hardEdge,
-                          // height: 70, //70,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15.0),
-                            boxShadow: [MyBoxShadow(navyBlue)],
+                color: lightOrange),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 15),
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 25.0, right: 25, bottom: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(welcomeMessage,
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 32)),
+                        Row(
+                          children: [
+                            Text(credits.toString(),
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 30)),
+                            const Icon(
+                              Icons.monetization_on,
+                              size: 28,
+                              color: Colors.white,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 25.0, right: 25, bottom: 20),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            clipBehavior: Clip.hardEdge,
+                            // height: 70, //70,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15.0),
+                              boxShadow: [MyBoxShadow(navyBlue)],
+                            ),
+                            child: const DateView(),
                           ),
-                          child: const DateView(),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 25, right: 25, bottom: 1),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 55,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15.0),
-                            boxShadow: [
-                              MyBoxShadow(navyBlue),
-                            ],
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("Progress",
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 25, right: 25, bottom: 1),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: 55,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15.0),
+                              boxShadow: [
+                                MyBoxShadow(navyBlue),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("Progress",
+                                          style: TextStyle(
+                                              color: navyBlue, fontSize: 16)),
+                                      Text(
+                                        "$completedKey/$toBeCompleted",
                                         style: TextStyle(
-                                            color: navyBlue, fontSize: 16)),
-                                    Text(
-                                      "$completedKey/$toBeCompleted",
-                                      style: TextStyle(
-                                          color: navyBlue, fontSize: 16),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: LinearPercentIndicator(
-                                        animation: true,
-                                        lineHeight: 5.0,
-                                        animationDuration: 2000,
-                                        percent:
-                                            (completedKey / toBeCompleted),
-                                        progressColor: darkOrange,
+                                            color: navyBlue, fontSize: 16),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              )
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: LinearPercentIndicator(
+                                          animation: true,
+                                          lineHeight: 5.0,
+                                          animationDuration: 2000,
+                                          percent:
+                                              (completedKey / toBeCompleted),
+                                          progressColor: darkOrange,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          )
-        ),
-        
-        
+                ],
+              ),
+            )),
+
         // Bottom
         // Text Field & Toggle
         // Column(
@@ -401,14 +406,16 @@ class _HomePageState extends State<HomePage> {
         //
         Expanded(
           child: ListView.builder(
-            itemCount:
-                isSelected[0] ? todaysHabitList.length + 1 : todaysTaskList.length + 1, // Add 1 for the toggle button
+            itemCount: isSelected[0]
+                ? todaysHabitList.length + 1
+                : todaysTaskList.length + 1, // Add 1 for the toggle button
             itemBuilder: (BuildContext context, int index) {
               if (index == 0) {
                 // This is the first item, return the toggle button
                 return Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: 20, left: 30, right: 30),
-                  child: Container(
+                    padding: const EdgeInsets.only(
+                        top: 20, bottom: 20, left: 30, right: 30),
+                    child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
                             color: Colors.white,
@@ -439,10 +446,9 @@ class _HomePageState extends State<HomePage> {
                             );
                           },
                         )));
-              }
-              else {
+              } else {
                 // Subtract 1 from index to get the correct habit item
-                if(isSelected[0]) {
+                if (isSelected[0]) {
                   index -= 1;
                   return HabitTile(
                     ID: todaysHabitList[index][0],
@@ -451,8 +457,7 @@ class _HomePageState extends State<HomePage> {
                     itemIcon: todaysHabitList[index][3],
                     isDone: todaysHabitList[index][4],
                   );
-                }
-                else {
+                } else {
                   index -= 1;
                   return TaskTile(
                     ID: todaysTaskList[index][0],
@@ -462,7 +467,6 @@ class _HomePageState extends State<HomePage> {
                     isDone: todaysTaskList[index][4],
                   );
                 }
-                
               }
             },
           ),

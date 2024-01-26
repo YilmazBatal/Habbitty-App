@@ -8,13 +8,34 @@ import 'package:habbitty/Pages/profilepage.dart';
 import 'package:habbitty/Pages/storepage.dart';
 import 'package:habbitty/homepage.dart';
 import 'package:habbitty/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // import 'package:http/http.dart' as http;
 // import 'package:habbitty/model/quotes.dart';
 // import 'package:habbitty/services/api.dart';
 
-class DailyQuotePage extends StatelessWidget {
-  const DailyQuotePage({super.key});
+class DailyQuotePage extends StatefulWidget {
+  const DailyQuotePage({Key? key}) : super(key: key);
+
+  @override
+  _DailyQuotePageState createState() => _DailyQuotePageState();
+}
+
+class _DailyQuotePageState extends State<DailyQuotePage> {
+  String? storedUsername;
+
+  @override
+  void initState() {
+    super.initState();
+    loadUsername();
+  }
+
+  Future<void> loadUsername() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      storedUsername = prefs.getString('username');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,16 +59,19 @@ class DailyQuotePage extends StatelessWidget {
                   padding: const EdgeInsets.all(0.0),
                   child: Container(
                     decoration: BoxDecoration(color: lightOrange),
-                    child: const Center(
+                    child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.account_circle_outlined,
                             size: 100,
                             color: Colors.white,
                           ),
-                          Text("<User Name>",
+                          Text(
+                              storedUsername != null
+                                  ? "Welcome $storedUsername"
+                                  : "Welcome User",
                               style:
                                   TextStyle(fontSize: 24, color: Colors.white))
                         ],

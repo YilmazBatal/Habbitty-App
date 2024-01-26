@@ -5,6 +5,7 @@ import 'package:habbitty/Components/title.dart';
 import 'package:habbitty/Pages/welcomePage.dart';
 import 'package:habbitty/homepage.dart';
 import 'package:habbitty/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Signin extends StatefulWidget {
   const Signin({Key? key}) : super(key: key);
@@ -78,18 +79,24 @@ class _SigninState extends State<Signin> {
                           borderRadius: BorderRadius.circular(15),
                           boxShadow: [MyBoxShadow(navyBlue)]),
                       child: ElevatedButton(
-                        onPressed: () {
-                          if (authenticateUser(
-                              usernameController.text, passwordController.text)) {
-                            Navigator.of(context).push(
-                                MaterialPageRoute(builder: (context) => HomePage()));
+                        onPressed: () async {
+                          bool success = await authenticateUser(
+                            usernameController.text,
+                            passwordController.text,
+                          );
+
+                          if (success) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const HomePage()));
                           } else {
+                            // ignore: use_build_context_synchronously
                             showDialog(
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
                                   title: Text('Error'),
-                                  content: Text('Invalid username or password.'),
+                                  content:
+                                      Text('Invalid username or password.'),
                                   actions: <Widget>[
                                     TextButton(
                                       onPressed: () {
@@ -176,18 +183,17 @@ class _SigninState extends State<Signin> {
   }
 
   // Kullanıcıyı doğrula
-  bool authenticateUser(String username, String password) {
-    // Bu kısmı kullanıcı veritabanınıza göre uyarlayın
-    List<Map<String, dynamic>> users = [
-      {"username": "user1", "password": "password1", "name": "John Doe"},
-      {"username": "user2", "password": "password2", "name": "Jane Doe"},
-    ];
-
-    for (var user in users) {
-      if (user['username'] == username && user['password'] == password) {
-        return true;
-      }
+  Future<bool> authenticateUser(String username, String password) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? storedUsername = prefs.getString('username');
+      String? storedPassword = prefs.getString('password');
+      debugPrint("name$username");
+      debugPrint("pass$password");
+      return storedUsername == username && storedPassword == password;
+    } catch (e) {
+      print('Failed to authenticate user: $e');
+      return false;
     }
-    return false;
   }
 }

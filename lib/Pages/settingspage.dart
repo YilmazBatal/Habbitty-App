@@ -11,9 +11,30 @@ import 'package:habbitty/Pages/profilepage.dart';
 import 'package:habbitty/Pages/storepage.dart';
 import 'package:habbitty/homepage.dart';
 import 'package:habbitty/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({Key? key}) : super(key: key);
+
+  @override
+  _SettingsPageState createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  String? storedUsername;
+
+  @override
+  void initState() {
+    super.initState();
+    loadUsername();
+  }
+
+  Future<void> loadUsername() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      storedUsername = prefs.getString('username');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +58,7 @@ class SettingsPage extends StatelessWidget {
                   padding: const EdgeInsets.all(0.0),
                   child: Container(
                     decoration: BoxDecoration(color: lightOrange),
-                    child: const Center(
+                    child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -46,7 +67,10 @@ class SettingsPage extends StatelessWidget {
                             size: 100,
                             color: Colors.white,
                           ),
-                          Text("<User Name>",
+                          Text(
+                              storedUsername != null
+                                  ? "Welcome $storedUsername"
+                                  : "Welcome User",
                               style:
                                   TextStyle(fontSize: 24, color: Colors.white)),
                         ],

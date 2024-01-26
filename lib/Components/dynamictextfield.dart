@@ -10,18 +10,18 @@ class DynamicTextField extends StatefulWidget {
   final Icon suffixIcon;
 
   // ignore: use_key_in_widget_constructors
-  const DynamicTextField({
-    required this.hintText,
-    required this.controller,
-    this.keyboardType = TextInputType.text,
-    required this.onChanged,
-    required this.suffixIcon,
-  });
+  const DynamicTextField(
+      {required this.hintText,
+      required this.controller,
+      this.keyboardType = TextInputType.text,
+      required this.onChanged,
+      required this.suffixIcon});
 
   @override
   // ignore: library_private_types_in_public_api
   _DynamicTextFieldState createState() => _DynamicTextFieldState();
 }
+
 class _DynamicTextFieldState extends State<DynamicTextField> {
   @override
   Widget build(BuildContext context) {
@@ -66,4 +66,3 @@ class _DynamicTextFieldState extends State<DynamicTextField> {
     );
   }
 }
-
