@@ -13,10 +13,13 @@
 
 ## Project Members
 
-- @yilmazbatal
-- @himmetarda
+- @yilmazbatal | Yılmaz Oğulbey Batal 221216081 SECTION 2
+- @himmetarda | Himmet Arda Sargın 221216060 SECTION 2
 
+Flutter Mobil uygulama Geliştirme / Bitirme Projesi 1
 
+### Supervisor
+- @keyvanarasteh | Keyvan Arasteh
 
 ## More description soon...
 
