@@ -49,7 +49,6 @@ class _EditPageState extends State<EditPage> {
                   const MyToggleButtons(),
                   MyTitle("Activity Name", navyBlue),
                   DynamicTextField(
-                    
                     hintText: "Water Plants",
                     controller: TextEditingController(text: widget.itemTitle),
                     suffixIcon: Icon(

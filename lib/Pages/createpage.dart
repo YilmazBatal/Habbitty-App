@@ -9,7 +9,6 @@ import 'package:habbitty/Components/togglebutton.dart';
 import 'package:habbitty/main.dart';
 
 class CreatePage extends StatefulWidget {
-
   final bool editMode;
   final int id;
 
@@ -20,14 +19,13 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    // id = 
+    // id =
     // widget.id
-    if(widget.editMode) {
+    if (widget.editMode) {
       // veritabanindan oku verileri
       // widget.id
     }
@@ -82,7 +80,7 @@ class _CreatePageState extends State<CreatePage> {
                   MyTitle("Select Icon", navyBlue),
                   const Padding(
                     padding: EdgeInsets.only(top: 15.0, left: 30, right: 30),
-                        child: selectIcon(),
+                    child: selectIcon(),
                     // child: Container(
                     //   decoration: BoxDecoration(
                     //     color: Colors.white,
@@ -115,7 +113,7 @@ class _CreatePageState extends State<CreatePage> {
                     //   //     ],
                     //   //   ),
                     //   // ),
-                    ),
+                  ),
                   // SelectTime
                   Padding(
                       padding:

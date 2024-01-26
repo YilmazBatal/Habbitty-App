@@ -92,7 +92,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: MyTheme(),
-        home: const HomePage());
+        home: const welcomePage());
   }
 
   // ignore: non_constant_identifier_names

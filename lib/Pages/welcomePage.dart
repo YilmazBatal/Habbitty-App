@@ -63,11 +63,7 @@ class MyClipPath extends AnimatedWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      buttonElements(context, "Sign In", () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const Signin()));
-                      }),
-
+                      buttonElements(context, "Sign In", Signin()),
                       const SizedBox(
                         height: 10,
                       ),

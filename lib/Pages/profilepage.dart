@@ -9,9 +9,30 @@ import 'package:habbitty/Pages/stats.dart';
 import 'package:habbitty/Pages/storepage.dart';
 import 'package:habbitty/homepage.dart';
 import 'package:habbitty/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key}) : super(key: key);
+
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  String? storedUsername;
+
+  @override
+  void initState() {
+    super.initState();
+    loadUsername();
+  }
+
+  Future<void> loadUsername() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      storedUsername = prefs.getString('username');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +56,21 @@ class ProfilePage extends StatelessWidget {
                   padding: const EdgeInsets.all(0.0),
                   child: Container(
                     decoration: BoxDecoration(color: lightOrange),
-                    child: const Center(
+                    child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.account_circle_outlined,
                             size: 100,
                             color: Colors.white,
                           ),
-                          Text("<User Name>",
-                              style:
-                                  TextStyle(fontSize: 24, color: Colors.white)),
+                          Text(
+                              storedUsername != null
+                                  ? "Welcome $storedUsername"
+                                  : "Welcome User",
+                              style: const TextStyle(
+                                  fontSize: 24, color: Colors.white)),
                         ],
                       ),
                     ),
@@ -197,14 +221,19 @@ class ProfilePage extends StatelessWidget {
               ),
               width: double.infinity,
               height: 220,
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text("Welcome <User>",
-                        style: TextStyle(color: Colors.white, fontSize: 30)),
-                    Icon(
+                    Text(
+                      storedUsername != null
+                          ? "Welcome $storedUsername"
+                          : "Welcome User",
+                      style: const TextStyle(color: Colors.white, fontSize: 30),
+                    ),
+                    const Icon(
                       Icons.face,
                       color: Colors.white,
                       size: 120,
