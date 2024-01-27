@@ -32,7 +32,7 @@ class HelpPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  FAQItem("What is HABBITTY?", "bla bla bla"),
+                  FAQItem("What is HABBITTY?", "Easy to use offline and free habit and task tracking app. With simple designed UI anyone can use this app. Even your grandpa!"),
                   FAQItem("How to add Habbitts?", "bla bla bla"),
                   FAQItem("Can I change my user name", "bla bla bla"),
                   FAQItem("Can I request my data to be deleted?", "bla bla bla"),
@@ -142,7 +142,7 @@ class HelpPage extends StatelessWidget {
       ),
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
+          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
           child: Text(
             myDescription,
             style:  const TextStyle(fontSize: 15),
