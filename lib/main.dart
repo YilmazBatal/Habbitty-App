@@ -46,18 +46,18 @@ List todaysTaskList = [
 
 List avatarList = [
   // [assetImage,avatarName,isOwned]
-  [0, "assets/avatars/1.png", "Jenny", true],
-  [1, "assets/avatars/2.png", "Jenny", true],
-  [2, "assets/avatars/3.png", "Jenny", false],
+  [0, "assets/avatars/1.png", "Owned", true],
+  [1, "assets/avatars/2.png", "Owned", true],
+  [2, "assets/avatars/3.png", "Husain", false],
   [3, "assets/avatars/4.png", "Jenny", false],
-  [4, "assets/avatars/5.png", "Jenny", true],
-  [5, "assets/avatars/6.png", "Jenny", false],
-  [6, "assets/avatars/7.png", "Jenny", false],
-  [7, "assets/avatars/8.png", "Jenny", false],
-  [8, "assets/avatars/9.png", "Jenny", false],
-  [9, "assets/avatars/10.png", "Jenny", false],
-  [10, "assets/avatars/11.png", "Jenny", false],
-  [11, "assets/avatars/12.png", "Jenny", false],
+  [4, "assets/avatars/5.png", "Owned", true],
+  [5, "assets/avatars/6.png", "Alexa", false],
+  [6, "assets/avatars/7.png", "Jamal", false],
+  [7, "assets/avatars/8.png", "Ali", false],
+  [8, "assets/avatars/9.png", "Donn", false],
+  [9, "assets/avatars/10.png", "Dimitri", false],
+  [10, "assets/avatars/11.png", "Sophia", false],
+  [11, "assets/avatars/12.png", "Xin He", false],
 ];
 
 int credits = 24;
