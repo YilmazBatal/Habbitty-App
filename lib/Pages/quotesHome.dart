@@ -43,9 +43,15 @@ class _QuotesScreenState extends State<QuotesScreen> {
             //     print("icon refresh");
             //   },
             // ),
+            Padding(
+              padding: const EdgeInsets.only(top:  16),
+              child: Text("The Magic Quote of the Day", style: TextStyle(
+                fontSize: 24,
+              ),),
+            ),
             Card(
               margin: const EdgeInsets.only(top: 20),
-              color: const Color.fromARGB(255, 33, 173, 243),
+              color: Colors.white,
               elevation: 10,
               child: Padding(
                 padding:
@@ -79,6 +85,7 @@ class _QuotesScreenState extends State<QuotesScreen> {
                 ),
               ),
             ),
+            
           ],
         ),
       ),
