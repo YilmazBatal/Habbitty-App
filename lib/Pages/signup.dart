@@ -57,7 +57,7 @@ class signup extends StatelessWidget {
                         // Handle username changes
                       },
                     ),
-
+                    //text kutularımız
                     DynamicTextField(
                       hintText: "E-Mail",
                       controller: emailController,
@@ -116,6 +116,7 @@ class signup extends StatelessWidget {
 
                             if (success) {
                               // Kayıt başarılıysa giriş sayfasına yönlendir
+                              // ignore: use_build_context_synchronously
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => const Signin()));
                             } else {
@@ -225,18 +226,21 @@ class signup extends StatelessWidget {
       String password, String confirmPassword) async {
     try {
       if (password == confirmPassword) {
+        // prefs kutumuzu açıyoruz
         SharedPreferences prefs = await SharedPreferences.getInstance();
+        // key value şeklinde kaydediyoruz
         prefs.setString('username', username);
         prefs.setString('email', email);
         prefs.setString('password', password);
-        print("name: $username");
+        // print("name: $username");
         return true;
       } else {
-        print('Password and confirm password do not match.');
+        // print('Password and confirm password do not match.');
         return false;
       }
     } catch (e) {
-      print('Failed to save user credentials: $e');
+      // hata var ise false döndürüyoruz böylece program hata vermiyor
+      // print('Failed to save user credentials: $e');
       return false;
     }
   }

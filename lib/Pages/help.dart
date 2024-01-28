@@ -49,8 +49,9 @@ class HelpPage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: ElevatedButton(
                       onPressed: ()async{
+                        // asenkronize bir şekilde uri classımızı çalışıyoruz
                         final Uri myWebsiteUrl = Uri.parse("https://github.com/YilmazBatal/Habbitty-App/blob/main/README.md");
-                        
+                        // scheme ve yönlendirilecek yolu beliritiyoruz
                         try{
                           await launchUrl(myWebsiteUrl);
                         } catch (err) {
@@ -99,7 +100,9 @@ class HelpPage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: ElevatedButton(
                       onPressed: () async {
+                        // asenkronize bir şekilde uri classımızı çalışıyoruz
                         final Uri myTel = Uri(
+                          // scheme ve yönlendirilecek yolu beliritiyoruz
                           scheme: 'tel',
                           path: '+90 532 123 45 67'
                         );

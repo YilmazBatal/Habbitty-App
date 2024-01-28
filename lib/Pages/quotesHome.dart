@@ -43,8 +43,8 @@ class _QuotesScreenState extends State<QuotesScreen> {
             //     print("icon refresh");
             //   },
             // ),
-            Padding(
-              padding: const EdgeInsets.only(top:  16),
+            const Padding(
+              padding: EdgeInsets.only(top:  16),
               child: Text("The Magic Quote of the Day", style: TextStyle(
                 fontSize: 24,
               ),),
@@ -101,6 +101,7 @@ class _QuotesScreenState extends State<QuotesScreen> {
       isLoading = true;
     });
 
+    // prefs ile shared preferences eklentimizi kullanılabilir hale getiriyoruz 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String storedDate = prefs.getString('lastFetchedDate') ?? "";
 
