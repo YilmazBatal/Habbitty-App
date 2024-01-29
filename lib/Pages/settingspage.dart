@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:habbitty/Components/alert_dialog.dart';
 import 'package:habbitty/Components/tooltip.dart';
@@ -62,7 +60,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.account_circle_outlined,
                             size: 100,
                             color: Colors.white,
@@ -72,7 +70,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                   ? "Welcome $storedUsername"
                                   : "Welcome User",
                               style:
-                                  TextStyle(fontSize: 24, color: Colors.white)),
+                                  const TextStyle(fontSize: 24, color: Colors.white)),
                         ],
                       ),
                     ),
@@ -210,10 +208,10 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
         ),
       ),
-      body: Column(
+      body: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
-        children: const [
+        children: [
           Column(
             children: [
               SettingClick(),
@@ -278,7 +276,7 @@ class SettingClick extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   ),
                 ).withContainerShadow(),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 ElevatedButton(

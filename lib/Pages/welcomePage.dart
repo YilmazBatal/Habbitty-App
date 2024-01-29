@@ -1,16 +1,12 @@
-// ignore_for_file: file_names, library_private_types_in_public_api
+// ignore_for_file: file_names, camel_case_types
 
 import 'package:habbitty/Components/title.dart';
 import 'package:habbitty/Pages/signin.dart';
 import 'package:habbitty/Pages/signup.dart';
-// import 'package:habbitty/homepage.dart';
 import 'package:habbitty/main.dart';
 import 'package:flutter/material.dart';
-//import 'package:google_sign_in/google_sign_in.dart';
-
 void main() => runApp(const welcomePage());
 
-// ignore: camel_case_types
 class welcomePage extends StatelessWidget {
   const welcomePage({super.key});
 
@@ -194,7 +190,7 @@ class MyAnimation extends StatefulWidget {
   const MyAnimation({super.key});
 
   @override
-  _MyAnimationState createState() => _MyAnimationState();
+  State<MyAnimation> createState() => _MyAnimationState();
 }
 
 class _MyAnimationState extends State<MyAnimation>
