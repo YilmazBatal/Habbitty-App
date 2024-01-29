@@ -33,6 +33,7 @@ class HabitTile extends StatefulWidget {
 
 class _HabitTileState extends State<HabitTile> {
   void refreshPage() {
+
     // You can implement the logic to refresh the page here
     // For example, you can call setState to rebuild the widget
     setState(() {});
@@ -99,17 +100,21 @@ class _HabitTileState extends State<HabitTile> {
                       ActionPane(motion: const StretchMotion(), children: [
                     SlidableAction(
                       onPressed: (context) async {
-                        SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
+
+                        SharedPreferences prefs = await SharedPreferences.getInstance();
                         completed++;
+                        completedKey = completed;
+                        todaysHabitList[3][4] == true;
                         setState(() {
-                          prefs.setInt('done', completed);
+                          prefs.setInt('done', completedKey);
                           print(prefs.getInt("done"));
                         });
+                        // Visual Change
                         widget.isDone = true;
                         refreshPage();
                         // saveMyHabit();
                         // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
+                      
                       },
                       icon: (Icons.check_circle_outline),
                       backgroundColor: lightGreen,
