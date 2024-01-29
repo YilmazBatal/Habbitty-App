@@ -21,7 +21,6 @@ class CreatePage extends StatefulWidget {
 class _CreatePageState extends State<CreatePage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     // id =
     // widget.id

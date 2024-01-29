@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, unused_import
+// ignore_for_file: unused_import, avoid_print, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -61,10 +61,10 @@ class _HabitTileState extends State<HabitTile> {
   //     prefs.setInt("done", 5);
   //   });
   // }
-  void handleTap(int index) {
-    String selectedItem = todaysHabitList[index];
-    // Perform any actions with the selected item
-  }
+  // void handleTap(int index) {
+  //   String selectedItem = todaysHabitList[index];
+  //   // Perform any actions with the selected item
+  // }
 
   @override
   Widget build(BuildContext context) {

@@ -15,7 +15,7 @@ class StorePage extends StatefulWidget {
   const StorePage({Key? key}) : super(key: key);
 
   @override
-  _StorePageState createState() => _StorePageState();
+  State<StorePage> createState() => _StorePageState();
 }
 
 class _StorePageState extends State<StorePage> {

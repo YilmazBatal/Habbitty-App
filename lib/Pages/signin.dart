@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, duplicate_ignore, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:habbitty/Components/boxshadow.dart';
 import 'package:habbitty/Components/dynamictextfield.dart';
@@ -11,7 +13,7 @@ class Signin extends StatefulWidget {
   const Signin({Key? key}) : super(key: key);
 
   @override
-  _SigninState createState() => _SigninState();
+  State<Signin> createState() => _SigninState();
 }
 
 class _SigninState extends State<Signin> {
@@ -94,15 +96,15 @@ class _SigninState extends State<Signin> {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: Text('Error'),
+                                  title: const Text('Error'),
                                   content:
-                                      Text('Invalid username or password.'),
+                                      const Text('Invalid username or password.'),
                                   actions: <Widget>[
                                     TextButton(
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: Text('OK'),
+                                      child: const Text('OK'),
                                     ),
                                   ],
                                 );

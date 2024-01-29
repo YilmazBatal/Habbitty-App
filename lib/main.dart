@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:habbitty/Pages/signin.dart';
-// import 'package:habbitty/Models/activitydatabase.dart';
-// ignore: unused_import
 import 'package:habbitty/Pages/welcomePage.dart';
-import 'package:habbitty/homepage.dart';
-// import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Color lightOrange = const Color(0xffff8c2e); // Orange 1

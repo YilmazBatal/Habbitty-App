@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
@@ -14,6 +16,7 @@ class Api {
     } else {
       print("error in getting data");
     }
+    return null;
   }
 }
 

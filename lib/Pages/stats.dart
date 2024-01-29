@@ -19,7 +19,7 @@ class StatsPage extends StatefulWidget {
   const StatsPage({Key? key}) : super(key: key);
 
   @override
-  _StatsPageState createState() => _StatsPageState();
+  State<StatsPage> createState() => _StatsPageState();
 }
 
 class _StatsPageState extends State<StatsPage> {
@@ -59,25 +59,23 @@ class _StatsPageState extends State<StatsPage> {
                 child: DrawerHeader(
                   padding: const EdgeInsets.all(0.0),
                   decoration: BoxDecoration(color: lightOrange),
-                  child: Container(
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            Icons.account_circle_outlined,
-                            size: 100,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            storedUsername != null
-                                ? "Welcome $storedUsername"
-                                : "Welcome User",
-                            style: const TextStyle(
-                                fontSize: 24, color: Colors.white),
-                          )
-                        ],
-                      ),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.account_circle_outlined,
+                          size: 100,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          storedUsername != null
+                              ? "Welcome $storedUsername"
+                              : "Welcome User",
+                          style: const TextStyle(
+                              fontSize: 24, color: Colors.white),
+                        )
+                      ],
                     ),
                   ),
                 ),

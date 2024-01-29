@@ -10,15 +10,11 @@ import 'package:habbitty/homepage.dart';
 import 'package:habbitty/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// import 'package:http/http.dart' as http;
-// import 'package:habbitty/model/quotes.dart';
-// import 'package:habbitty/services/api.dart';
-
 class DailyQuotePage extends StatefulWidget {
   const DailyQuotePage({Key? key}) : super(key: key);
 
   @override
-  _DailyQuotePageState createState() => _DailyQuotePageState();
+  State<DailyQuotePage> createState() => _DailyQuotePageState();
 }
 
 class _DailyQuotePageState extends State<DailyQuotePage> {
@@ -72,8 +68,7 @@ class _DailyQuotePageState extends State<DailyQuotePage> {
                               storedUsername != null
                                   ? "Welcome $storedUsername"
                                   : "Welcome User",
-                              style:
-                                  TextStyle(fontSize: 24, color: Colors.white))
+                              style: const TextStyle(fontSize: 24, color: Colors.white))
                         ],
                       ),
                     ),
